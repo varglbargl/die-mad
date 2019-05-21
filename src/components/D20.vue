@@ -1,7 +1,10 @@
 <template>
-  <div class="die" @click="throwDie" :class="{blue: speed > 0}">
+  <div class="die"
+  @click="throwDie"
+  :class="{blue: speed > 0}"
+  :style="{top: y + 'px', left: x + 'px'}">
     {{ value }}
-    <span class="small">{{ speed.toFixed(2) }}</span>
+    <!-- <span class="small">{{ speed.toFixed(2) }}</span> -->
   </div>
 </template>
 
@@ -13,7 +16,9 @@ export default {
   data () {
     return {
       value: 20,
-      vector: [0, 0]
+      vector: [0, 0],
+      x: 10,
+      y: 10
     }
   },
   computed: {
@@ -23,22 +28,30 @@ export default {
     }
   },
   methods: {
-    roll () {
+    roll () { // without rolling animations
       this.value = utils.rollDie(1, 20);
     },
-    throwDie () {
+    throwDie () { // with rolling animations
       if (this.speed > 0) {
         this.roll();
-        this.vector = [4, 4];
+        this.vector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
         return;
       }
 
-      this.vector = [4, 4];
+      let tableWidth = document.getElementById('tabletop').offsetWidth;
+      let tableHeight = document.getElementById('tabletop').offsetHeight;
+
+      this.vector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
 
       let tickDownSpeed = () => {
         if (this.speed > 0.02) {
-          this.vector = utils.multiplyVector(this.vector, 0.85);
-          setTimeout(tickDownSpeed, 100);
+          this.vector = utils.multiplyVector(this.vector, 0.95);
+
+          this.hitTestWalls(0, 0, tableWidth, tableHeight);
+
+          this.x += this.vector[0];
+          this.y += this.vector[1];
+          setTimeout(tickDownSpeed, 25);
         } else {
           this.vector = [0, 0];
         }
@@ -54,6 +67,27 @@ export default {
       }
 
       changeDieSide();
+    },
+    hitTestWalls(xMin, yMin, xMax, yMax) {
+      if (this.x + this.vector[0] < xMin) {
+        this.x = yMin;
+        this.vector[0] = this.vector[0] * -1;
+      }
+
+      if (this.x + this.$el.offsetWidth + this.vector[0] > xMax) {
+        this.x = xMax - this.$el.offsetWidth;
+        this.vector[0] = this.vector[0] * -1;
+      }
+
+      if (this.y + this.vector[1] < yMin) {
+        this.y = yMin;
+        this.vector[1] = this.vector[1] * -1;
+      }
+
+      if (this.y + this.$el.offsetHeight + this.vector[1] > yMax) {
+        this.y = yMax - this.$el.offsetHeight;
+        this.vector[1] = this.vector[1] * -1;
+      }
     }
   }
 }
@@ -64,8 +98,8 @@ export default {
 .die {
   $size: 70px;
 
-  position: relative;
-  width: $size;
+  position: absolute;
+  width: 1.73205 * ($size / 2);
   height: $size;
 
   background-color: $red;
