@@ -46,6 +46,19 @@ export default {
       for (let i = 0; i < this.$refs.dice.length; i++) {
         this.$refs.dice[i].throwDieRandomly();
       }
+    },
+    deviceMotionHandler (e) {
+      if (e.acceleration) {
+        let shakeSpeed = Math.max(Math.abs(e.acceleration.x), Math.abs(e.acceleration.y), Math.abs(e.acceleration.z));
+        if (shakeSpeed > 20) {
+          this.rollAll();
+        }
+      }
+    }
+  },
+  mounted () {
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', this.deviceMotionHandler, true);
     }
   }
 }
@@ -71,7 +84,7 @@ html, body {
 
 #tabletop {
   width: 100vw;
-  height: calc(100vh - #{$menu-height});
+  height: calc(80vh - #{$menu-height});
 
   background-color: $felt-green;
   overflow: show;

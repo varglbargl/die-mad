@@ -5,9 +5,9 @@
   @mouseup="dragStop"
   @touchend="dragStop"
   :class="[{blue: speed > 0}, dieType]"
-  :style="{top: y + 'px', left: x + 'px'}">
-    {{ value }}
-    <!-- <span class="small">{{ speed.toFixed(2) }}</span> -->
+  :style="{top: y + 'px', left: x + 'px', zIndex: dragging ? 100 : 'unset'}">
+    <span>{{ value }}</span>
+    <!-- <span class="small">{{ sides }}</span> -->
   </div>
 </template>
 
@@ -67,61 +67,58 @@ export default {
       if (e.changedTouches) {
         this.dragOffsetX = this.x - e.changedTouches[0].clientX;
         this.dragOffsetY = this.y - e.changedTouches[0].clientY;
+        document.getElementById('tabletop').addEventListener('touchmove', this.handleDrag);
+
       } else if (e.clientX && e.clientY) {
         this.dragOffsetX = this.x - e.clientX;
         this.dragOffsetY = this.y - e.clientY;
+        document.getElementById('tabletop').addEventListener('mousemove', this.handleDrag);
       }
-      document.addEventListener('mousemove', this.handleDrag);
-      document.addEventListener('touchmove', this.handleDrag);
     },
-    dragStop (e) {
+    dragStop () {
       this.dragging = false;
-      document.removeEventListener('mousemove', this.handleDrag);
-      document.removeEventListener('touchmove', this.handleDrag);
+      document.getElementById('tabletop').removeEventListener('mousemove', this.handleDrag);
+      document.getElementById('tabletop').removeEventListener('touchmove', this.handleDrag);
     },
     handleDrag (e) {
+      e.preventDefault();
+      e.stopPropagation();
       if (e.changedTouches) {
         this.x = e.changedTouches[0].clientX + this.dragOffsetX;
         this.y = e.changedTouches[0].clientY + this.dragOffsetY;
 
-        let tableWidth = document.getElementById('tabletop').offsetWidth;
-        let tableHeight = document.getElementById('tabletop').offsetHeight;
-        this.hitTestWalls(0, 0, tableWidth, tableHeight);
+        this.hitTestWalls(); // i honestly cannot believe this works so flawlessly
+
       } else if (e.clientX && e.clientY) {
         this.x = e.clientX + this.dragOffsetX;
         this.y = e.clientY + this.dragOffsetY;
 
-        let tableWidth = document.getElementById('tabletop').offsetWidth;
-        let tableHeight = document.getElementById('tabletop').offsetHeight;
-        this.hitTestWalls(0, 0, tableWidth, tableHeight);
+        this.hitTestWalls(); // like holy shit i just throw this in here and we're good??
       }
+
+      return false
     },
     roll () { // without rolling animations
       this.value = utils.rollDie(1, this.sides);
     },
     throwDie () { // with rolling animations
 
-      let tableWidth = document.getElementById('tabletop').offsetWidth;
-      let tableHeight = document.getElementById('tabletop').offsetHeight;
-
-      this.vector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
-
       let tickDownSpeed = () => {
         if (this.speed > 0.02) {
           this.vector = utils.multiplyVector(this.vector, 0.95);
 
-          this.hitTestWalls(0, 0, tableWidth, tableHeight);
-
           this.x += this.vector[0];
           this.y += this.vector[1];
+
+          this.hitTestWalls();
+
           setTimeout(tickDownSpeed, 25);
+
         } else {
           this.vector = [0, 0];
           this.$emit('input', this.value);
         }
       }
-
-      tickDownSpeed();
 
       let changeDieSide = () => {
         if (this.speed !== 0) {
@@ -130,6 +127,7 @@ export default {
         }
       }
 
+      tickDownSpeed();
       changeDieSide();
     },
     throwDieRandomly () {
@@ -138,28 +136,34 @@ export default {
       if (this.speed > 0) {
         this.roll();
         this.vector = randomVector;
+
       } else {
         this.vector = randomVector;
         this.throwDie();
       }
     },
-    hitTestWalls (xMin, yMin, xMax, yMax) {
-      if (this.x + this.vector[0] < xMin) {
+    hitTestWalls () {
+      let xMin = 0;
+      let yMin = 0;
+      let xMax = document.getElementById('tabletop').offsetWidth;
+      let yMax = document.getElementById('tabletop').offsetHeight;
+
+      if (this.x < xMin) {
         this.x = yMin;
         this.vector[0] = this.vector[0] * -1;
       }
 
-      if (this.x + this.$el.offsetWidth + this.vector[0] > xMax) {
+      if (this.x + this.$el.offsetWidth > xMax) {
         this.x = xMax - this.$el.offsetWidth;
         this.vector[0] = this.vector[0] * -1;
       }
 
-      if (this.y + this.vector[1] < yMin) {
+      if (this.y < yMin) {
         this.y = yMin;
         this.vector[1] = this.vector[1] * -1;
       }
 
-      if (this.y + this.$el.offsetHeight + this.vector[1] > yMax) {
+      if (this.y + this.$el.offsetHeight > yMax) {
         this.y = yMax - this.$el.offsetHeight;
         this.vector[1] = this.vector[1] * -1;
       }
@@ -179,6 +183,11 @@ $size: 70px;
   font-size: 24px;
   color: #FFF;
   font-weight: 800;
+  cursor: pointer;
+
+  span {
+    pointer-events: none;
+  }
 
   &.d100 {
     width: $size - 20;
