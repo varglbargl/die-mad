@@ -1,6 +1,9 @@
 <template>
   <div class="die"
-  @click="throwDie"
+  @mousedown="dragStart"
+  @touchstart="dragStart"
+  @mouseup="dragStop"
+  @touchend="dragStop"
   :class="[{blue: speed > 0}, dieType]"
   :style="{top: y + 'px', left: x + 'px'}">
     {{ value }}
@@ -23,11 +26,14 @@ export default {
       value: this.sides,
       vector: [0, 0],
       x: 10,
-      y: 10
+      y: 10,
+      dragging: false,
+      dragOffsetX: 0,
+      dragOffsetY: 0
     }
   },
   computed: {
-    dieType() {
+    dieType () {
       switch (parseInt(this.sides)) {
         case 100:
           return 'd100';
@@ -47,21 +53,53 @@ export default {
           return 'custom';
       }
     },
-    speed() {
+    speed () {
       let magnitude = (Math.sqrt(Math.pow(this.vector[0], 2) + Math.pow(this.vector[1], 2)));
       return magnitude;
     }
   },
   methods: {
+    dragStart (e) {
+      if (this.speed) return;
+
+      this.dragging = true;
+
+      if (e.changedTouches) {
+        this.dragOffsetX = this.x - e.changedTouches[0].clientX;
+        this.dragOffsetY = this.y - e.changedTouches[0].clientY;
+      } else if (e.clientX && e.clientY) {
+        this.dragOffsetX = this.x - e.clientX;
+        this.dragOffsetY = this.y - e.clientY;
+      }
+      document.addEventListener('mousemove', this.handleDrag);
+      document.addEventListener('touchmove', this.handleDrag);
+    },
+    dragStop (e) {
+      this.dragging = false;
+      document.removeEventListener('mousemove', this.handleDrag);
+      document.removeEventListener('touchmove', this.handleDrag);
+    },
+    handleDrag (e) {
+      if (e.changedTouches) {
+        this.x = e.changedTouches[0].clientX + this.dragOffsetX;
+        this.y = e.changedTouches[0].clientY + this.dragOffsetY;
+
+        let tableWidth = document.getElementById('tabletop').offsetWidth;
+        let tableHeight = document.getElementById('tabletop').offsetHeight;
+        this.hitTestWalls(0, 0, tableWidth, tableHeight);
+      } else if (e.clientX && e.clientY) {
+        this.x = e.clientX + this.dragOffsetX;
+        this.y = e.clientY + this.dragOffsetY;
+
+        let tableWidth = document.getElementById('tabletop').offsetWidth;
+        let tableHeight = document.getElementById('tabletop').offsetHeight;
+        this.hitTestWalls(0, 0, tableWidth, tableHeight);
+      }
+    },
     roll () { // without rolling animations
       this.value = utils.rollDie(1, this.sides);
     },
     throwDie () { // with rolling animations
-      if (this.speed > 0) {
-        this.roll();
-        this.vector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
-        return;
-      }
 
       let tableWidth = document.getElementById('tabletop').offsetWidth;
       let tableHeight = document.getElementById('tabletop').offsetHeight;
@@ -94,7 +132,18 @@ export default {
 
       changeDieSide();
     },
-    hitTestWalls(xMin, yMin, xMax, yMax) {
+    throwDieRandomly () {
+      var randomVector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
+
+      if (this.speed > 0) {
+        this.roll();
+        this.vector = randomVector;
+      } else {
+        this.vector = randomVector;
+        this.throwDie();
+      }
+    },
+    hitTestWalls (xMin, yMin, xMax, yMax) {
       if (this.x + this.vector[0] < xMin) {
         this.x = yMin;
         this.vector[0] = this.vector[0] * -1;

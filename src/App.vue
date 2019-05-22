@@ -44,7 +44,7 @@ export default {
     rollAll () {
       this.rolls = [];
       for (let i = 0; i < this.$refs.dice.length; i++) {
-        this.$refs.dice[i].throwDie();
+        this.$refs.dice[i].throwDieRandomly();
       }
     }
   }
