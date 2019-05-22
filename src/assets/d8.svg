@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-245 337 120 120" style="enable-background:new -245 337 120 120;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#331111;}
+	.st1{display:none;}
+	.st2{display:inline;}
+	.st3{fill:#D8D8D8;}
+	.st4{fill:#FFFFFF;}
+	.st5{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st6{display:inline;opacity:0.18;enable-background:new    ;}
+	.st7{display:inline;opacity:0.47;enable-background:new    ;}
+	.st8{display:inline;opacity:0.32;enable-background:new    ;}
+	.st9{display:inline;opacity:0.26;enable-background:new    ;}
+	.st10{fill:#2D0101;}
+	.st11{fill:#B72121;}
+	.st12{fill:#A81B1B;}
+	.st13{fill:#8C1010;}
+	.st14{fill:#720F0F;}
+</style>
+<g>
+	<path class="st0" d="M-181.5,455.2c-1.9,1.1-5,1.1-6.9,0l-45.2-26.1c-1.9-1.1-3.5-3.8-3.5-6v-52.2c0-2.2,1.6-4.9,3.5-6l45.2-26.1
+		c1.9-1.1,5-1.1,6.9,0l45.2,26.1c1.9,1.1,3.5,3.8,3.5,6v52.2c0,2.2-1.6,4.9-3.5,6L-181.5,455.2z"/>
+</g>
+<g id="circle_guides" class="st1">
+	<g class="st2">
+		<circle class="st3" cx="-185" cy="397" r="60"/>
+	</g>
+</g>
+<g id="lines" class="st1">
+	<g class="st2">
+		<polygon class="st4" points="-236.5,426.7 -236.5,367.3 -185,337.6 -133.5,367.3 -133.5,426.7 -185,456.4 		"/>
+		<path d="M-185,338.2l51,29.4v58.8l-51,29.4l-51-29.4v-58.8L-185,338.2 M-185,337l-52,30v60l52,30l52-30v-60L-185,337L-185,337z"/>
+	</g>
+	<polygon class="st5" points="-237,427 -185,337 -133,427 	"/>
+</g>
+<g id="shapes" class="st1">
+	<polygon class="st6" points="-185,337 -237,367 -237,427 	"/>
+	<polygon class="st7" points="-185,457 -133,427 -237,427 	"/>
+	<polygon class="st8" points="-133,367 -133,427 -185,337 	"/>
+	<polygon class="st9" points="-237,427 -185,337 -133,427 	"/>
+</g>
+<g id="backgrounds" class="st1">
+	<g class="st2">
+		<polygon class="st10" points="-237,367 -237,427 -185,457 -133,427 -133,367 -185,337 		"/>
+	</g>
+</g>
+<g id="shapes_copy" class="st1">
+	<g class="st2">
+		<polygon class="st11" points="-185,337 -237,367 -237,427 		"/>
+	</g>
+	<g class="st2">
+		<polygon class="st12" points="-237,427 -185,337 -133,427 		"/>
+	</g>
+	<g class="st2">
+		<polygon class="st13" points="-133,367 -133,427 -185,337 		"/>
+	</g>
+	<g class="st2">
+		<polygon class="st14" points="-185,457 -133,427 -237,427 		"/>
+	</g>
+</g>
+<g id="shapes_copy_2">
+	<polygon class="st11" points="-233.4,368.7 -187.6,342.2 -233.4,421.6 	"/>
+	<polygon class="st12" points="-232.7,424.2 -185,341.5 -137.3,424.2 	"/>
+	<polygon class="st13" points="-182.4,342.2 -136.6,368.7 -136.6,421.6 	"/>
+	<polygon class="st14" points="-230.8,426.1 -139.2,426.1 -185,452.5 	"/>
+</g>
+</svg>

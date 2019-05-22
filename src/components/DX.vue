@@ -178,7 +178,7 @@ $size: 70px;
 
 .die {
   position: absolute;
-  background-color: $red;
+  background-color: #311;
 
   font-size: 24px;
   color: #FFF;
@@ -197,49 +197,93 @@ $size: 70px;
   }
 
   &.d20 {
-    width: 1.73205 * ($size / 2);
-    height: $size;
+    width: 0.9 * $size;
+    height: 0.95 * $size;
 
-    line-height: $size;
+    line-height: 0.95 * $size;
 
-    mask-image: url('../assets/hexagon.svg');
+    mask-image: url('../assets/d20.svg');
     mask-repeat: no-repeat;
     mask-position: center;
+
+    background-image: url('../assets/d20.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &.d12 {
-    width: $size - 20;
-    height: $size - 20;
+    width: 0.8 * $size;
+    height: 0.84 * $size;
 
-    line-height: $size - 20;
+    line-height: 0.88 * $size;
+
+    mask-image: url('../assets/d12.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    background-image: url('../assets/d12.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &.d10 {
-    width: $size - 20;
-    height: $size - 20;
+    width: 0.9 * $size;
+    height: 0.9 * $size;
 
-    line-height: $size - 20;
+    line-height: 0.9 * $size;
+
+    mask-image: url('../assets/d10.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    background-image: url('../assets/d10.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &.d8 {
-    width: $size - 20;
-    height: $size - 20;
+    width: 0.85 * $size;
+    height: 0.85 * $size;
 
-    line-height: $size - 20;
+    line-height: 0.85 * $size;
+
+    mask-image: url('../assets/d8.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    background-image: url('../assets/d8.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &.d6 {
-    width: $size - 20;
-    height: $size - 20;
+    width: 0.7 * $size;
+    height: 0.7 * $size;
 
-    line-height: $size - 20;
+    line-height: 0.7 * $size;
+
+    mask-image: url('../assets/d6.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    background-image: url('../assets/d6.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &.d4 {
-    width: $size - 20;
-    height: $size - 20;
+    width: 0.85 * $size;
+    height: 0.7 * $size;
 
-    line-height: $size - 20;
+    line-height: 0.9 * $size;
+
+    mask-image: url('../assets/d4.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+
+    background-image: url('../assets/d4.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &.custom {
@@ -251,7 +295,7 @@ $size: 70px;
 }
 
 .blue {
-  background-color: $blue;
+  filter: hue-rotate(220deg);
 }
 
 .small {

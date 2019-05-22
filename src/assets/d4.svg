@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-245 337 120 99" style="enable-background:new -245 337 120 99;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#331111;}
+	.st1{display:none;}
+	.st2{display:inline;}
+	.st3{fill:#D8D8D8;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st6{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st7{display:inline;opacity:0.32;enable-background:new    ;}
+	.st8{display:inline;opacity:0.18;enable-background:new    ;}
+	.st9{display:inline;opacity:0.47;enable-background:new    ;}
+	.st10{fill:#2D0101;}
+	.st11{fill:#B72121;}
+	.st12{fill:#8C1010;}
+	.st13{fill:#720F0F;}
+</style>
+<g>
+	<path class="st0" d="M-237.3,436c-4.9,0-6.9-3.5-4.4-7.7l52.2-87.9c2.5-4.3,6.7-4.3,9.2,0l52.2,87.9c2.5,4.3,0.5,7.7-4.4,7.7
+		H-237.3z"/>
+</g>
+<g id="circle_guides" class="st1">
+	<g class="st2">
+		<circle class="st3" cx="-185" cy="397" r="60"/>
+	</g>
+</g>
+<g id="lines" class="st1">
+	<g class="st2">
+		<polygon class="st4" points="-236.1,426.5 -185,338 -133.9,426.5 		"/>
+		<path d="M-185,339l50.2,87h-100.4L-185,339 M-185,337l-52,90h104L-185,337L-185,337z"/>
+	</g>
+	<g class="st2">
+		<line class="st5" x1="-185" y1="397" x2="-237" y2="427"/>
+	</g>
+	<line class="st6" x1="-185" y1="397" x2="-185" y2="337"/>
+	<line class="st6" x1="-185" y1="397" x2="-133" y2="427"/>
+</g>
+<g id="shapes" class="st1">
+	<polygon class="st7" points="-185,397 -185,337 -133,427 	"/>
+	<polygon class="st8" points="-237,427 -185,397 -185,337 	"/>
+	<polygon class="st9" points="-185,397 -133,427 -237,427 	"/>
+</g>
+<g id="backgrounds" class="st1">
+	<g class="st2">
+		<polygon class="st10" points="-185,337 -237,427 -133,427 		"/>
+	</g>
+</g>
+<g id="shapes_copy" class="st1">
+	<g class="st2">
+		<polygon class="st11" points="-237,427 -185,397 -185,337 		"/>
+	</g>
+	<g class="st2">
+		<polygon class="st12" points="-185,397 -185,337 -133,427 		"/>
+	</g>
+	<g class="st2">
+		<polygon class="st13" points="-185,397 -133,427 -237,427 		"/>
+	</g>
+</g>
+<g id="shapes_copy_2">
+	<polygon class="st11" points="-186,341.9 -186,401.3 -238.8,431.1 	"/>
+	<polygon class="st12" points="-183.8,401.3 -183.8,341.9 -130.9,431.1 	"/>
+	<polygon class="st13" points="-237.7,432.9 -184.9,403.3 -132,432.9 	"/>
+</g>
+</svg>
