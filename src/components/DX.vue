@@ -1,7 +1,7 @@
 <template>
   <div class="die"
   @click="throwDie"
-  :class="{blue: speed > 0}"
+  :class="[{blue: speed > 0}, dieType]"
   :style="{top: y + 'px', left: x + 'px'}">
     {{ value }}
     <!-- <span class="small">{{ speed.toFixed(2) }}</span> -->
@@ -12,16 +12,41 @@
 import utils from '@/services/utils.js';
 
 export default {
-  name: 'D20',
+  name: 'DX',
+  props: {
+    sides: {
+      required: true
+    }
+  },
   data () {
     return {
-      value: 20,
+      value: this.sides,
       vector: [0, 0],
       x: 10,
       y: 10
     }
   },
   computed: {
+    dieType() {
+      switch (parseInt(this.sides)) {
+        case 100:
+          return 'd100';
+        case 20:
+          return 'd20';
+        case 12:
+          return 'd12';
+        case 10:
+          return 'd10';
+        case 8:
+          return 'd8';
+        case 6:
+          return 'd6';
+        case 4:
+          return 'd4';
+        default:
+          return 'custom';
+      }
+    },
     speed() {
       let magnitude = (Math.sqrt(Math.pow(this.vector[0], 2) + Math.pow(this.vector[1], 2)));
       return magnitude;
@@ -29,7 +54,7 @@ export default {
   },
   methods: {
     roll () { // without rolling animations
-      this.value = utils.rollDie(1, 20);
+      this.value = utils.rollDie(1, this.sides);
     },
     throwDie () { // with rolling animations
       if (this.speed > 0) {
@@ -54,6 +79,7 @@ export default {
           setTimeout(tickDownSpeed, 25);
         } else {
           this.vector = [0, 0];
+          this.$emit('input', this.value);
         }
       }
 
@@ -95,23 +121,75 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+$size: 70px;
+
 .die {
-  $size: 70px;
-
   position: absolute;
-  width: 1.73205 * ($size / 2);
-  height: $size;
-
   background-color: $red;
 
   font-size: 24px;
   color: #FFF;
   font-weight: 800;
-  line-height: $size;
 
-  mask-image: url('../assets/hexagon.svg');
-  mask-repeat: no-repeat;
-  mask-position: center;
+  &.d100 {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
+
+  &.d20 {
+    width: 1.73205 * ($size / 2);
+    height: $size;
+
+    line-height: $size;
+
+    mask-image: url('../assets/hexagon.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  &.d12 {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
+
+  &.d10 {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
+
+  &.d8 {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
+
+  &.d6 {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
+
+  &.d4 {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
+
+  &.custom {
+    width: $size - 20;
+    height: $size - 20;
+
+    line-height: $size - 20;
+  }
 }
 
 .blue {

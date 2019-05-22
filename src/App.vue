@@ -1,18 +1,52 @@
 <template>
   <main id="app">
     <div id="tabletop">
-      <D20 />
+      <DX
+      v-for="(die, i) in activeDice"
+      :key="i"
+      :sides="die"
+      v-model="rolls[i]"
+      ref="dice" />
+    </div>
+    <button @click="rollAll">ROLL ALL</button>
+    <div class="total">
+      Total: {{ totalRolled }}
     </div>
   </main>
 </template>
 
 <script>
-import D20 from './components/D20.vue';
+import DX from './components/DX.vue';
 
 export default {
   name: 'app',
   components: {
-    D20
+    DX
+  },
+  data () {
+    return {
+      activeDice: [20, 12, 10, 8, 6, 4],
+      rolls: []
+    }
+  },
+  computed: {
+    totalRolled () {
+      var total = 0;
+
+      for (let i = 0; i < this.rolls.length; i++) {
+        if (this.rolls[i]) total += this.rolls[i];
+      }
+
+      return total;
+    }
+  },
+  methods: {
+    rollAll () {
+      this.rolls = [];
+      for (let i = 0; i < this.$refs.dice.length; i++) {
+        this.$refs.dice[i].throwDie();
+      }
+    }
   }
 }
 </script>
