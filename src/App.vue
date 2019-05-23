@@ -165,6 +165,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/styles/dice.scss";
+@import "@/styles/diceSkins.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -248,134 +251,6 @@ html, body {
     }
   }
 }
-
-/* DICE */
-
-$size: 70px;
-
-.die {
-  position: absolute;
-  display: flex;
-
-  font-size: 24px;
-  color: #FFF;
-  font-weight: 800;
-  cursor: pointer;
-
-  mask-repeat: no-repeat;
-  mask-position: center;
-
-  .skin {
-    width: 100%;
-    height: 100%;
-    background-color: #311;
-    background-repeat: no-repeat;
-    background-position: center;
-    flex-shrink: 0;
-
-    pointer-events: none;
-  }
-
-  span {
-    position: absolute;
-    width: 100%;
-    pointer-events: none;
-    text-shadow: 0 0 3px #000;
-  }
-
-  &.d100 {
-    width: $size - 20;
-    height: $size - 20;
-
-    line-height: $size - 20;
-  }
-
-  &.d20 {
-    width: 0.9 * $size;
-    height: 0.95 * $size;
-    line-height: 0.95 * $size;
-
-    mask-image: url('./assets/d20.svg');
-
-    .skin{ background-image: url('./assets/d20.svg'); }
-  }
-
-  &.d12 {
-    width: 0.85 * $size;
-    height: 0.9 * $size;
-    line-height: 0.92 * $size;
-
-    mask-image: url('./assets/d12.svg');
-
-    .skin{ background-image: url('./assets/d12.svg'); }
-  }
-
-  &.d10 {
-    width: 0.88 * $size;
-    height: 0.88 * $size;
-    line-height: 0.88 * $size;
-
-    mask-image: url('./assets/d10.svg');
-
-    .skin{ background-image: url('./assets/d10.svg'); }
-  }
-
-  &.d8 {
-    width: 0.85 * $size;
-    height: 0.85 * $size;
-    line-height: 0.85 * $size;
-
-    mask-image: url('./assets/d8.svg');
-
-    .skin{ background-image: url('./assets/d8.svg'); }
-  }
-
-  &.d6 {
-    width: 0.7 * $size;
-    height: 0.7 * $size;
-    line-height: 0.7 * $size;
-
-    mask-image: url('./assets/d6.svg');
-
-    .skin{ background-image: url('./assets/d6.svg'); }
-  }
-
-  &.d4 {
-    width: 0.85 * $size;
-    height: 0.7 * $size;
-    line-height: 0.9 * $size;
-
-    mask-image: url('./assets/d4.svg');
-
-    .skin{ background-image: url('./assets/d4.svg'); }
-  }
-
-  &.custom {
-    width: $size - 20;
-    height: $size - 20;
-
-    line-height: $size - 20;
-  }
-}
-
-/* DICE SKINS */
-
-.die .skin.default {
-  &.red    {/* default */}
-  &.orange { filter: hue-rotate(63deg) saturate(250%) brightness(250%); }
-  &.yellow { filter: hue-rotate(69deg) saturate(250%) brightness(400%); }
-  &.green  { filter: hue-rotate(160deg) brightness(200%); }
-  &.blue   { filter: hue-rotate(225deg) saturate(60%) brightness(300%); }
-  &.purple { filter: hue-rotate(275deg) brightness(150%); }
-  &.pink   { filter: hue-rotate(320deg) saturate(50%) brightness(250%); }
-  &.navy   { filter: hue-rotate(220deg); }
-  &.teal   { filter: hue-rotate(177deg) brightness(225%); }
-  &.wood   { filter: hue-rotate(62deg) saturate(60%) brightness(300%); }
-  &.black  { filter: saturate(0) contrast(115%); }
-  &.white  { filter: saturate(0) brightness(500%); }
-}
-
-/* SETTINGS */
 
 .menuScreen {
   position: absolute;
