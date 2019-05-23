@@ -18,8 +18,9 @@ Roll the Bones is an actually good online dice roller. There weren't any really 
 
  🈺 Every kind of die imaginable
  🈺 Doing all the math for you
- 🈺 Drag and throw dice to roll
+ 🔮 Drag and throw dice to roll
  🆘 A cool logo and intro animation
+ 🈺 A passable modern UI
 
 ### SUPER COOL PLANNED FEATURES
 
@@ -28,14 +29,15 @@ Roll the Bones is an actually good online dice roller. There weren't any really 
  🆘 Cool animations for crit successes and crit fails!
  🆘 Advantage and disadvantage dice!
  🆘 Mario Paint/KidPix Studio style table clearing spells!
- 🆘 Settings menu where you can:
-   🆘 customize basically any of the features above
+ 🈺 Settings menu where you can:
+   🈺 customize basically any of the features above
    🆘 toggle AUTO-EXPLODING DICE
    🆘 adjust your crit range and boring stuff like that
    🆘 See my cute face in a credits screen and maybe donate to my kofi(???)
 
 ### Impossible/Questionable/Stupid Features
 
+ 🔮 Dice rolling animations (Look, there's only so much I can do before it gets too laggy. The web just wasn't built for this.)
  🔮 Haptic feedback when dice hit an edge (don't even know if there's a web API for phone vibration, maybe impossible?)
  🔮 Sounds? I feel like nobody wants sounds. I know I don't at least... but maybe some day.
  🔮 Presets like Fireball Dice (lots and lots of little orange D6s that leave a fire trail)

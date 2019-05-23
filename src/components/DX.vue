@@ -82,7 +82,7 @@ export default {
     },
     dragStop () {
       this.dragging = false;
-      this.$parent.touched = null;
+      this.$parent.touched = null; // redundant but necessary cross browser issue patch
 
       if (this.y - this.dragOffsetY > document.getElementById('tabletop').offsetHeight) {
         this.$emit('kill');

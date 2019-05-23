@@ -278,6 +278,7 @@ $size: 70px;
     position: absolute;
     width: 100%;
     pointer-events: none;
+    text-shadow: 0 0 3px #000;
   }
 
   &.d100 {
@@ -358,12 +359,18 @@ $size: 70px;
 /* DICE SKINS */
 
 .die .skin.default {
-  &.red    {}
-  &.blue   { filter: hue-rotate(225deg) brightness(200%);}
-  &.green  { filter: hue-rotate(160deg); }
-  &.yellow { filter: hue-rotate(69deg)  saturate(10)  brightness(225%); }
+  &.red    {/* default */}
+  &.orange { filter: hue-rotate(63deg) saturate(2.5) brightness(250%); }
+  &.yellow { filter: hue-rotate(69deg) saturate(10) brightness(225%); }
+  &.green  { filter: hue-rotate(160deg) brightness(200%); }
+  &.blue   { filter: hue-rotate(225deg) brightness(200%); }
+  &.purple { filter: hue-rotate(275deg) brightness(150%); }
   &.pink   { filter: hue-rotate(320deg) saturate(0.5) brightness(250%); }
   &.navy   { filter: hue-rotate(220deg); }
+  &.teal   { filter: hue-rotate(177deg) brightness(225%); }
+  &.wood   { filter: hue-rotate(62deg) saturate(0.6) brightness(300%); }
+  &.black  { filter: saturate(0) contrast(115%); }
+  &.white  { filter: saturate(0) brightness(500%); }
 }
 
 /* SETTINGS */
