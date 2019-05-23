@@ -5,6 +5,7 @@
       v-for="(die, i) in activeDice"
       :key="die.id"
       :sides="die.sides"
+      :skin="settings.currentDiceSkin"
       v-model="rolls[i]"
       @kill="deleteDie(i)"
       ref="dice" />
@@ -20,36 +21,42 @@
       @touchend.prevent="dropNewDie"
       @mousedown.prevent="createDie(die, $event)"
       @mouseup.prevent="dropNewDie"
-      :class="'die d' + die">
-        D{{ die }}
+      class="die"
+      :class="'d' + die">
+        <div class="skin" :class="settings.currentDiceSkin"></div>
+        <span>D{{ die }}</span>
       </div>
     </div>
     <div class="cancel-box">
-      <div :class="[{visible: anyTouched}, 'cancel-panel']">
+      <div :class="[{open: anyTouched}, 'cancel-panel']">
         <img src="@/assets/cancel.svg" />
       </div>
     </div>
     <button @click="rollAll">ROLL ALL</button>
     <button @click="clear">CLEAR</button>
+    <button @click="settingsOpen = true">SETTINGS</button>
+    <settings-menu @close="settingsOpen = false" :open="settingsOpen" />
   </main>
 </template>
 
 <script>
 import Vue from 'vue';
 import DX from '@/components/DX.vue';
+import SettingsMenu from '@/components/SettingsMenu.vue';
+import settings from '@/services/settings.js';
 
 export default {
   name: 'app',
-  components: {
-    DX
-  },
+  components: { DX, SettingsMenu },
   data () {
     return {
       activeDice: [],
       diceRack: [20, 12, 10, 8, 6, 4],
       rolls: [],
       touched: null,
-      count: 0
+      count: 0,
+      settings: settings,
+      settingsOpen: false
     }
   },
   computed: {
@@ -191,8 +198,7 @@ html, body {
   overflow: hidden;
 
   .die {
-    display: inline-block;
-    position: unset;
+    position: relative;
     font-size: 20px;
     margin: 2px;
   }
@@ -231,7 +237,7 @@ html, body {
 
     transition: top 0.08s linear;
 
-    &.visible {
+    &.open {
       top: 0%;
     }
 
@@ -247,6 +253,7 @@ $size: 70px;
 
 .die {
   position: absolute;
+  display: flex;
 
   font-size: 24px;
   color: #FFF;
@@ -256,11 +263,20 @@ $size: 70px;
   mask-repeat: no-repeat;
   mask-position: center;
 
-  background-color: #311;
-  background-repeat: no-repeat;
-  background-position: center;
+  .skin {
+    width: 100%;
+    height: 100%;
+    background-color: #311;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+
+    pointer-events: none;
+  }
 
   span {
+    position: absolute;
+    width: 100%;
     pointer-events: none;
   }
 
@@ -277,7 +293,8 @@ $size: 70px;
     line-height: 0.95 * $size;
 
     mask-image: url('./assets/d20.svg');
-    background-image: url('./assets/d20.svg');
+
+    .skin{ background-image: url('./assets/d20.svg'); }
   }
 
   &.d12 {
@@ -286,7 +303,8 @@ $size: 70px;
     line-height: 0.92 * $size;
 
     mask-image: url('./assets/d12.svg');
-    background-image: url('./assets/d12.svg');
+
+    .skin{ background-image: url('./assets/d12.svg'); }
   }
 
   &.d10 {
@@ -295,7 +313,8 @@ $size: 70px;
     line-height: 0.88 * $size;
 
     mask-image: url('./assets/d10.svg');
-    background-image: url('./assets/d10.svg');
+
+    .skin{ background-image: url('./assets/d10.svg'); }
   }
 
   &.d8 {
@@ -304,7 +323,8 @@ $size: 70px;
     line-height: 0.85 * $size;
 
     mask-image: url('./assets/d8.svg');
-    background-image: url('./assets/d8.svg');
+
+    .skin{ background-image: url('./assets/d8.svg'); }
   }
 
   &.d6 {
@@ -313,7 +333,8 @@ $size: 70px;
     line-height: 0.7 * $size;
 
     mask-image: url('./assets/d6.svg');
-    background-image: url('./assets/d6.svg');
+
+    .skin{ background-image: url('./assets/d6.svg'); }
   }
 
   &.d4 {
@@ -322,7 +343,8 @@ $size: 70px;
     line-height: 0.9 * $size;
 
     mask-image: url('./assets/d4.svg');
-    background-image: url('./assets/d4.svg');
+
+    .skin{ background-image: url('./assets/d4.svg'); }
   }
 
   &.custom {
@@ -330,6 +352,37 @@ $size: 70px;
     height: $size - 20;
 
     line-height: $size - 20;
+  }
+}
+
+/* DICE SKINS */
+
+.die .skin.default {
+  &.red    {}
+  &.blue   { filter: hue-rotate(225deg) brightness(200%);}
+  &.green  { filter: hue-rotate(160deg); }
+  &.yellow { filter: hue-rotate(69deg)  saturate(10)  brightness(225%); }
+  &.pink   { filter: hue-rotate(320deg) saturate(0.5) brightness(250%); }
+  &.navy   { filter: hue-rotate(220deg); }
+}
+
+/* SETTINGS */
+
+.menuScreen {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+
+  background-color: #FFF;
+
+  transition: top 0.1s ease-out;
+
+  &.open {
+    top: 0vh;
+    transition: top 0.2s ease-in;
   }
 }
 </style>

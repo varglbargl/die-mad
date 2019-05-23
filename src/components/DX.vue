@@ -1,11 +1,13 @@
 <template>
-  <div class="die"
+  <div
+  class="die"
+  :class="dieType"
   @mousedown.prevent="dragStart"
   @touchstart.prevent="dragStart"
   @mouseup.prevent="dragStop"
   @touchend.prevent="dragStop"
-  :class="dieType"
   :style="{top: y + 'px', left: x + 'px', zIndex: dragging ? 100 : 'unset'}">
+    <div class="skin" :class="skin"></div>
     <span>{{ value }}</span>
     <!-- <span class="small">{{ sides }}</span> -->
   </div>
@@ -19,6 +21,10 @@ export default {
   props: {
     sides: {
       required: true
+    },
+    skin: {
+      type: String,
+      defult: 'default red'
     }
   },
   data () {
@@ -76,6 +82,7 @@ export default {
     },
     dragStop () {
       this.dragging = false;
+      this.$parent.touched = null;
 
       if (this.y - this.dragOffsetY > document.getElementById('tabletop').offsetHeight) {
         this.$emit('kill');
@@ -184,10 +191,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.blue {
-  filter: hue-rotate(220deg);
-}
-
 .small {
   position: absolute;
   bottom: 15px;
