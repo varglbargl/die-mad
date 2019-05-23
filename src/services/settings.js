@@ -13,5 +13,6 @@ export default {
     black:   'default black',
     white:   'default white'
   },
-  currentDiceSkin: 'default red'
+  currentDiceSkin: 'default red',
+  shakeToRoll: true
 }

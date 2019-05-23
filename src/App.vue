@@ -22,7 +22,7 @@
       @mousedown.prevent="createDie(die, $event)"
       @mouseup.prevent="dropNewDie"
       class="die"
-      :class="'d' + die">
+      :class="['d' + die, settings.currentDiceSkin]">
         <div class="skin" :class="settings.currentDiceSkin"></div>
         <span>D{{ die }}</span>
       </div>
@@ -146,6 +146,8 @@ export default {
       this.rolls = [];
     },
     deviceMotionHandler (e) {
+      if (!settings.shakeToRoll) return;
+
       if (e.acceleration) {
         let shakeSpeed = Math.max(Math.abs(e.acceleration.x), Math.abs(e.acceleration.y), Math.abs(e.acceleration.z));
         if (shakeSpeed > 20) {
@@ -360,15 +362,15 @@ $size: 70px;
 
 .die .skin.default {
   &.red    {/* default */}
-  &.orange { filter: hue-rotate(63deg) saturate(2.5) brightness(250%); }
-  &.yellow { filter: hue-rotate(69deg) saturate(10) brightness(225%); }
+  &.orange { filter: hue-rotate(63deg) saturate(250%) brightness(250%); }
+  &.yellow { filter: hue-rotate(69deg) saturate(250%) brightness(400%); }
   &.green  { filter: hue-rotate(160deg) brightness(200%); }
-  &.blue   { filter: hue-rotate(225deg) brightness(200%); }
+  &.blue   { filter: hue-rotate(225deg) saturate(60%) brightness(300%); }
   &.purple { filter: hue-rotate(275deg) brightness(150%); }
-  &.pink   { filter: hue-rotate(320deg) saturate(0.5) brightness(250%); }
+  &.pink   { filter: hue-rotate(320deg) saturate(50%) brightness(250%); }
   &.navy   { filter: hue-rotate(220deg); }
   &.teal   { filter: hue-rotate(177deg) brightness(225%); }
-  &.wood   { filter: hue-rotate(62deg) saturate(0.6) brightness(300%); }
+  &.wood   { filter: hue-rotate(62deg) saturate(60%) brightness(300%); }
   &.black  { filter: saturate(0) contrast(115%); }
   &.white  { filter: saturate(0) brightness(500%); }
 }
