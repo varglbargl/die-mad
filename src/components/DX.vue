@@ -4,7 +4,7 @@
   @touchstart.prevent="dragStart"
   @mouseup.prevent="dragStop"
   @touchend.prevent="dragStop"
-  :class="[{blue: speed > 0}, dieType]"
+  :class="dieType"
   :style="{top: y + 'px', left: x + 'px', zIndex: dragging ? 100 : 'unset'}">
     <span>{{ value }}</span>
     <!-- <span class="small">{{ sides }}</span> -->
@@ -59,28 +59,29 @@ export default {
     }
   },
   methods: {
-    dragStart (e) {
-      if (this.speed) return;
-
+    dragStart (evt) {
+      this.vector = [0, 0];
       this.dragging = true;
 
-      if (e.changedTouches) {
-        this.dragOffsetX = this.x - e.changedTouches[0].clientX;
-        this.dragOffsetY = this.y - e.changedTouches[0].clientY;
+      if (evt.changedTouches) {
+        this.dragOffsetX = this.x - evt.changedTouches[0].clientX;
+        this.dragOffsetY = this.y - evt.changedTouches[0].clientY;
         document.getElementById('app').addEventListener('touchmove', this.handleDrag);
 
-      } else if (e.clientX && e.clientY) {
-        this.dragOffsetX = this.x - e.clientX;
-        this.dragOffsetY = this.y - e.clientY;
+      } else if (evt.clientX && evt.clientY) {
+        this.dragOffsetX = this.x - evt.clientX;
+        this.dragOffsetY = this.y - evt.clientY;
         document.getElementById('app').addEventListener('mousemove', this.handleDrag);
       }
     },
     dragStop () {
       this.dragging = false;
 
-      if (this.y > document.getElementById('tabletop').offsetHeight) {
+      if (this.y - this.dragOffsetY > document.getElementById('tabletop').offsetHeight) {
         this.$emit('kill');
       }
+
+      this.hitTestWalls();
 
       document.getElementById('app').removeEventListener('mousemove', this.handleDrag);
       document.getElementById('app').removeEventListener('touchmove', this.handleDrag);
@@ -101,7 +102,7 @@ export default {
         this.hitTestWalls(); // like holy shit i just throw this in here and we're good??
       }
 
-      return false
+      return false;
     },
     roll () { // without rolling animations
       this.value = utils.rollDie(1, this.sides);
@@ -154,7 +155,7 @@ export default {
       let yMax = document.getElementById('tabletop').offsetHeight;
 
       if (this.dragging) {
-        yMax += 80;
+        yMax += 70;
       }
 
       if (this.x < xMin) {

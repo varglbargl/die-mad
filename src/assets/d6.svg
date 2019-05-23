@@ -13,34 +13,34 @@
 	.st7{fill:#A81B1B;}
 </style>
 <g>
-	<path class="st0" d="M-240.2,456.2c-2.2,0-4-1.8-4-4V341.8c0-2.2,1.8-4,4-4h110.5c2.2,0,4,1.8,4,4v110.5c0,2.2-1.8,4-4,4H-240.2z"
+	<path class="st0" d="M-238.4,456.4c-3.3,0-6-2.7-6-6V343.6c0-3.3,2.7-6,6-6h106.8c3.3,0,6,2.7,6,6v106.8c0,3.3-2.7,6-6,6H-238.4z"
 		/>
 </g>
 <g id="circle_guides" class="st1">
 	<g class="st2">
-		<circle class="st3" cx="-185" cy="397" r="60"/>
+		<circle class="st3" cx="-430" cy="734" r="60"/>
 	</g>
 </g>
 <g id="lines" class="st1">
 	<g class="st2">
-		<rect x="-226.9" y="355.1" class="st4" width="83.9" height="83.9"/>
-		<path d="M-143.6,355.6v82.9h-82.8v-82.9H-143.6 M-142.6,354.6h-84.8v84.9h84.9v-84.9H-142.6z"/>
+		<rect x="-471.9" y="692.1" class="st4" width="83.9" height="83.9"/>
+		<path d="M-388.6,692.6v82.9h-82.8v-82.9H-388.6 M-387.6,691.6h-84.8v84.9h84.9v-84.9H-387.6z"/>
 	</g>
 </g>
 <g id="shapes" class="st1">
-	<rect x="-227.4" y="354.6" class="st5" width="84.9" height="84.9"/>
+	<rect x="-472.4" y="691.6" class="st5" width="84.9" height="84.9"/>
 </g>
 <g id="backgrounds" class="st1">
 	<g class="st2">
-		<rect x="-227.4" y="354.6" class="st6" width="84.9" height="84.9"/>
+		<rect x="-472.4" y="691.6" class="st6" width="84.9" height="84.9"/>
 	</g>
 </g>
 <g id="shapes_copy" class="st1">
 	<g class="st2">
-		<rect x="-227.4" y="354.6" class="st7" width="84.9" height="84.9"/>
+		<rect x="-472.4" y="691.6" class="st7" width="84.9" height="84.9"/>
 	</g>
 </g>
 <g id="shapes_copy_2">
-	<rect x="-238.6" y="343.4" class="st7" width="107.2" height="107.2"/>
+	<rect x="-239.4" y="342.6" class="st7" width="108.9" height="108.8"/>
 </g>
 </svg>

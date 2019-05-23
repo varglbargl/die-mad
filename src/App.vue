@@ -9,6 +9,9 @@
       @kill="deleteDie(i)"
       ref="dice" />
     </div>
+    <div class="total">
+      {{ rolledDiceList }}<span v-if="totalRolled !== 0"> = {{ totalRolled }}</span>
+    </div>
     <div class="dice-rack">
       <div
       v-for="(die, i) in diceRack"
@@ -21,10 +24,13 @@
         D{{ die }}
       </div>
     </div>
-    <button @click="rollAll">ROLL ALL</button>
-    <div class="total">
-      Total: {{ totalRolled }}
+    <div class="cancel-box">
+      <div :class="[{visible: anyTouched}, 'cancel-panel']">
+        <img src="@/assets/cancel.svg" />
+      </div>
     </div>
+    <button @click="rollAll">ROLL ALL</button>
+    <button @click="clear">CLEAR</button>
   </main>
 </template>
 
@@ -55,6 +61,41 @@ export default {
       }
 
       return total;
+    },
+    rolledDiceList () {
+      var diceCounts = {};
+
+      for (let i = 0; i < this.activeDice.length; i++) {
+        if (diceCounts[this.activeDice[i].sides]) {
+          diceCounts[this.activeDice[i].sides]++;
+
+        } else {
+          diceCounts[this.activeDice[i].sides] = 1;
+        }
+      }
+
+      var diceTypes = Object.keys(diceCounts).sort((a, b) => {
+        return parseInt(a) > parseInt(b) ? 1 : -1;
+      });
+
+      var result = [];
+
+      for (var i = 0; i < diceTypes.length; i++) {
+        result.push(diceCounts[diceTypes[i]] + 'D' + diceTypes[i]);
+      }
+
+      return result.join('+');
+    },
+    anyTouched () {
+      if (this.touched) return true;
+
+      if (this.$refs && this.$refs.dice) {
+        for (var i = 0; i < this.$refs.dice.length; i++) {
+          if (this.$refs.dice[i].dragging) return true;
+        }
+      }
+
+      return false;
     }
   },
   methods: {
@@ -71,8 +112,8 @@ export default {
       this.activeDice.push({sides, id: ++this.count});
 
       Vue.nextTick(() => { // because the actual die component doesn't exist yet
-
         this.touched = this.$refs.dice[this.activeDice.length - 1];
+
         if (evt.changedTouches) {
           this.touched.x = evt.changedTouches[0].target.offsetLeft;
           this.touched.y = evt.changedTouches[0].target.offsetTop;
@@ -92,6 +133,10 @@ export default {
     deleteDie (i) {
       this.activeDice.splice(i, 1);
       this.rolls.splice(i, 1);
+    },
+    clear () {
+      this.activeDice = [];
+      this.rolls = [];
     },
     deviceMotionHandler (e) {
       if (e.acceleration) {
@@ -139,13 +184,60 @@ html, body {
 .dice-rack {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+
+  height: 70px;
+  overflow: hidden;
 
   .die {
     display: inline-block;
     position: unset;
     font-size: 20px;
+    margin: 2px;
+  }
+}
+
+.total {
+  position: relative;
+  margin-top: -24px;
+  height: 24px;
+  pointer-events: none;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  font-size: 18px;
+  font-weight: 800;
+  color: #FFF;
+}
+
+.cancel-box {
+  width: 100%;
+  height: 70px;
+  margin-top: -70px;
+  position: relative;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  .cancel-panel {
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    top: 100%;
+
+    background-color: #FFF;
+
+    transition: top 0.08s linear;
+
+    &.visible {
+      top: 0%;
+    }
+
+    img {
+      height: 70px;
+    }
   }
 }
 
@@ -189,18 +281,18 @@ $size: 70px;
   }
 
   &.d12 {
-    width: 0.8 * $size;
-    height: 0.84 * $size;
-    line-height: 0.88 * $size;
+    width: 0.85 * $size;
+    height: 0.9 * $size;
+    line-height: 0.92 * $size;
 
     mask-image: url('./assets/d12.svg');
     background-image: url('./assets/d12.svg');
   }
 
   &.d10 {
-    width: 0.9 * $size;
-    height: 0.9 * $size;
-    line-height: 0.9 * $size;
+    width: 0.88 * $size;
+    height: 0.88 * $size;
+    line-height: 0.88 * $size;
 
     mask-image: url('./assets/d10.svg');
     background-image: url('./assets/d10.svg');
