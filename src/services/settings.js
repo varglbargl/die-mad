@@ -7,5 +7,5 @@ export default {
     pink: 'default pink',
     navy: 'default navy'
   },
-  currentDiceSkin: 'default blue'
+  currentDiceSkin: 'default red'
 }

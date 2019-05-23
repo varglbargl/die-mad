@@ -1,7 +1,7 @@
 <template>
   <div class="menuScreen" :class="{open: open}">
     <button class="close" @click="$emit('close')">X</button>
-    SKINS
+    <h3>SKINS</h3>
     <div class="skins-list">
       <div
       v-for="(classes, name) in settings.colors"
@@ -12,6 +12,7 @@
           <div class="skin" :class="classes"></div>
           <span>20</span>
         </div>
+        <span style="font-weight: 500">{{ titlize(name) }}</span>
       </div>
     </div>
   </div>
@@ -19,6 +20,7 @@
 
 <script>
 import settings from '@/services/settings.js';
+import utils from '@/services/utils.js';
 
 export default {
   name: 'SettingsMenu',
@@ -37,6 +39,9 @@ export default {
   methods: {
     pickDieSkin (color) {
       settings.currentDiceSkin = settings.colors[color];
+    },
+    titlize (str) {
+      return utils.titlize(str);
     }
   }
 }
@@ -44,6 +49,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  font-size: 20px;
+}
+
 .skins-list {
   display: flex;
   flex-direction: row;
@@ -61,6 +74,12 @@ export default {
 
     .die {
       position: unset;
+      margin: 0 auto;
+
+      span {
+        left: calc(50% - 14px);
+        width: auto;
+      }
     }
   }
 }
