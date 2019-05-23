@@ -8,7 +8,7 @@
   &.pink   { filter: hue-rotate(320deg) saturate(50%) brightness(250%); }
   &.navy   { filter: hue-rotate(220deg); }
   &.teal   { filter: hue-rotate(177deg) brightness(225%); }
-  &.wood   { filter: hue-rotate(62deg) saturate(60%) brightness(300%); }
+  &.wood   { filter: hue-rotate(62deg) saturate(40%) brightness(300%); }
   &.black  { filter: saturate(0) contrast(115%); }
   &.white  { filter: saturate(0) brightness(500%); }
 }
