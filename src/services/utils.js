@@ -2,7 +2,7 @@ export default {
   rollDie (min, max) {
     return Math.ceil(Math.random() * max - min) + min;
   },
-  multiplyVector(a, b) {
+  multiplyVector (a, b) {
     var result;
 
     if (Array.isArray(a) && typeof b === 'number') {
@@ -38,5 +38,20 @@ export default {
     }
 
     return result;
+  },
+  deepEquals (a, b) {
+    if (typeof a !== 'object') return false;
+    for (let i in a) {
+      if (typeof a[i] === 'object' && typeof b[i] === 'object') {
+        if (!this.deepEquals(a[i], b[i])) {
+          return false;
+        }
+
+      } else if (a[i] !== b[i]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }

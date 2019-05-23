@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    port: 3030,
+    port: 3030, // like del
     https: true
   },
   css: {

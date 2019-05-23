@@ -1,9 +1,9 @@
 <template>
   <div class="die"
-  @mousedown="dragStart"
-  @touchstart="dragStart"
-  @mouseup="dragStop"
-  @touchend="dragStop"
+  @mousedown.prevent="dragStart"
+  @touchstart.prevent="dragStart"
+  @mouseup.prevent="dragStop"
+  @touchend.prevent="dragStop"
   :class="[{blue: speed > 0}, dieType]"
   :style="{top: y + 'px', left: x + 'px', zIndex: dragging ? 100 : 'unset'}">
     <span>{{ value }}</span>
@@ -67,18 +67,23 @@ export default {
       if (e.changedTouches) {
         this.dragOffsetX = this.x - e.changedTouches[0].clientX;
         this.dragOffsetY = this.y - e.changedTouches[0].clientY;
-        document.getElementById('tabletop').addEventListener('touchmove', this.handleDrag);
+        document.getElementById('app').addEventListener('touchmove', this.handleDrag);
 
       } else if (e.clientX && e.clientY) {
         this.dragOffsetX = this.x - e.clientX;
         this.dragOffsetY = this.y - e.clientY;
-        document.getElementById('tabletop').addEventListener('mousemove', this.handleDrag);
+        document.getElementById('app').addEventListener('mousemove', this.handleDrag);
       }
     },
     dragStop () {
       this.dragging = false;
-      document.getElementById('tabletop').removeEventListener('mousemove', this.handleDrag);
-      document.getElementById('tabletop').removeEventListener('touchmove', this.handleDrag);
+
+      if (this.y > document.getElementById('tabletop').offsetHeight) {
+        this.$emit('kill');
+      }
+
+      document.getElementById('app').removeEventListener('mousemove', this.handleDrag);
+      document.getElementById('app').removeEventListener('touchmove', this.handleDrag);
     },
     handleDrag (e) {
       e.preventDefault();
@@ -148,6 +153,10 @@ export default {
       let xMax = document.getElementById('tabletop').offsetWidth;
       let yMax = document.getElementById('tabletop').offsetHeight;
 
+      if (this.dragging) {
+        yMax += 80;
+      }
+
       if (this.x < xMin) {
         this.x = yMin;
         this.vector[0] = this.vector[0] * -1;
@@ -174,126 +183,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-$size: 70px;
-
-.die {
-  position: absolute;
-  background-color: #311;
-
-  font-size: 24px;
-  color: #FFF;
-  font-weight: 800;
-  cursor: pointer;
-
-  span {
-    pointer-events: none;
-  }
-
-  &.d100 {
-    width: $size - 20;
-    height: $size - 20;
-
-    line-height: $size - 20;
-  }
-
-  &.d20 {
-    width: 0.9 * $size;
-    height: 0.95 * $size;
-
-    line-height: 0.95 * $size;
-
-    mask-image: url('../assets/d20.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-
-    background-image: url('../assets/d20.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &.d12 {
-    width: 0.8 * $size;
-    height: 0.84 * $size;
-
-    line-height: 0.88 * $size;
-
-    mask-image: url('../assets/d12.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-
-    background-image: url('../assets/d12.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &.d10 {
-    width: 0.9 * $size;
-    height: 0.9 * $size;
-
-    line-height: 0.9 * $size;
-
-    mask-image: url('../assets/d10.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-
-    background-image: url('../assets/d10.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &.d8 {
-    width: 0.85 * $size;
-    height: 0.85 * $size;
-
-    line-height: 0.85 * $size;
-
-    mask-image: url('../assets/d8.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-
-    background-image: url('../assets/d8.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &.d6 {
-    width: 0.7 * $size;
-    height: 0.7 * $size;
-
-    line-height: 0.7 * $size;
-
-    mask-image: url('../assets/d6.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-
-    background-image: url('../assets/d6.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &.d4 {
-    width: 0.85 * $size;
-    height: 0.7 * $size;
-
-    line-height: 0.9 * $size;
-
-    mask-image: url('../assets/d4.svg');
-    mask-repeat: no-repeat;
-    mask-position: center;
-
-    background-image: url('../assets/d4.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &.custom {
-    width: $size - 20;
-    height: $size - 20;
-
-    line-height: $size - 20;
-  }
-}
-
 .blue {
   filter: hue-rotate(220deg);
 }
