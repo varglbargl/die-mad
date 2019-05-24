@@ -8,6 +8,7 @@
       :skin="settings.currentDiceSkin"
       v-model="rolls[i]"
       @kill="deleteDie(i)"
+      @explode="explodeDie($event)"
       ref="dice" />
     </div>
     <div class="total">
@@ -171,6 +172,15 @@ export default {
           this.rollAll();
         }
       }
+    },
+    explodeDie(evt) {
+      this.activeDice.push({sides: evt[0], id: ++this.count});
+
+      Vue.nextTick(() => {
+        this.$refs.dice[this.activeDice.length - 1].x = evt[1];
+        this.$refs.dice[this.activeDice.length - 1].y = evt[2];
+        this.$refs.dice[this.activeDice.length - 1].throwDieRandomly();
+      });
     }
   },
   mounted () {

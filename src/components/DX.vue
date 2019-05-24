@@ -15,6 +15,7 @@
 
 <script>
 import utils from '@/services/utils.js';
+import settings from '@/services/settings.js';
 
 export default {
   name: 'DX',
@@ -36,7 +37,8 @@ export default {
       dragging: false,
       dragOffsetX: 0,
       dragOffsetY: 0,
-      rotateTo: 0
+      rotateTo: 0,
+      dieSettings: settings.getDieSettings(this.sides)
     }
   },
   computed: {
@@ -52,7 +54,7 @@ export default {
         top: this.y + 'px',
         left: this.x + 'px',
         zIndex: this.dragging ? 100 : 'unset',
-        transform: this.speed > 0 ? 'rotate(' + this.rotateTo + 'deg)' : 'rotate(0deg)'
+        transform: 'rotate(' + this.rotateTo + 'deg)'
       }
     }
   },
@@ -121,7 +123,14 @@ export default {
 
         } else {
           this.vector = [0, 0];
+          this.rotateTo = 0;
           this.$emit('input', this.value);
+
+          // EXPLODING DICE!!
+
+          if (this.dieSettings.exploding && this.value === this.sides) {
+            this.$emit('explode', [this.sides, this.x, this.y]);
+          }
         }
       }
 

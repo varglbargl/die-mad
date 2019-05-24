@@ -73,5 +73,12 @@ export default {
       critSuccess: false,
       critFail: false
     }
+  },
+  getDieSettings(d) {
+    for (let die in this.diceRack) {
+      if (this.diceRack[die].sides === d) return this.diceRack[die];
+    }
+
+    return {};
   }
 }
