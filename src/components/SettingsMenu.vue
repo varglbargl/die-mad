@@ -52,7 +52,7 @@
       </tbody>
     </table>
     <h2>DICE SKINS</h2>
-    <div class="skins-list">
+    <div class="skins-list" v-if="open">
       <div
       v-for="(classes, name) in settings.colors"
       :key="name"

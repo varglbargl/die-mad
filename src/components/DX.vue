@@ -62,6 +62,7 @@ export default {
     dragStart (evt) {
       this.vector = [0, 0];
       this.dragging = true;
+      this.$parent.touched = this;
 
       if (evt.changedTouches) {
         this.dragOffsetX = this.x - evt.changedTouches[0].clientX;

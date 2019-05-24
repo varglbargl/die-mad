@@ -10,6 +10,15 @@
       @kill="deleteDie(i)"
       @explode="explodeDie($event)"
       ref="dice" />
+      <DX
+      v-for="(eDie, eI) in bonusDice"
+      :key="eDie.id"
+      :sides="eDie.sides"
+      skin="default fire"
+      v-model="bonusRolls[eI]"
+      @kill="deleteBonusDie(eI)"
+      @explode="explodeDie($event)"
+      ref="explodedDice" />
     </div>
     <div class="total">
       {{ rolledDiceList }}<span v-if="totalRolled !== 0"> = {{ totalRolled }}</span>
@@ -32,7 +41,7 @@
       </div>
     </div>
     <div class="cancel-box">
-      <div :class="[{open: anyTouched}, 'cancel-panel']">
+      <div :class="[{open: touched !== null}, 'cancel-panel']">
         <img src="@/assets/cancel.svg" />
       </div>
     </div>
@@ -56,7 +65,9 @@ export default {
   data () {
     return {
       activeDice: [],
+      bonusDice: [],
       rolls: [],
+      bonusRolls: [],
       touched: null,
       count: 0,
       settings: settings,
@@ -69,6 +80,10 @@ export default {
 
       for (let i = 0; i < this.rolls.length; i++) {
         if (this.rolls[i]) total += this.rolls[i];
+      }
+
+      for (let i = 0; i < this.bonusRolls.length; i++) {
+        if (this.bonusRolls[i]) total += this.bonusRolls[i];
       }
 
       return total;
@@ -97,17 +112,6 @@ export default {
 
       return result.join('+');
     },
-    anyTouched () {
-      if (this.touched) return true;
-
-      if (this.$refs && this.$refs.dice) {
-        for (var i = 0; i < this.$refs.dice.length; i++) {
-          if (this.$refs.dice[i].dragging) return true;
-        }
-      }
-
-      return false;
-    },
     totalActiveDice () {
       var total = 0;
 
@@ -125,6 +129,8 @@ export default {
       if (!this.$refs.dice) return;
 
       this.rolls = [];
+      this.bonusDice = [];
+      this.bonusRolls = [];
 
       for (let i = 0; i < this.$refs.dice.length; i++) {
         this.$refs.dice[i].throwDieRandomly();
@@ -159,9 +165,15 @@ export default {
       this.activeDice.splice(i, 1);
       this.rolls.splice(i, 1);
     },
+    deleteBonusDie (i) {
+      this.bonusDice.splice(i, 1);
+      this.bonusRolls.splice(i, 1);
+    },
     clear () {
       this.activeDice = [];
       this.rolls = [];
+      this.bonusDice = [];
+      this.bonusRolls = [];
     },
     deviceMotionHandler (e) {
       if (!settings.shakeToRoll) return;
@@ -174,12 +186,12 @@ export default {
       }
     },
     explodeDie(evt) {
-      this.activeDice.push({sides: evt[0], id: ++this.count});
+      this.bonusDice.push({sides: evt[0], id: ++this.count});
 
       Vue.nextTick(() => {
-        this.$refs.dice[this.activeDice.length - 1].x = evt[1];
-        this.$refs.dice[this.activeDice.length - 1].y = evt[2];
-        this.$refs.dice[this.activeDice.length - 1].throwDieRandomly();
+        this.$refs.explodedDice[this.bonusDice.length - 1].x = evt[1];
+        this.$refs.explodedDice[this.bonusDice.length - 1].y = evt[2];
+        this.$refs.explodedDice[this.bonusDice.length - 1].throwDieRandomly();
       });
     }
   },
