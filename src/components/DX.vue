@@ -155,6 +155,7 @@ export default {
     throwDieRandomly () {
       var randomVector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
       this.rotateTo = Math.round(Math.random() * 4 - 2) * 360;
+      if (this.rotateTo === 0) this.rotateTo = 360;
 
       if (this.speed > 0) {
         this.roll();
