@@ -15,16 +15,19 @@
     </div>
     <div class="dice-rack">
       <div
-      v-for="(die, i) in diceRack"
+      v-for="(die, i) in settings.diceRack"
       :key="i"
-      @touchstart.prevent="createDie(die, $event)"
+      @touchstart.prevent="createDie(die.sides, $event)"
       @touchend.prevent="dropNewDie"
-      @mousedown.prevent="createDie(die, $event)"
+      @mousedown.prevent="createDie(die.sides, $event)"
       @mouseup.prevent="dropNewDie"
       class="die"
-      :class="['d' + die, settings.currentDiceSkin]">
+      :class="[dieType(die.sides), settings.currentDiceSkin]"
+      :style="{display: die.active ? 'flex' : 'none'}">
         <div class="skin" :class="settings.currentDiceSkin"></div>
-        <span>D{{ die }}</span>
+        <span :style="{fontSize: Math.min(32 - totalActiveDice * 2, 20) + 'px'}">
+          D{{ die.sides }}
+        </span>
       </div>
     </div>
     <div class="cancel-box">
@@ -44,6 +47,7 @@ import Vue from 'vue';
 import DX from '@/components/DX.vue';
 import SettingsMenu from '@/components/SettingsMenu.vue';
 import settings from '@/services/settings.js';
+import utils from '@/services/utils.js';
 
 export default {
   name: 'app',
@@ -51,7 +55,6 @@ export default {
   data () {
     return {
       activeDice: [],
-      diceRack: [20, 12, 10, 8, 6, 4],
       rolls: [],
       touched: null,
       count: 0,
@@ -103,6 +106,17 @@ export default {
       }
 
       return false;
+    },
+    totalActiveDice () {
+      var total = 0;
+
+      for (let i in settings.diceRack) {
+        if (settings.diceRack[i].active) {
+          total++;
+        }
+      }
+
+      return total;
     }
   },
   methods: {
@@ -114,6 +128,9 @@ export default {
       for (let i = 0; i < this.$refs.dice.length; i++) {
         this.$refs.dice[i].throwDieRandomly();
       }
+    },
+    dieType (sides) {
+      return utils.getDieType(sides);
     },
     createDie (sides, evt) {
       this.activeDice.push({sides, id: ++this.count});
@@ -177,6 +194,7 @@ html, body {
   padding: 0;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 #app {
@@ -205,8 +223,8 @@ html, body {
 
   .die {
     position: relative;
-    font-size: 20px;
     margin: 2px;
+    flex-shrink: 1;
   }
 }
 
@@ -250,24 +268,6 @@ html, body {
     img {
       height: 70px;
     }
-  }
-}
-
-.menuScreen {
-  position: absolute;
-  top: 100vh;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding: 10px;
-
-  background-color: #FFF;
-
-  transition: top 0.1s ease-out;
-
-  &.open {
-    top: 0vh;
-    transition: top 0.2s ease-in;
   }
 }
 </style>

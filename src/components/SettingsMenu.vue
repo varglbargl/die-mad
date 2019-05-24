@@ -1,15 +1,57 @@
 <template>
   <div class="menuScreen" :class="{open: open}">
     <button class="close" @click="$emit('close')">X</button>
-    <h3>SETTINGS</h3>
+    <h2>GENERAL SETTINGS</h2>
     <div class="general-settings">
-      <label class="container">
+      <label class="checkbox-container">
         <span>Shake phone to roll dice</span>
         <input type="checkbox" v-model="settings.shakeToRoll" />
         <span class="checkmark"></span>
       </label>
     </div>
-    <h3>DICE SKINS</h3>
+    <h2>DICE SETTINGS</h2>
+    <div class="subheader">BETA - Not all of these settings do something</div>
+    <table class="dice-settings">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Use</th>
+          <th>Critical Hit</th>
+          <th>Critical Fail</th>
+          <th>Explode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(die, name) in settings.diceRack" :key="name">
+          <td>{{ name }}</td>
+          <td>
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="die.active" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td>
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="die.critSuccess" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td>
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="die.critFail" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td>
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="die.exploding" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>DICE SKINS</h2>
     <div class="skins-list">
       <div
       v-for="(classes, name) in settings.colors"
@@ -60,6 +102,25 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/checkbox.scss";
 
+.menuScreen {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+  padding-bottom: 60px;
+
+  background-color: #FFF;
+
+  transition: top 0.2s ease-out;
+
+  &.open {
+    top: 0vh;
+    overflow-x: hidden;
+  }
+}
+
 .close {
   position: absolute;
   top: 10px;
@@ -71,6 +132,25 @@ export default {
 .general-settings {
   max-width: 400px;
   margin: 0 auto;
+}
+
+.dice-settings {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  table-layout: fixed;
+
+  font-size: 22px;
+
+  th {
+    font-size: 18px;
+  }
+}
+
+.subheader {
+  margin-top: -16px;
+  margin-bottom: 16px;
+  color: $red;
 }
 
 .skins-list {

@@ -1,4 +1,26 @@
 export default {
+  getDieType (sides) {
+    switch (parseInt(sides)) {
+      case 100:
+        return 'd100';
+      case 20:
+        return 'd20';
+      case 12:
+        return 'd12';
+      case 10:
+        return 'd10';
+      case 8:
+        return 'd8';
+      case 6:
+        return 'd6';
+      case 4:
+        return 'd4';
+      case 2:
+        return 'd2';
+      default:
+        return 'custom';
+    }
+  },
   rollDie (min, max) {
     return Math.ceil(Math.random() * max - min) + min;
   },

@@ -14,5 +14,64 @@ export default {
     white:   'default white'
   },
   currentDiceSkin: 'default red',
-  shakeToRoll: true
+  shakeToRoll: true,
+
+  diceRack: {
+    D100:{
+      active: false,
+      sides: 100,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    D20:{
+      active: true,
+      sides: 20,
+      exploding: false,
+      critSuccess: true,
+      critFail: false
+    },
+    D12:{
+      active: true,
+      sides: 12,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    D10:{
+      active: true,
+      sides: 10,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    D8:{
+      active: true,
+      sides: 8,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    D6:{
+      active: true,
+      sides: 6,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    D4:{
+      active: true,
+      sides: 4,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    D2:{
+      active: false,
+      sides: 2,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    }
+  }
 }

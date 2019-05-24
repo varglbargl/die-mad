@@ -1,16 +1,21 @@
-.container {
+.checkbox-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   padding: 0 20px;
-  margin-bottom: 12px;
+  margin: 6px 0;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  &.inline {
+    display: inline-flex;
+    padding: 0;
+  }
 
   /* Hide the browser's default checkbox */
   input {

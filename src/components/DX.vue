@@ -41,24 +41,7 @@ export default {
   },
   computed: {
     dieType () {
-      switch (parseInt(this.sides)) {
-        case 100:
-          return 'd100';
-        case 20:
-          return 'd20';
-        case 12:
-          return 'd12';
-        case 10:
-          return 'd10';
-        case 8:
-          return 'd8';
-        case 6:
-          return 'd6';
-        case 4:
-          return 'd4';
-        default:
-          return 'custom';
-      }
+      return utils.getDieType(this.sides);
     },
     speed () {
       let magnitude = (Math.sqrt(Math.pow(this.vector[0], 2) + Math.pow(this.vector[1], 2)));
