@@ -11,7 +11,11 @@ export default {
     teal:    'default teal',
     wood:    'default wood',
     black:   'default black',
-    white:   'default white'
+    white:   'default white',
+    fire:    'default fire',
+    ice:     'default ice',
+    krypton: 'default krypton',
+    poison:  'default poison'
   },
   currentDiceSkin: 'default red',
   shakeToRoll: true,

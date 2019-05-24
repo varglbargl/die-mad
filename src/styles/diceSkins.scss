@@ -1,14 +1,18 @@
 .die .skin.default {
-  &.red    {/* default */}
-  &.orange { filter: hue-rotate(63deg) saturate(250%) brightness(250%); }
-  &.yellow { filter: hue-rotate(69deg) saturate(250%) brightness(400%); }
-  &.green  { filter: hue-rotate(160deg) brightness(200%); }
-  &.blue   { filter: hue-rotate(225deg) saturate(60%) brightness(300%); }
-  &.purple { filter: hue-rotate(275deg) brightness(150%); }
-  &.pink   { filter: hue-rotate(320deg) saturate(50%) brightness(250%); }
-  &.navy   { filter: hue-rotate(220deg); }
-  &.teal   { filter: hue-rotate(177deg) brightness(225%); }
-  &.wood   { filter: hue-rotate(62deg) saturate(40%) brightness(300%); }
-  &.black  { filter: saturate(0) contrast(115%); }
-  &.white  { filter: saturate(0) brightness(500%); }
+  &.red     {/* default */}
+  &.orange  { filter: hue-rotate(63deg) saturate(250%) brightness(250%); }
+  &.yellow  { filter: hue-rotate(69deg) saturate(250%) brightness(400%); }
+  &.green   { filter: hue-rotate(160deg) brightness(200%); }
+  &.blue    { filter: hue-rotate(225deg) saturate(60%) brightness(300%); }
+  &.purple  { filter: hue-rotate(275deg) brightness(150%); }
+  &.pink    { filter: hue-rotate(320deg) saturate(50%) brightness(250%); }
+  &.navy    { filter: hue-rotate(220deg); }
+  &.teal    { filter: hue-rotate(177deg) brightness(225%); }
+  &.wood    { filter: hue-rotate(62deg) saturate(30%) brightness(300%); }
+  &.black   { filter: saturate(0) contrast(115%); }
+  &.white   { filter: saturate(0) contrast(90%) brightness(500%); }
+  &.fire    { filter: hue-rotate(62deg) saturate(500%) brightness(500%); }
+  &.ice     { background-blend-mode: difference; background-color: #0FF; }
+  &.krypton { background-blend-mode: difference; background-color: #2F0; }
+  &.poison  { filter: saturate(150%); background-blend-mode: difference; background-color: #F06; }
 }
