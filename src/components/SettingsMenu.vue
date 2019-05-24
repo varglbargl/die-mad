@@ -15,8 +15,9 @@
       v-for="(classes, name) in settings.colors"
       :key="name"
       class="choice"
+      @click="pickDieSkin(name)"
       :class="{selected: settings.currentDiceSkin === classes}">
-        <div @click="pickDieSkin(name)" class="die d20" :class="classes">
+        <div class="die d20" :class="classes">
           <div class="skin" :class="classes"></div>
           <span>20</span>
         </div>
@@ -82,6 +83,8 @@ export default {
   .choice {
     position: relative;
     border: 3px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
 
     &.selected {
       border-color: $red;

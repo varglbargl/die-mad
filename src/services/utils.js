@@ -55,6 +55,12 @@ export default {
     return true;
   },
   titlize (str) {
-    return str.charAt(0).toLocaleUpperCase() + str.slice(1);
+    str = str.split(' ');
+    var result = [];
+
+    for (var i = 0; i < str.length; i++) {
+      result[i] = str[i].charAt(0).toLocaleUpperCase() + str[i].slice(1);
+    }
+    return result.join(' ');
   }
 }

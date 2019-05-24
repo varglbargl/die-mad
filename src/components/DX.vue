@@ -1,12 +1,12 @@
 <template>
   <div
   class="die"
-  :class="dieType"
+  :class="[dieType, {rolling: speed > 0}]"
   @mousedown.prevent="dragStart"
   @touchstart.prevent="dragStart"
   @mouseup.prevent="dragStop"
   @touchend.prevent="dragStop"
-  :style="{top: y + 'px', left: x + 'px', zIndex: dragging ? 100 : 'unset'}">
+  :style="dieStyles">
     <div class="skin" :class="skin"></div>
     <span>{{ value }}</span>
     <!-- <span class="small">{{ sides }}</span> -->
@@ -35,7 +35,8 @@ export default {
       y: 10,
       dragging: false,
       dragOffsetX: 0,
-      dragOffsetY: 0
+      dragOffsetY: 0,
+      rotateTo: 0
     }
   },
   computed: {
@@ -62,6 +63,14 @@ export default {
     speed () {
       let magnitude = (Math.sqrt(Math.pow(this.vector[0], 2) + Math.pow(this.vector[1], 2)));
       return magnitude;
+    },
+    dieStyles () {
+      return {
+        top: this.y + 'px',
+        left: this.x + 'px',
+        zIndex: this.dragging ? 100 : 'unset',
+        transform: this.speed > 0 ? 'rotate(' + this.rotateTo + 'deg)' : 'rotate(0deg)'
+      }
     }
   },
   methods: {
@@ -145,6 +154,7 @@ export default {
     },
     throwDieRandomly () {
       var randomVector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
+      this.rotateTo = Math.round(Math.random() * 4 - 2) * 360;
 
       if (this.speed > 0) {
         this.roll();
