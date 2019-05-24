@@ -154,8 +154,17 @@ export default {
     },
     throwDieRandomly () {
       var randomVector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
-      this.rotateTo = Math.round(Math.random() * 4 - 2) * 360;
-      if (this.rotateTo === 0) this.rotateTo = 360;
+      var randomRotation = Math.round(Math.random() * 4 - 2) * 360;
+
+      // not perfect but look it's good enough and more importantly it's gotten complicated enough.
+      if (this.rotateTo === randomRotation) {
+        if (randomRotation === 0) {
+          randomRotation = 360 * (Math.round(Math.random()) === 1 ? 1 : -1);
+        } else {
+          randomRotation = randomRotation * -1;
+        }
+      }
+      this.rotateTo = randomRotation;
 
       if (this.speed > 0) {
         this.roll();
