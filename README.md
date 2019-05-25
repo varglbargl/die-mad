@@ -31,7 +31,7 @@ Roll them Bones is an actually good online dice roller. There weren't any really
  - 🆘 Mario Paint/KidPix Studio style table clearing spells!
  - 🈺 Settings menu where you can:
    - 🈺 customize basically any of the features above
-   - 🆘 toggle AUTO-EXPLODING DICE
+   - ✅ toggle AUTO-EXPLODING DICE
    - 🆘 adjust your crit range and boring stuff like that
    - 🆘 See my cute face in a credits screen and maybe donate to my kofi(???)
 
