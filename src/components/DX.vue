@@ -112,8 +112,8 @@ export default {
     throwDie () { // with rolling animations
 
       let tickDownSpeed = () => {
-        if (this.speed > 0.02) {
-          this.vector = utils.multiplyVector(this.vector, 0.95);
+        if (this.speed > 0.03) {
+          this.vector = utils.multiplyVector(this.vector, 0.85);
 
           this.x += this.vector[0];
           this.y += this.vector[1];
@@ -146,7 +146,11 @@ export default {
       changeDieSide();
     },
     throwDieRandomly () {
-      var randomVector = [Math.round(Math.random() * 80 - 40), Math.round(Math.random() * 80 - 40)];
+      var magnitude = 120;
+      var randomVector = [
+        Math.round(Math.random() * magnitude - magnitude / 2),
+        Math.round(Math.random() * magnitude - magnitude / 2)
+      ];
       var randomRotation = Math.round(Math.random() * 4 - 2) * 360;
 
       // not perfect but look it's good enough and more importantly it's gotten complicated enough.
