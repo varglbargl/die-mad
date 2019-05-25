@@ -84,5 +84,8 @@ export default {
       result[i] = str[i].charAt(0).toLocaleUpperCase() + str[i].slice(1);
     }
     return result.join(' ');
+  },
+  hapticFeedback (duration) {
+    navigator.vibrate(duration);
   }
 }

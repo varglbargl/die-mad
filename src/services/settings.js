@@ -19,6 +19,7 @@ export default {
   },
   currentDiceSkin: 'default red',
   shakeToRoll: true,
+  vibrateOnCollision: false,
 
   diceRack: {
     D100:{

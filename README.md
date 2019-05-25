@@ -38,7 +38,7 @@ Roll them Bones is an actually good online dice roller. There weren't any really
 ### Impossible/Questionable/Stupid Features
 
  - 🔮 Dice rolling animations (Look, there's only so much I can do before it gets too laggy. The web just wasn't built for this.)
- - 🔮 Haptic feedback when dice hit an edge (don't even know if there's a web API for phone vibration, maybe impossible?)
+ - ✅ Haptic feedback when dice hit an edge (don't even know if there's a web API for phone vibration. EDIT: THERE IS!!)
  - 🔮 Sounds? I feel like nobody wants sounds. I know I don't at least... but maybe some day.
  - 🔮 Presets like Fireball Dice (lots and lots of little orange D6s that leave a fire trail)
  - 🔮 Some kind of reward for donating or something? I don't know about this one. I mean I want to keep every part of this free.

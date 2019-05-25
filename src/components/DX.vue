@@ -77,7 +77,7 @@ export default {
     },
     dragStop () {
       this.dragging = false;
-      this.$parent.touched = null; // redundant but necessary cross browser issue patch
+      this.$parent.touched = null;
 
       if (this.y - this.dragOffsetY > document.getElementById('tabletop').offsetHeight) {
         this.$emit('kill');
@@ -177,6 +177,7 @@ export default {
       let yMin = 0;
       let xMax = document.getElementById('tabletop').offsetWidth;
       let yMax = document.getElementById('tabletop').offsetHeight;
+      let hitWall = false;
 
       if (this.dragging) {
         yMax += 70;
@@ -185,21 +186,29 @@ export default {
       if (this.x < xMin) {
         this.x = yMin;
         this.vector[0] = this.vector[0] * -1;
+        hitWall = true;
       }
 
       if (this.x + this.$el.offsetWidth > xMax) {
         this.x = xMax - this.$el.offsetWidth;
         this.vector[0] = this.vector[0] * -1;
+        hitWall = true;
       }
 
       if (this.y < yMin) {
         this.y = yMin;
         this.vector[1] = this.vector[1] * -1;
+        hitWall = true;
       }
 
       if (this.y + this.$el.offsetHeight > yMax) {
         this.y = yMax - this.$el.offsetHeight;
         this.vector[1] = this.vector[1] * -1;
+        hitWall = true;
+      }
+
+      if (hitWall && this.speed > 0.3 && settings.vibrateOnCollision) {
+        utils.hapticFeedback(20);
       }
     }
   }

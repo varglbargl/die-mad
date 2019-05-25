@@ -8,6 +8,11 @@
         <input type="checkbox" v-model="settings.shakeToRoll" />
         <span class="checkmark"></span>
       </label>
+      <label class="checkbox-container">
+        <span>Haptic feedback <span class="red">(BETA)</span></span>
+        <input type="checkbox" v-model="settings.vibrateOnCollision" />
+        <span class="checkmark"></span>
+      </label>
     </div>
     <h2>DICE SETTINGS</h2>
     <div class="subheader">BETA - Not all of these settings do anything yet</div>

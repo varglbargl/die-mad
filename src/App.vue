@@ -292,4 +292,8 @@ html, body {
     }
   }
 }
+
+span.red {
+  color: $red;
+}
 </style>
