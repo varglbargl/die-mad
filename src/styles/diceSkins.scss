@@ -11,8 +11,8 @@
   &.wood    { filter: hue-rotate(62deg) saturate(30%) brightness(300%); }
   &.black   { filter: saturate(0) contrast(115%); }
   &.white   { filter: saturate(0) contrast(90%) brightness(500%); }
-  &.fire    { filter: hue-rotate(62deg) saturate(500%) brightness(500%); }
-  &.ice     { background-blend-mode: difference; background-color: #0FF; }
-  &.krypton { background-blend-mode: difference; background-color: #2F0; }
+  &.fire    { filter: brightness(500%); background-blend-mode: luminosity; background-color: #F60; }
+  &.ice     { filter: brightness(150%); background-blend-mode: difference; background-color: #0FF; }
+  &.krypton { filter: brightness(500%); background-blend-mode: luminosity; background-color: #AF0; }
   &.poison  { filter: saturate(150%); background-blend-mode: difference; background-color: #F06; }
 }
