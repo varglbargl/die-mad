@@ -15,6 +15,7 @@
       </label>
     </div>
     <h2>DICE SETTINGS</h2>
+    <div class="subheader">BETA - Not all of these work on iPhone yet</div>
     <table class="dice-settings">
       <thead>
         <tr>
