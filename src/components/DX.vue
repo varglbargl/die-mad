@@ -130,7 +130,7 @@ export default {
 
           if (this.dieSettings.critSuccess && this.value === this.sides) {
             this.$emit('crit', ['success', this.x, this.y]);
-          } else if (this.dieSettings.critSuccess && this.value === 1) {
+          } else if (this.dieSettings.critFail && this.value === 1) {
             this.$emit('crit', ['fail', this.x, this.y]);
           }
 
