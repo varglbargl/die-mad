@@ -34,7 +34,7 @@ export default {
       sides: 20,
       exploding: false,
       critSuccess: true,
-      critFail: false
+      critFail: true
     },
     D12:{
       active: true,

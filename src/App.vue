@@ -26,6 +26,7 @@
       <crit-animation
       v-for="(crit, cI) in critRolls"
       @kill="removeCritAnimation(cI)"
+      :type="crit.type"
       :key="crit.id"
       :x="crit.x"
       :y="crit.y" />
@@ -198,7 +199,7 @@ export default {
       }
     },
     animateCrit (evt) {
-      this.critRolls.push({x: evt[0], y: evt[1], id: ++this.count});
+      this.critRolls.push({type: evt[0], x: evt[1], y: evt[2], id: ++this.count});
     },
     removeCritAnimation (i) {
       this.critRolls.splice(i, 1);

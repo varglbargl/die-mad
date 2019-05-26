@@ -129,7 +129,9 @@ export default {
           // CRITS! Todo: add crit range to the settings
 
           if (this.dieSettings.critSuccess && this.value === this.sides) {
-            this.$emit('crit', [this.x, this.y]);
+            this.$emit('crit', ['success', this.x, this.y]);
+          } else if (this.dieSettings.critSuccess && this.value === 1) {
+            this.$emit('crit', ['fail', this.x, this.y]);
           }
 
           // EXPLODING DICE!!
