@@ -9,7 +9,6 @@
   :style="dieStyles">
     <div class="skin" :class="skin"></div>
     <span>{{ value }}</span>
-    <!-- <span class="small">{{ sides }}</span> -->
   </div>
 </template>
 
@@ -127,6 +126,12 @@ export default {
           this.rotateTo = 0;
           this.$emit('input', this.value);
 
+          // CRITS! Todo: add crit range to the settings
+
+          if (this.dieSettings.critSuccess && this.value === this.sides) {
+            this.$emit('crit', [this.x, this.y]);
+          }
+
           // EXPLODING DICE!!
 
           if (this.dieSettings.exploding && this.value === this.sides) {
@@ -207,7 +212,7 @@ export default {
         hitWall = true;
       }
 
-      if (hitWall && this.speed > 0.3 && settings.vibrateOnCollision) {
+      if (hitWall && this.speed > 1 && settings.vibrateOnCollision) {
         utils.hapticFeedback(20);
       }
     }

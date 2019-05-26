@@ -7,7 +7,7 @@ Roll them Bones is an actually good online dice roller. There weren't any really
  - ✅ = done
  - 🈺 = started
  - 🆘 = not started
- - 🔮 = who knows
+ - 🔮 = might not ever do... who knows
 
 ### Already Implemented Features
 
@@ -17,9 +17,9 @@ Roll them Bones is an actually good online dice roller. There weren't any really
 ### Obvious Planned Features
 
  - 🈺 Every kind of die imaginable
- - 🈺 Doing all the math for you
+ - ✅ Doing all the math for you
  - 🔮 Drag and throw dice to roll
- - 🆘 A cool logo and intro animation
+ - 🔮 A cool logo and intro animation
  - 🈺 A passable modern UI
 
 ### SUPER COOL PLANNED FEATURES

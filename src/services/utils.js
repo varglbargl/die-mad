@@ -76,6 +76,9 @@ export default {
 
     return true;
   },
+  getRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  },
   titlize (str) {
     str = str.split(' ');
     var result = [];

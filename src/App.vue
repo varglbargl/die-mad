@@ -9,7 +9,9 @@
       v-model="rolls[i]"
       @kill="deleteDie(i)"
       @explode="explodeDie($event)"
+      @crit="animateCrit($event)"
       ref="dice" />
+
       <DX
       v-for="(eDie, eI) in bonusDice"
       :key="eDie.id"
@@ -18,7 +20,15 @@
       v-model="bonusRolls[eI]"
       @kill="deleteBonusDie(eI)"
       @explode="explodeDie($event)"
+      @crit="animateCrit($event)"
       ref="explodedDice" />
+
+      <crit-animation
+      v-for="(crit, cI) in critRolls"
+      @kill="removeCritAnimation(cI)"
+      :key="crit.id"
+      :x="crit.x"
+      :y="crit.y" />
     </div>
     <div class="total">
       {{ rolledDiceList }}<span v-if="totalRolled !== 0"> = {{ totalRolled }}</span>
@@ -56,18 +66,20 @@
 import Vue from 'vue';
 import DX from '@/components/DX.vue';
 import SettingsMenu from '@/components/SettingsMenu.vue';
+import CritAnimation from '@/components/CritAnimation.vue';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
 export default {
   name: 'app',
-  components: { DX, SettingsMenu },
+  components: { DX, SettingsMenu, CritAnimation },
   data () {
     return {
       activeDice: [],
       bonusDice: [],
       rolls: [],
       bonusRolls: [],
+      critRolls: [],
       touched: null,
       count: 0,
       settings: settings,
@@ -184,6 +196,12 @@ export default {
           this.rollAll();
         }
       }
+    },
+    animateCrit (evt) {
+      this.critRolls.push({x: evt[0], y: evt[1], id: ++this.count});
+    },
+    removeCritAnimation (i) {
+      this.critRolls.splice(i, 1);
     },
     explodeDie(evt) {
       this.bonusDice.push({sides: evt[0], id: ++this.count});
