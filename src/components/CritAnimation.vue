@@ -1,6 +1,6 @@
 <template>
   <div class="container" :style="{left: x - 30 + 'px', top: y - 30 + 'px'}">
-    <svg viewBox="-60 -60 120 120" v-if="type === 'success'">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 120 120" v-if="type === 'success'">
       <g
       v-for="(spark, i) in sparkles(8)"
       :key="i">

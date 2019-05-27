@@ -9,8 +9,8 @@
         <span class="checkmark"></span>
       </label>
       <label class="checkbox-container">
-        <span>Haptic feedback <span class="red">(BETA)</span></span>
-        <input type="checkbox" v-model="settings.vibrateOnCollision" />
+        <span :class="{disabled: !canVibrate}">Haptic feedback <span class="red">(BETA)</span></span>
+        <input type="checkbox" v-model="settings.vibrateOnCollision" :disabled="!canVibrate"/>
         <span class="checkmark"></span>
       </label>
     </div>
@@ -89,7 +89,8 @@ export default {
   },
   data() {
     return {
-      settings: settings
+      settings: settings,
+      canVibrate: 'vibrate' in navigator
     }
   },
   methods: {
@@ -155,7 +156,11 @@ export default {
 .subheader {
   margin-top: -16px;
   margin-bottom: 16px;
-  color: $red;
+  color: #666;
+}
+
+.disabled {
+  opacity: 0.4;
 }
 
 .skins-list {
