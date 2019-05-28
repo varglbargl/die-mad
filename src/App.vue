@@ -1,5 +1,8 @@
 <template>
   <main id="app">
+    <div id="intro-screen" v-if="!introPlayed" :class="{open: introPlaying}">
+      <img src="@/assets/logo.png" />
+    </div>
     <div id="tabletop">
       <DX
       v-for="(die, i) in activeDice"
@@ -84,7 +87,9 @@ export default {
       touched: null,
       count: 0,
       settings: settings,
-      settingsOpen: false
+      settingsOpen: false,
+      introPlaying: false,
+      introPlayed: false
     }
   },
   computed: {
@@ -206,6 +211,7 @@ export default {
     },
     explodeDie(evt) {
       this.bonusDice.push({sides: evt[0], id: ++this.count});
+      this.critRolls.push({type: 'explosion', x: evt[1], y: evt[2], id: ++this.count});
 
       Vue.nextTick(() => {
         this.$refs.explodedDice[this.bonusDice.length - 1].x = evt[1];
@@ -218,6 +224,15 @@ export default {
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.deviceMotionHandler, true);
     }
+
+    setTimeout(() => {
+       this.introPlaying = true;
+    }, 1000);
+
+    setTimeout(() => {
+       this.introPlaying = false;
+       this.introPlayed = true;
+    }, 3000);
   }
 }
 </script>
@@ -245,10 +260,41 @@ html, body {
   text-align: center;
 }
 
+#intro-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("./assets/intro_bkg.jpg");
+  background-size: cover;
+  background-position: center bottom;
+
+  transition: top 2s cubic-bezier(0.5, 0, 0.5, 1);
+
+  z-index: 200;
+
+  &.open {
+    top: -100vh;
+  }
+
+  img {
+    max-width: 80%;
+    max-height: 50%;
+    margin-top: -10%;
+  }
+}
+
 #tabletop {
   width: 100vw;
   height: calc(80vh - #{$menu-height});
 
+  background-image: url("./assets/felt.jpg");
   background-color: $felt-green;
   overflow: show;
 }
