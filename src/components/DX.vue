@@ -126,13 +126,15 @@ export default {
           this.rotateTo = 0;
           this.$emit('input', this.value);
 
-          // CRITS! Exploding dice! Todo: add crit range to the settings
+          // CRITS! EXPLODING DICE! Todo: add crit range to the settings
 
           if (this.dieSettings.critSuccess && this.value === this.sides) {
             this.$emit('crit', ['success', this.x, this.y]);
           } else if (this.dieSettings.critFail && this.value === 1) {
             this.$emit('crit', ['fail', this.x, this.y]);
-          } else if (this.dieSettings.exploding && this.value === this.sides) {
+          }
+
+          if (this.dieSettings.exploding && this.value === this.sides) {
             this.$emit('explode', [this.sides, this.x, this.y]);
           }
         }
