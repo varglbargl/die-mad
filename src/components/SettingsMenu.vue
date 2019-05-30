@@ -15,7 +15,6 @@
       </label>
     </div>
     <h2>DICE SETTINGS</h2>
-    <div class="subheader">BETA - Not all of these work on iPhone yet</div>
     <table class="dice-settings">
       <thead>
         <tr>
@@ -70,6 +69,20 @@
         </div>
         <span style="font-weight: 500">{{ titlize(name) }}</span>
       </div>
+    </div>
+    <h2>CREDITS</h2>
+    <div class="credits">
+      <span class="bigish-text red">
+        Vanessa made this!
+      </span>
+      <p>
+        Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a>. That's also where you can view the full source code for this project!
+      </p>
+      <p>
+        If this project makes you happy, you can make me happy by supporting my other projects: Making board games with my friends at
+        <a href="http://gamesforspiders.com"><img src="@/assets/gfs_logo.png" /></a>
+        Follow us on <a href="https://twitter.com/gamesforspiders">Twitter</a>, <a href="https://www.facebook.com/gamesforspiders">Facebook</a>, or <a href="https://www.instagram.com/games4spiders/">Instagram</a>.
+      </p>
     </div>
   </div>
 </template>
@@ -135,9 +148,15 @@ export default {
   font-size: 20px;
 }
 
-.general-settings {
+.general-settings, .credits {
   max-width: 400px;
   margin: 0 auto;
+
+  img {
+    display: block;
+    margin: 18px auto;
+    max-width: 80%;
+  }
 }
 
 .dice-settings {
@@ -190,5 +209,9 @@ export default {
       }
     }
   }
+}
+
+.bigish-text {
+  font-size: 22px;
 }
 </style>

@@ -375,15 +375,29 @@ html, body {
 
   &:hover {
     margin: 8px 11px 12px 9px;
-    box-shadow: 4px 8px rgba(0,0,0,0.5);
+    box-shadow: 4px 8px rgba(0,0,0,0.3);
   }
 
   &:active {
     margin: 12px 9px 8px 11px;
+    box-shadow: none;
   }
 }
 
 span.red {
   color: $red;
+}
+
+span.blue {
+  color: $blue;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>
