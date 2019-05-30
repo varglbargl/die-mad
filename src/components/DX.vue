@@ -222,13 +222,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.small {
-  position: absolute;
-  bottom: 15px;
-  left: 25px;
-
-  font-size: 8;
-  line-height: 0;
-  font-size: 10px;
-}
 </style>

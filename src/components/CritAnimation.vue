@@ -90,7 +90,7 @@ svg {
 
 .container {
   position: absolute;
-  z-index: 70;
+  z-index: 120;
 }
 
 @keyframes move {

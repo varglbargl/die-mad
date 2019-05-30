@@ -2,6 +2,7 @@
   <main id="app">
     <div id="intro-screen" v-if="!introPlayed" :class="{open: introPlaying}">
       <img src="@/assets/logo.png" />
+      <button class="big-button" @click="playIntro($event)">Let's Roll</button>
     </div>
     <div id="tabletop">
       <DX
@@ -143,6 +144,16 @@ export default {
     }
   },
   methods: {
+    playIntro(clickEvent) {
+      this.animateCrit(['success', clickEvent.clientX - 30, clickEvent.clientY - 30]);
+
+      this.introPlaying = true;
+
+      setTimeout(() => {
+         this.introPlaying = false;
+         this.introPlayed = true;
+      }, 2000);
+    },
     rollAll () {
       if (!this.$refs.dice) return;
 
@@ -224,15 +235,6 @@ export default {
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.deviceMotionHandler, true);
     }
-
-    setTimeout(() => {
-       this.introPlaying = true;
-    }, 1000);
-
-    setTimeout(() => {
-       this.introPlaying = false;
-       this.introPlayed = true;
-    }, 3000);
   }
 }
 </script>
@@ -268,6 +270,7 @@ html, body {
   height: 100vh;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -277,7 +280,7 @@ html, body {
 
   transition: top 2s cubic-bezier(0.5, 0, 0.5, 1);
 
-  z-index: 200;
+  z-index: 100;
 
   &.open {
     top: -100vh;
@@ -355,6 +358,28 @@ html, body {
     img {
       height: 70px;
     }
+  }
+}
+
+.big-button {
+  padding: 10px;
+  margin: 10px;
+  border: 4px solid $gold;
+  border-radius: 15px;
+  outline: none;
+
+  background-color: $brown;
+
+  font-size: 48px;
+  color: $gold;
+
+  &:hover {
+    margin: 8px 11px 12px 9px;
+    box-shadow: 4px 8px rgba(0,0,0,0.5);
+  }
+
+  &:active {
+    margin: 12px 9px 8px 11px;
   }
 }
 
