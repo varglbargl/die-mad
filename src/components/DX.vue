@@ -128,14 +128,14 @@ export default {
 
           // CRITS! EXPLODING DICE! Todo: add crit range to the settings
 
-          if (this.dieSettings.critSuccess && this.value === this.sides) {
+          if (this.dieSettings.critSuccess && this.value === parseInt(this.sides)) {
             this.$emit('crit', ['success', this.x, this.y]);
           } else if (this.dieSettings.critFail && this.value === 1) {
             this.$emit('crit', ['fail', this.x, this.y]);
           }
 
-          if (this.dieSettings.exploding && this.value === this.sides) {
-            this.$emit('explode', [this.sides, this.x, this.y]);
+          if (this.dieSettings.exploding && this.value === parseInt(this.sides)) {
+            this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
           }
         }
       }

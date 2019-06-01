@@ -16,24 +16,24 @@ Roll them Bones is an actually good online dice roller. There weren't any really
 
 ### Obvious Planned Features
 
- - 🈺 Every kind of die imaginable
+ - ✅ Every kind of die imaginable
  - ✅ Doing all the math for you
  - 🔮 Drag and throw dice to roll
- - 🔮 A cool logo and intro animation
+ - 🈺 A cool logo and intro animation
  - 🈺 A passable modern UI
 
 ### SUPER COOL PLANNED FEATURES
 
  - ✅ Shake your phone to roll the dice!
  - 🈺 Dice skins and table themes!
- - 🈺 Cool animations for crit successes and crit fails!
+ - ✅ Cool animations for crit successes and crit fails!
  - 🆘 Advantage and disadvantage dice!
  - 🆘 Mario Paint/KidPix Studio style table clearing spells!
  - 🈺 Settings menu where you can:
    - 🈺 customize basically any of the features above
    - ✅ toggle AUTO-EXPLODING DICE
    - 🆘 adjust your crit range and boring stuff like that
-   - 🆘 See my cute face in a credits screen and maybe donate to my kofi(???)
+   - 🔮 See my cute face in a credits screen and maybe donate to my kofi(???)
 
 ### Impossible/Questionable/Stupid Features
 

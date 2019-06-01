@@ -17,12 +17,12 @@
     padding: 0;
   }
 
-  input:disabled ~ span {
+  input[type=checkbox]:disabled ~ span {
     color: #666;
   }
 
   /* Hide the browser's default checkbox */
-  input {
+  input[type=checkbox] {
     position: relative;
     opacity: 0;
     cursor: pointer;
@@ -55,12 +55,12 @@
   }
 
   /* On mouse-over, add a grey background color */
-  &:hover input ~ .checkmark {
+  &:hover input[type=checkbox] ~ .checkmark {
     background-color: #CCC;
   }
 
   /* When the checkbox is checked, add a blue background */
-  input:checked ~ .checkmark {
+  input[type=checkbox]:checked ~ .checkmark {
     background-color: #F06;
 
     /* Show the checkmark when checked */

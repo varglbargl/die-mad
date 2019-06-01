@@ -22,58 +22,65 @@ export default {
   vibrateOnCollision: false,
 
   diceRack: {
-    D100:{
+    D100: {
       active: false,
       sides: 100,
       exploding: false,
       critSuccess: false,
       critFail: false
     },
-    D20:{
+    D20: {
       active: true,
       sides: 20,
       exploding: false,
       critSuccess: true,
       critFail: true
     },
-    D12:{
+    D12: {
       active: true,
       sides: 12,
       exploding: false,
       critSuccess: false,
       critFail: false
     },
-    D10:{
+    D10: {
       active: true,
       sides: 10,
       exploding: false,
       critSuccess: false,
       critFail: false
     },
-    D8:{
+    D8: {
       active: true,
       sides: 8,
       exploding: false,
       critSuccess: false,
       critFail: false
     },
-    D6:{
+    D6: {
       active: true,
       sides: 6,
       exploding: false,
       critSuccess: false,
       critFail: false
     },
-    D4:{
+    D4: {
       active: true,
       sides: 4,
       exploding: false,
       critSuccess: false,
       critFail: false
     },
-    D2:{
+    D2: {
       active: false,
       sides: 2,
+      exploding: false,
+      critSuccess: false,
+      critFail: false
+    },
+    custom: {
+      active: false,
+      sides: 69,
       exploding: false,
       critSuccess: false,
       critFail: false
@@ -84,6 +91,12 @@ export default {
       if (this.diceRack[die].sides === d) return this.diceRack[die];
     }
 
-    return {};
+    return {
+      active: this.diceRack.custom.active,
+      sides: d,
+      exploding: this.diceRack.custom.exploding,
+      critSuccess: this.diceRack.custom.critSuccess,
+      critFail: this.diceRack.custom.critFail
+    };
   }
 }
