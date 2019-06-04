@@ -17,8 +17,11 @@ export default {
     krypton: 'default krypton',
     poison:  'default poison'
   },
+
   currentDiceSkin: 'default red',
+
   shakeToRoll: true,
+
   vibrateOnCollision: false,
 
   diceRack: {
@@ -86,6 +89,7 @@ export default {
       critFail: false
     }
   },
+
   getDieSettings(d) {
     for (let die in this.diceRack) {
       if (this.diceRack[die].sides === d) return this.diceRack[die];

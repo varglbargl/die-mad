@@ -21,9 +21,11 @@ export default {
         return 'custom';
     }
   },
+
   rollDie (min, max) {
     return Math.ceil(Math.random() * max - min) + min;
   },
+
   multiplyVector (a, b) {
     var result;
 
@@ -61,6 +63,17 @@ export default {
 
     return result;
   },
+
+  rotateVector2 (vector2, angle) {
+    let s = Math.sin(angle);
+    let c = Math.cos(angle);
+
+    let xNew = vector2[0] * c - vector2[1] * s;
+    let yNew = vector2[0] * s + vector2[1] * c;
+
+    return [xNew, yNew];
+  },
+
   deepEquals (a, b) {
     if (typeof a !== 'object') return false;
     for (let i in a) {
@@ -76,9 +89,11 @@ export default {
 
     return true;
   },
+
   getRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   },
+
   titlize (str) {
     str = str.split(' ');
     var result = [];
@@ -88,6 +103,7 @@ export default {
     }
     return result.join(' ');
   },
+
   hapticFeedback (duration) {
     navigator.vibrate(duration);
   }

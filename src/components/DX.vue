@@ -63,6 +63,7 @@ export default {
       this.dragging = true;
       this.$parent.touched = this;
 
+
       if (evt.changedTouches) {
         this.dragOffsetX = this.x - evt.changedTouches[0].clientX;
         this.dragOffsetY = this.y - evt.changedTouches[0].clientY;
@@ -151,11 +152,7 @@ export default {
       changeDieSide();
     },
     throwDieRandomly () {
-      var magnitude = 120;
-      var randomVector = [
-        Math.round(Math.random() * magnitude - magnitude / 2),
-        Math.round(Math.random() * magnitude - magnitude / 2)
-      ];
+      var randomVector = utils.rotateVector2([0, Math.ceil(Math.random() * 75 + 5)], Math.floor(Math.random() * 360));
       var randomRotation = Math.round(Math.random() * 4 - 2) * 360;
 
       // not perfect but look it's good enough and more importantly it's gotten complicated enough.

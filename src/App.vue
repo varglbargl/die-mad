@@ -38,7 +38,7 @@
     <div class="total">
       {{ rolledDiceList }}<span v-if="totalRolled !== 0"> = {{ totalRolled }}</span>
     </div>
-    <div class="dice-rack">
+    <div id="dice-rack">
       <div
       v-for="(die, i) in settings.diceRack"
       :key="i"
@@ -55,14 +55,16 @@
         </span>
       </div>
     </div>
-    <div class="cancel-box">
+    <div id="cancel-box">
       <div :class="[{open: touched !== null}, 'cancel-panel']">
         <img src="@/assets/cancel.svg" />
       </div>
     </div>
-    <button @click="rollAll">ROLL ALL</button>
-    <button @click="clear">CLEAR</button>
-    <button @click="settingsOpen = true">SETTINGS</button>
+    <div id="buttons">
+      <button @click="rollAll">ROLL ALL</button>
+      <button @click="clear">CLEAR</button>
+      <button @click="settingsOpen = true">SETTINGS</button>
+    </div>
     <settings-menu @close="settingsOpen = false" :open="settingsOpen" />
   </main>
 </template>
@@ -175,12 +177,12 @@ export default {
         this.touched = this.$refs.dice[this.activeDice.length - 1];
 
         if (evt.changedTouches) {
-          this.touched.x = evt.changedTouches[0].target.offsetLeft;
-          this.touched.y = evt.changedTouches[0].target.offsetTop;
+          this.touched.x = evt.changedTouches[0].target.offsetLeft - document.getElementById('tabletop').offsetLeft;
+          this.touched.y = evt.changedTouches[0].target.offsetTop - document.getElementById('tabletop').offsetTop;
 
         } else if (evt.target.offsetLeft !== undefined && evt.target.offsetTop !== undefined) {
-          this.touched.x = evt.target.offsetLeft;
-          this.touched.y = evt.target.offsetTop;
+          this.touched.x = evt.target.offsetLeft - document.getElementById('tabletop').offsetLeft;
+          this.touched.y = evt.target.offsetTop - document.getElementById('tabletop').offsetTop;
         }
 
         this.$refs.dice[this.activeDice.length - 1].dragStart(evt);
@@ -260,6 +262,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+
+  background-color: #000;
 }
 
 #intro-screen {
@@ -294,7 +298,10 @@ html, body {
 }
 
 #tabletop {
+  position: relative;
   width: 100vw;
+  max-width: 800px;
+  margin: 0 auto;
   height: calc(80vh - #{$menu-height});
 
   background-image: url("./assets/felt.jpg");
@@ -302,20 +309,26 @@ html, body {
   overflow: show;
 }
 
-.dice-rack {
+#dice-rack {
+  height: 70px;
+  overflow: hidden;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  height: 70px;
-  overflow: hidden;
+  background-color: #FFF;
 
   .die {
     position: relative;
     margin: 2px;
     flex-shrink: 1;
   }
+}
+
+#buttons {
+  background-color: #FFF;
 }
 
 .total {
@@ -331,7 +344,7 @@ html, body {
   color: #FFF;
 }
 
-.cancel-box {
+#cancel-box {
   width: 100%;
   height: 70px;
   margin-top: -70px;
