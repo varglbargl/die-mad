@@ -1,5 +1,5 @@
 export default {
-  colors: {
+  skins: {
     red:     'default red',
     orange:  'default orange',
     yellow:  'default yellow',
@@ -15,7 +15,8 @@ export default {
     fire:    'default fire',
     ice:     'default ice',
     krypton: 'default krypton',
-    poison:  'default poison'
+    poison:  'default poison',
+    random:  'random'
   },
 
   currentDiceSkin: 'default red',
@@ -102,5 +103,14 @@ export default {
       critSuccess: this.diceRack.custom.critSuccess,
       critFail: this.diceRack.custom.critFail
     };
+  },
+
+  getRandomDieSkin(seed) {
+    let skinList = Object.keys(this.skins)
+    if (seed) {
+      return this.skins[skinList[seed % (skinList.length - 1)]]; // -1 because random
+    } else {
+      return this.skins[skinList[Math.floor(Math.random() * skinList.length - 1)]];
+    }
   }
 }

@@ -4,7 +4,7 @@
     <h2>GENERAL SETTINGS</h2>
     <div class="general-settings">
       <label class="checkbox-container">
-        <span>Shake phone to roll dice</span>
+        <span>Shake device to roll dice</span>
         <input type="checkbox" v-model="settings.shakeToRoll" />
         <span class="checkmark"></span>
       </label>
@@ -66,14 +66,18 @@
     <h2>DICE SKINS</h2>
     <div class="skins-list" v-if="open">
       <div
-      v-for="(classes, name) in settings.colors"
+      v-for="(classes, name) in settings.skins"
       :key="name"
       class="choice"
       @click="pickDieSkin(name)"
       :class="{selected: settings.currentDiceSkin === classes}">
-        <div class="die d20" :class="classes">
-          <div class="skin" :class="classes"></div>
+        <div v-if="name != 'random'" class="die d20" :class="classes">
+          <div class="skin"></div>
           <span>20</span>
+        </div>
+        <div v-if="name === 'random'" class="die d20" :class="currentRandomSkin">
+          <div class="skin"></div>
+          <span>??</span>
         </div>
         <span style="font-weight: 500">{{ titlize(name) }}</span>
       </div>
@@ -113,16 +117,28 @@ export default {
   data() {
     return {
       settings: settings,
-      canVibrate: 'vibrate' in navigator
+      canVibrate: 'vibrate' in navigator,
+      currentRandomSkin: 'default pink'
     }
   },
   methods: {
     pickDieSkin (color) {
-      settings.currentDiceSkin = settings.colors[color];
+      settings.currentDiceSkin = settings.skins[color];
     },
     titlize (str) {
       return utils.titlize(str);
     }
+  },
+  mounted() {
+    var that = this;
+    var cycleSkins = function () {
+      setTimeout(() => {
+        that.currentRandomSkin = settings.getRandomDieSkin();
+        cycleSkins();
+      }, 800);
+    }
+
+    cycleSkins();
   }
 }
 </script>

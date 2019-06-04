@@ -9,7 +9,7 @@
       v-for="(die, i) in activeDice"
       :key="die.id"
       :sides="die.sides"
-      :skin="settings.currentDiceSkin"
+      :skin="die.skin ? die.skin : settings.currentDiceSkin"
       v-model="rolls[i]"
       @kill="deleteDie(i)"
       @explode="explodeDie($event)"
@@ -47,9 +47,14 @@
       @mousedown.prevent="createDie(die.sides, $event)"
       @mouseup.prevent="dropNewDie"
       class="die"
-      :class="[dieType(die.sides), settings.currentDiceSkin]"
+      :class="[
+        dieType(die.sides),
+        settings.currentDiceSkin === 'random' ?
+        settings.getRandomDieSkin(die.sides) :
+        settings.currentDiceSkin
+      ]"
       :style="{display: die.active ? 'flex' : 'none'}">
-        <div class="skin" :class="settings.currentDiceSkin"></div>
+        <div class="skin"></div>
         <span :style="{fontSize: Math.min(32 - totalActiveDice * 2, 20) + 'px'}">
           D{{ die.sides }}
         </span>
@@ -175,7 +180,11 @@ export default {
       return utils.getDieType(sides);
     },
     createDie (sides, evt) {
-      this.activeDice.push({sides, id: ++this.count});
+      if (settings.currentDiceSkin === 'random') {
+        this.activeDice.push({sides, id: ++this.count, skin: settings.getRandomDieSkin()});
+      } else {
+        this.activeDice.push({sides, id: ++this.count});
+      }
 
       Vue.nextTick(() => { // because the actual die component doesn't exist yet
         this.touched = this.$refs.dice[this.activeDice.length - 1];
@@ -209,6 +218,7 @@ export default {
       this.rolls = [];
       this.bonusDice = [];
       this.bonusRolls = [];
+      this.count = 0;
     },
     deviceMotionHandler (e) {
       if (!settings.shakeToRoll) return;

@@ -1,13 +1,13 @@
 <template>
   <div
   class="die"
-  :class="[dieType, {rolling: speed > 0}]"
+  :class="[dieType, this.skin, {rolling: speed > 0}]"
   @mousedown.prevent="dragStart"
   @touchstart.prevent="dragStart"
   @mouseup.prevent="dragStop"
   @touchend.prevent="dragStop"
   :style="dieStyles">
-    <div class="skin" :class="skin"></div>
+    <div class="skin"></div>
     <span>{{ value }}</span>
   </div>
 </template>
