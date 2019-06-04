@@ -83,7 +83,7 @@
       <span class="bigish-text red">
         Vanessa made this!
       </span>
-      <img src="@/assets/me.png" />
+      <img src="@/assets/me.jpg" />
       <span class="subheader">This is not me this is Sailor Jupiter.</span>
       <p>
         Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a>. That's also where you can view the full source code for this project!

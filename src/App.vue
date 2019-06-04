@@ -1,8 +1,8 @@
 <template>
   <main id="app">
     <div id="intro-screen" v-if="!introPlayed" :class="{open: introPlaying}">
-      <img src="@/assets/logo.png" />
-      <button class="big-button" @click="playIntro($event)">Let's Roll</button>
+      <img src="@/assets/logo.svg" />
+      <button class="big-button" @click="playIntro($event)">LET'S DIE</button>
     </div>
     <div id="tabletop">
       <DX
@@ -147,7 +147,11 @@ export default {
   },
   methods: {
     playIntro(clickEvent) {
-      this.animateCrit(['success', clickEvent.clientX - 30, clickEvent.clientY - 30]);
+      this.animateCrit([
+        'success',
+        clickEvent.clientX - 30 - document.getElementById('tabletop').offsetLeft,
+        clickEvent.clientY - 30 - document.getElementById('tabletop').offsetTop
+      ]);
 
       this.introPlaying = true;
 
@@ -278,9 +282,7 @@ html, body {
   align-items: center;
   justify-content: center;
 
-  background-image: url("./assets/intro_bkg.jpg");
-  background-size: cover;
-  background-position: center bottom;
+  background-color: #000;
 
   transition: top 2s cubic-bezier(0.5, 0, 0.5, 1);
 
@@ -294,6 +296,7 @@ html, body {
     max-width: 80%;
     max-height: 50%;
     margin-top: -10%;
+    margin-bottom: 50px;
   }
 }
 
@@ -377,14 +380,15 @@ html, body {
 .big-button {
   padding: 10px;
   margin: 10px;
-  border: 4px solid $gold;
+  border: 5px solid $red;
   border-radius: 15px;
   outline: none;
 
-  background-color: $brown;
+  background-color: #000;
 
   font-size: 48px;
-  color: $gold;
+  color: $red;
+  font-style: italic;
 
   &:hover {
     margin: 8px 11px 12px 9px;
