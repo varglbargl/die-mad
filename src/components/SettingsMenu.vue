@@ -75,7 +75,7 @@
           <div class="skin"></div>
           <span>20</span>
         </div>
-        <div v-if="name === 'random'" class="die d20" :class="currentRandomSkin">
+        <div v-if="name === 'random'" class="die d20 rando" :class="currentRandomSkin">
           <div class="skin"></div>
           <span>??</span>
         </div>
@@ -130,7 +130,7 @@ export default {
     }
   },
   mounted() {
-    var that = this;
+    var that = this; // i hate doing this...
     var cycleSkins = function () {
       setTimeout(() => {
         that.currentRandomSkin = settings.getRandomDieSkin();
@@ -198,7 +198,7 @@ export default {
   }
 
   input[type=number] {
-    width: 30px;
+    width: 55px;
     font-size: 18px;
     display: inline-block;
   }

@@ -183,7 +183,7 @@ export default {
       if (settings.currentDiceSkin === 'random') {
         this.activeDice.push({sides, id: ++this.count, skin: settings.getRandomDieSkin()});
       } else {
-        this.activeDice.push({sides, id: ++this.count});
+        this.activeDice.push({sides, id: ++this.count, skin: settings.currentDiceSkin});
       }
 
       Vue.nextTick(() => { // because the actual die component doesn't exist yet
