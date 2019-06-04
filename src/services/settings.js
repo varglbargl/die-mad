@@ -21,6 +21,10 @@ export default {
     gay:     'pattern gay',
     bi:      'pattern bi',
     trans:   'pattern trans',
+    pan:     'pattern pan',
+    enby:    'pattern nonbinary',
+    'Ace/Aro':'pattern ace',
+    intersex:'pattern intersex',
 
     random:  'random'
   },

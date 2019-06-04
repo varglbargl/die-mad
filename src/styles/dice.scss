@@ -13,7 +13,7 @@ $size: 70px;
   mask-position: center;
 
   &.rolling {
-    transition: transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition: transform 1s cubic-bezier(0.2, 0.6, 0.35, 1);
   }
 
   .skin {
