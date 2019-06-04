@@ -15,7 +15,13 @@ export default {
     fire:    'default fire',
     ice:     'default ice',
     krypton: 'default krypton',
-    poison:  'default poison',
+    fairy:   'default fairy',
+
+    lesbian: 'pattern lesbian',
+    gay:     'pattern gay',
+    bi:      'pattern bi',
+    trans:   'pattern trans',
+
     random:  'random'
   },
 

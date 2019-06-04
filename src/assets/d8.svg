@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="-245 337 120 120" style="enable-background:new -245 337 120 120;" xml:space="preserve">
+<svg version="1.1" baseProfile="basic" id="Layer_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-245 337 120 120"
+	 xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#331111;}
-	.st1{display:none;}
-	.st2{display:inline;}
-	.st3{fill:#D8D8D8;}
-	.st4{fill:#FFFFFF;}
-	.st5{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st6{display:inline;opacity:0.18;enable-background:new    ;}
-	.st7{display:inline;opacity:0.47;enable-background:new    ;}
-	.st8{display:inline;opacity:0.32;enable-background:new    ;}
-	.st9{display:inline;opacity:0.26;enable-background:new    ;}
-	.st10{fill:#2D0101;}
-	.st11{fill:#B72121;}
-	.st12{fill:#A81B1B;}
-	.st13{fill:#8C1010;}
-	.st14{fill:#720F0F;}
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#D8D8D8;}
+	.st3{fill:#FFFFFF;}
+	.st4{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st5{display:inline;opacity:0.18;}
+	.st6{display:inline;opacity:0.47;}
+	.st7{display:inline;opacity:0.32;}
+	.st8{display:inline;opacity:0.26;}
+	.st9{fill:#2D0101;}
+	.st10{fill:#B72121;}
+	.st11{fill:#A81B1B;}
+	.st12{fill:#8C1010;}
+	.st13{fill:#720F0F;}
+	.st14{opacity:0.6;}
+	.st15{opacity:0;}
+	.st16{opacity:0.1;}
+	.st17{opacity:0.2;}
+	.st18{opacity:0.3;}
 </style>
+<g id="circle_guides" class="st0">
+	<g class="st1">
+		<circle class="st2" cx="-675" cy="1071" r="60"/>
+	</g>
+</g>
+<g id="lines" class="st0">
+	<g class="st1">
+		<polygon class="st3" points="-726.5,1100.7 -726.5,1041.3 -675,1011.6 -623.5,1041.3 -623.5,1100.7 -675,1130.4 		"/>
+		<path d="M-675,1012.2l51,29.4v58.8l-51,29.4l-51-29.4v-58.8L-675,1012.2 M-675,1011l-52,30v60l52,30l52-30v-60L-675,1011
+			L-675,1011z"/>
+	</g>
+	<polygon class="st4" points="-727,1101 -675,1011 -623,1101 	"/>
+</g>
+<g id="shapes" class="st0">
+	<polygon class="st5" points="-675,1011 -727,1041 -727,1101 	"/>
+	<polygon class="st6" points="-675,1131 -623,1101 -727,1101 	"/>
+	<polygon class="st7" points="-623,1041 -623,1101 -675,1011 	"/>
+	<polygon class="st8" points="-727,1101 -675,1011 -623,1101 	"/>
+</g>
+<g id="backgrounds" class="st0">
+	<g class="st1">
+		<polygon class="st9" points="-727,1041 -727,1101 -675,1131 -623,1101 -623,1041 -675,1011 		"/>
+	</g>
+</g>
+<g id="shapes_copy" class="st0">
+	<g class="st1">
+		<polygon class="st10" points="-675,1011 -727,1041 -727,1101 		"/>
+	</g>
+	<g class="st1">
+		<polygon class="st11" points="-727,1101 -675,1011 -623,1101 		"/>
+	</g>
+	<g class="st1">
+		<polygon class="st12" points="-623,1041 -623,1101 -675,1011 		"/>
+	</g>
+	<g class="st1">
+		<polygon class="st13" points="-675,1131 -623,1101 -727,1101 		"/>
+	</g>
+</g>
 <g>
-	<path class="st0" d="M-181.5,456.2c-1.9,1.1-5.1,1.1-7,0l-45.9-26.5c-1.9-1.1-3.6-3.9-3.6-6.1v-53.1c0-2.2,1.6-5,3.6-6.1l45.9-26.5
-		c1.9-1.1,5.1-1.1,7,0l45.9,26.5c1.9,1.1,3.6,3.9,3.6,6.1v53.1c0,2.2-1.6,5-3.6,6.1L-181.5,456.2z"/>
-</g>
-<g id="circle_guides" class="st1">
-	<g class="st2">
-		<circle class="st3" cx="-430" cy="734" r="60"/>
-	</g>
-</g>
-<g id="lines" class="st1">
-	<g class="st2">
-		<polygon class="st4" points="-481.5,763.7 -481.5,704.3 -430,674.6 -378.5,704.3 -378.5,763.7 -430,793.4 		"/>
-		<path d="M-430,675.2l51,29.4v58.8l-51,29.4l-51-29.4v-58.8L-430,675.2 M-430,674l-52,30v60l52,30l52-30v-60L-430,674L-430,674z"/>
-	</g>
-	<polygon class="st5" points="-482,764 -430,674 -378,764 	"/>
-</g>
-<g id="shapes" class="st1">
-	<polygon class="st6" points="-430,674 -482,704 -482,764 	"/>
-	<polygon class="st7" points="-430,794 -378,764 -482,764 	"/>
-	<polygon class="st8" points="-378,704 -378,764 -430,674 	"/>
-	<polygon class="st9" points="-482,764 -430,674 -378,764 	"/>
-</g>
-<g id="backgrounds" class="st1">
-	<g class="st2">
-		<polygon class="st10" points="-482,704 -482,764 -430,794 -378,764 -378,704 -430,674 		"/>
-	</g>
-</g>
-<g id="shapes_copy" class="st1">
-	<g class="st2">
-		<polygon class="st11" points="-430,674 -482,704 -482,764 		"/>
-	</g>
-	<g class="st2">
-		<polygon class="st12" points="-482,764 -430,674 -378,764 		"/>
-	</g>
-	<g class="st2">
-		<polygon class="st13" points="-378,704 -378,764 -430,674 		"/>
-	</g>
-	<g class="st2">
-		<polygon class="st14" points="-430,794 -378,764 -482,764 		"/>
-	</g>
-</g>
-<g id="shapes_copy_2">
-	<polygon class="st11" points="-234.1,368.6 -187.6,341.7 -234.1,422.3 	"/>
-	<polygon class="st12" points="-233.4,424.9 -185,341 -136.6,424.9 	"/>
-	<polygon class="st13" points="-182.4,341.7 -135.9,368.6 -135.9,422.3 	"/>
-	<polygon class="st14" points="-231.5,426.9 -138.5,426.9 -185,453.7 	"/>
+	<path class="st14" d="M-135.6,364.3l-45.9-26.5c-1.9-1.1-5.1-1.1-7,0l-45.9,26.5c-2,1.1-3.6,3.9-3.6,6.1v53.1c0,2.2,1.7,5,3.6,6.1
+		l45.9,26.5c1.9,1.1,5.1,1.1,7,0l45.9-26.5c2-1.1,3.6-3.9,3.6-6.1v-53.1C-132,368.2-133.7,365.5-135.6,364.3z M-234.1,368.2
+		l46.5-26.9l-46.5,80.6V368.2z M-185,453.3l-46.5-26.8h93L-185,453.3z M-233.4,424.5l48.4-83.9l48.4,83.9H-233.4z M-135.9,421.9
+		l-46.5-80.6l46.5,26.9V421.9z"/>
+	<polygon class="st15" points="-234.1,368.2 -234.1,421.9 -187.6,341.3 	"/>
+	<polygon class="st16" points="-233.4,424.5 -136.6,424.5 -185,340.6 	"/>
+	<polygon class="st17" points="-135.9,421.9 -135.9,368.2 -182.4,341.3 	"/>
+	<polygon class="st18" points="-185,453.3 -138.5,426.5 -231.5,426.5 	"/>
 </g>
 </svg>

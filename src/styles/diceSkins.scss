@@ -1,18 +1,32 @@
-.die {
-  &.red      .skin {/* default */}
-  &.orange   .skin { filter: hue-rotate(63deg) saturate(250%) brightness(250%); }
-  &.yellow   .skin { filter: hue-rotate(69deg) saturate(250%) brightness(400%); }
-  &.green    .skin { filter: hue-rotate(160deg) brightness(200%); }
-  &.blue     .skin { filter: hue-rotate(225deg) saturate(60%) brightness(300%); }
-  &.purple   .skin { filter: hue-rotate(275deg) brightness(150%); }
-  &.pink     .skin { filter: hue-rotate(320deg) saturate(50%) brightness(250%); }
-  &.navy     .skin { filter: hue-rotate(220deg); }
-  &.teal     .skin { filter: hue-rotate(177deg) brightness(225%); }
-  &.wood     .skin { filter: hue-rotate(62deg) saturate(30%) brightness(300%); }
-  &.black    .skin { filter: saturate(0) contrast(115%); }
-  &.white    .skin { filter: saturate(0) contrast(90%) brightness(500%); }
-  &.fire     .skin { filter: brightness(500%); background-blend-mode: luminosity; background-color: #F60; }
-  &.ice      .skin { filter: brightness(150%); background-blend-mode: difference; background-color: #0FF; }
-  &.krypton  .skin { filter: brightness(500%); background-blend-mode: luminosity; background-color: #AF0; }
-  &.poison   .skin { filter: saturate(150%); background-blend-mode: difference; background-color: #F06; }
+.die.default {
+
+  &.red        .skin { background-color: red; }
+  &.orange     .skin { background-color: orange; }
+  &.yellow     .skin { background-color: yellow; }
+  &.green      .skin { background-color: green; }
+  &.blue       .skin { background-color: #49F; }
+  &.purple     .skin { background-color: purple; }
+  &.pink       .skin { background-color: #F6A; }
+  &.navy       .skin { background-color: navy; }
+  &.teal       .skin { background-color: teal; }
+  &.wood       .skin { background-color: #DC9; }
+  &.black      .skin { background-color: #333; }
+  &.white      .skin { background-color: #FFF; }
+  &.fire       .skin { background-color: orange; background-blend-mode: color-burn; }
+  &.ice        .skin { background-color: #EFF;   background-blend-mode: color-burn; }
+  &.krypton    .skin { background-color: #DF0;   background-blend-mode: color-burn; }
+  &.fairy      .skin { background-color: #FDE;   background-blend-mode: color-burn; }
+}
+
+.die.pattern {
+  background-size: 100% 100%;
+
+  .skin {
+    opacity: 0.75;
+  }
+
+  &.lesbian { background-image: url("./assets/lesbiab.gif"); }
+  &.gay     { background-image: url("./assets/imgay.gif"); }
+  &.bi      { background-image: url("./assets/bi.gif"); }
+  &.trans   { background-image: url("./assets/transrights.gif"); }
 }

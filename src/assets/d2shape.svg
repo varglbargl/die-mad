@@ -18,8 +18,7 @@
 	.st11{fill:#720F0F;}
 	.st12{fill:#680F0F;}
 	.st13{fill:#C62828;}
-	.st14{opacity:0.6;}
-	.st15{fill:url(#SVGID_1_);}
+	.st14{fill:#331111;}
 </style>
 <g id="circle_guides" class="st0">
 	<g class="st1">
@@ -40,34 +39,34 @@
 </g>
 <g id="shapes" class="st0">
 	
-		<image style="display:inline;overflow:visible;" width="52" height="30" xlink:href="F7C260F438206EA3.png"  transform="matrix(1 0 0 1 -972 1348)">
+		<image style="display:inline;overflow:visible;" width="52" height="30" xlink:href="B508E47F5D6B7BF2.png"  transform="matrix(1 0 0 1 -972 1348)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="22" height="60" xlink:href="F7C260F438206EAF.png"  transform="matrix(1 0 0 1 -972 1378)">
+		<image style="display:inline;overflow:visible;" width="22" height="60" xlink:href="B508E47F5D6B7BF6.png"  transform="matrix(1 0 0 1 -972 1378)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="52" height="53" xlink:href="F7C260F438206EA1.png"  transform="matrix(1 0 0 1 -972 1373)">
+		<image style="display:inline;overflow:visible;" width="52" height="53" xlink:href="B508E47F5D6B7BF1.png"  transform="matrix(1 0 0 1 -972 1373)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="52" height="30" xlink:href="F7C260F438206EA2.png"  transform="matrix(1 0 0 1 -920 1348)">
+		<image style="display:inline;overflow:visible;" width="52" height="30" xlink:href="B508E47F5D6B7BF3.png"  transform="matrix(1 0 0 1 -920 1348)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="62" height="53" xlink:href="F7C260F438206EA0.png"  transform="matrix(1 0 0 1 -951 1373)">
+		<image style="display:inline;overflow:visible;" width="62" height="53" xlink:href="B508E47F5D6B7BF0.png"  transform="matrix(1 0 0 1 -951 1373)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="52" height="53" xlink:href="F7C260F438206EBC.png"  transform="matrix(1 0 0 1 -920 1373)">
+		<image style="display:inline;overflow:visible;" width="52" height="53" xlink:href="B508E47F5D6B7BFE.png"  transform="matrix(1 0 0 1 -920 1373)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="22" height="60" xlink:href="F7C260F438206EBD.png"  transform="matrix(1 0 0 1 -890 1378)">
+		<image style="display:inline;overflow:visible;" width="22" height="60" xlink:href="B508E47F5D6B7BF5.png"  transform="matrix(1 0 0 1 -890 1378)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="62" height="43" xlink:href="F7C260F438206EBE.png"  transform="matrix(1 0 0 1 -951 1425)">
+		<image style="display:inline;overflow:visible;" width="62" height="43" xlink:href="B508E47F5D6B7BF7.png"  transform="matrix(1 0 0 1 -951 1425)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="52" height="43" xlink:href="F7C260F438206EBF.png"  transform="matrix(1 0 0 1 -972 1425)">
+		<image style="display:inline;overflow:visible;" width="52" height="43" xlink:href="B508E47F5D6B7BF4.png"  transform="matrix(1 0 0 1 -972 1425)">
 	</image>
 	
-		<image style="display:inline;overflow:visible;" width="52" height="43" xlink:href="CF18034C1CAFFE58.png"  transform="matrix(1 0 0 1 -920 1425)">
+		<image style="display:inline;overflow:visible;" width="52" height="43" xlink:href="2A4906688088EA45.png"  transform="matrix(1 0 0 1 -920 1425)">
 	</image>
 </g>
 <g id="backgrounds" class="st0">
@@ -103,13 +102,5 @@
 		<polygon class="st13" points="-972,1378 -920,1373 -920,1348 		"/>
 	</g>
 </g>
-<g>
-	<path class="st14" d="M-185,337.7c-32.8,0-59.3,26.5-59.3,59.3s26.5,59.3,59.3,59.3s59.3-26.5,59.3-59.3S-152.2,337.7-185,337.7z
-		 M-185,452.5c-30.7,0-55.5-24.8-55.5-55.5s24.8-55.5,55.5-55.5s55.5,24.8,55.5,55.5S-154.3,452.5-185,452.5z"/>
-	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-185" y1="341.3333" x2="-185" y2="452.3333">
-		<stop  offset="0" style="stop-color:#000000;stop-opacity:0.1"/>
-		<stop  offset="1" style="stop-color:#000000;stop-opacity:0.3"/>
-	</linearGradient>
-	<circle class="st15" cx="-185" cy="397" r="55.5"/>
-</g>
+<circle class="st14" cx="-185" cy="397" r="59.3"/>
 </svg>
