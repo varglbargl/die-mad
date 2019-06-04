@@ -90,7 +90,7 @@ export default {
     return true;
   },
 
-  getRandom(arr) {
+  getRandom (arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   },
 

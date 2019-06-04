@@ -25,6 +25,8 @@ export default {
 
   vibrateOnCollision: false,
 
+  animationsEnabled: true,
+
   diceRack: {
     D100: {
       active: false,

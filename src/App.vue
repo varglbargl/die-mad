@@ -97,7 +97,8 @@ export default {
       settings: settings,
       settingsOpen: false,
       introPlaying: false,
-      introPlayed: false
+      introPlayed: false,
+      lastRolled: 0
     }
   },
   computed: {
@@ -223,10 +224,15 @@ export default {
     deviceMotionHandler (e) {
       if (!settings.shakeToRoll) return;
 
+      let now = new Date().getTime();
+      if (!settings.animationsEnabled && now - 700 < this.lastRolled) return;
+
       if (e.acceleration) {
         let shakeSpeed = Math.max(Math.abs(e.acceleration.x), Math.abs(e.acceleration.y), Math.abs(e.acceleration.z));
+
         if (shakeSpeed > 20) {
           this.rollAll();
+          this.lastRolled = now;
         }
       }
     },

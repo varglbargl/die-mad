@@ -126,18 +126,7 @@ export default {
           this.vector = [0, 0];
           this.rotateTo = 0;
           this.$emit('input', this.value);
-
-          // CRITS! EXPLODING DICE! Todo: add crit range to the settings
-
-          if (this.dieSettings.critSuccess && this.value === parseInt(this.sides)) {
-            this.$emit('crit', ['success', this.x, this.y]);
-          } else if (this.dieSettings.critFail && this.value === 1) {
-            this.$emit('crit', ['fail', this.x, this.y]);
-          }
-
-          if (this.dieSettings.exploding && this.value === parseInt(this.sides)) {
-            this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
-          }
+          this.handleCrits();
         }
       }
 
@@ -152,6 +141,17 @@ export default {
       changeDieSide();
     },
     throwDieRandomly () {
+
+      if (!settings.animationsEnabled) {
+        this.roll();
+        this.x = Math.floor(Math.random() * document.getElementById('tabletop').offsetWidth);
+        this.y = Math.floor(Math.random() * document.getElementById('tabletop').offsetHeight);
+        this.hitTestWalls();
+        this.$emit('input', this.value);
+        this.handleCrits();
+        return;
+      }
+
       var randomVector = utils.rotateVector2([0, Math.ceil(Math.random() * 75 + 5)], Math.floor(Math.random() * 360));
       var randomRotation = Math.round(Math.random() * 4 - 2) * 360;
 
@@ -172,6 +172,19 @@ export default {
       } else {
         this.vector = randomVector;
         this.throwDie();
+      }
+    },
+    handleCrits() {
+      // CRITS! EXPLODING DICE! Todo: add crit range to the settings
+
+      if (this.dieSettings.critSuccess && this.value === parseInt(this.sides)) {
+        this.$emit('crit', ['success', this.x, this.y]);
+      } else if (this.dieSettings.critFail && this.value === 1) {
+        this.$emit('crit', ['fail', this.x, this.y]);
+      }
+
+      if (this.dieSettings.exploding && this.value === parseInt(this.sides)) {
+        this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
       }
     },
     hitTestWalls () {

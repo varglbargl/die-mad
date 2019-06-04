@@ -10,7 +10,12 @@
       </label>
       <label class="checkbox-container">
         <span :class="{disabled: !canVibrate}">Haptic feedback <span class="red">(BETA)</span></span>
-        <input type="checkbox" v-model="settings.vibrateOnCollision" :disabled="!canVibrate"/>
+        <input type="checkbox" v-model="settings.vibrateOnCollision" :disabled="!canVibrate" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkbox-container">
+        <span>Enable rolling animations</span>
+        <input type="checkbox" v-model="settings.animationsEnabled" />
         <span class="checkmark"></span>
       </label>
     </div>
