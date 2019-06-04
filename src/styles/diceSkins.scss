@@ -1,21 +1,21 @@
 .die.default {
 
-  &.red        .skin { background-color: red; }
-  &.orange     .skin { background-color: orange; }
-  &.yellow     .skin { background-color: yellow; }
-  &.green      .skin { background-color: green; }
+  &.red        .skin { background-color: #F00; }
+  &.orange     .skin { background-color: #F90; }
+  &.yellow     .skin { background-color: #FF0; }
+  &.green      .skin { background-color: #2A2; }
   &.blue       .skin { background-color: #49F; }
-  &.purple     .skin { background-color: purple; }
-  &.pink       .skin { background-color: #F6A; }
-  &.navy       .skin { background-color: navy; }
-  &.teal       .skin { background-color: teal; }
+  &.purple     .skin { background-color: #95B; }
+  &.pink       .skin { background-color: #F7A; }
+  &.navy       .skin { background-color: #238; }
+  &.teal       .skin { background-color: #0DB; }
   &.wood       .skin { background-color: #DC9; }
   &.black      .skin { background-color: #333; }
   &.white      .skin { background-color: #FFF; }
-  &.fire       .skin { background-color: orange; background-blend-mode: color-burn; }
-  &.ice        .skin { background-color: #EFF;   background-blend-mode: color-burn; }
-  &.krypton    .skin { background-color: #DF0;   background-blend-mode: color-burn; }
-  &.fairy      .skin { background-color: #FDE;   background-blend-mode: color-burn; }
+  &.fire       .skin { background-color: #F90; background-blend-mode: color-burn; }
+  &.ice        .skin { background-color: #EFF; background-blend-mode: color-burn; }
+  &.krypton    .skin { background-color: #DF0; background-blend-mode: color-burn; }
+  &.kirby      .skin { background-color: #FCD; background-blend-mode: color-burn; }
 }
 
 .die.pattern {

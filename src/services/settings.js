@@ -15,7 +15,7 @@ export default {
     fire:    'default fire',
     ice:     'default ice',
     krypton: 'default krypton',
-    fairy:   'default fairy',
+    kirby:   'default kirby',
 
     lesbian: 'pattern lesbian',
     gay:     'pattern gay',
