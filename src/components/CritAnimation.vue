@@ -47,8 +47,8 @@ export default {
   data () {
     return {
       timers: {
-        fail: 0.7,
-        success: 0.5
+        fail: 1,
+        success: 0.7
       }
     }
   },
@@ -124,14 +124,14 @@ svg {
 }
 
 .sparkle {
-  animation: move 0.5s ease-out infinite;
+  animation: move 0.7s ease-out infinite;
 }
 
 .spinner {
-  animation: spin 0.5s ease-out infinite;
+  animation: spin 0.7s linear infinite;
 }
 
 .skull {
-  animation: smoke 0.7s ease-out infinite;
+  animation: smoke 1s ease-out infinite;
 }
 </style>
