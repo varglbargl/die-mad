@@ -96,22 +96,30 @@
       </tbody>
     </table>
     <h2>DICE SKINS</h2>
-    <div class="skins-list" v-if="open">
+    <div class="skins-list" v-if="open" v-for="(skins, rarity) in settings.skins" :key="rarity">
       <div
-      v-for="(classes, name) in settings.skins"
+      v-for="(classes, name) in skins"
       :key="name"
       class="choice"
-      @click="pickDieSkin(name)"
+      @click="pickDieSkin(classes)"
       :class="{selected: settings.currentDiceSkin === classes}">
-        <div v-if="name != 'random'" class="die d20" :class="classes">
+        <div class="die d20" :class="classes">
           <div class="skin"></div>
           <span>20</span>
         </div>
-        <div v-if="name === 'random'" class="die d20 rando" :class="currentRandomSkin">
+        <span style="font-weight: 500">{{ titlize(name) }}</span>
+      </div>
+    </div>
+    <div class="skins-list">
+      <div
+      class="choice"
+      @click="pickDieSkin('random')"
+      :class="{selected: settings.currentDiceSkin === 'random'}">
+        <div class="die d20" :class="currentRandomSkin">
           <div class="skin"></div>
           <span>??</span>
         </div>
-        <span style="font-weight: 500">{{ titlize(name) }}</span>
+        <span style="font-weight: 500">Random</span>
       </div>
     </div>
     <div class="credits" v-if="showingCredits">
@@ -161,7 +169,7 @@ export default {
   },
   methods: {
     pickDieSkin (color) {
-      settings.currentDiceSkin = settings.skins[color];
+      settings.currentDiceSkin = color;
     },
     titlize (str) {
       return utils.titlize(str);

@@ -1,32 +1,46 @@
 export default {
   skins: {
-    red:     'default red',
-    orange:  'default orange',
-    yellow:  'default yellow',
-    green:   'default green',
-    blue:    'default blue',
-    purple:  'default purple',
-    pink:    'default pink',
-    navy:    'default navy',
-    teal:    'default teal',
-    wood:    'default wood',
-    black:   'default black',
-    white:   'default white',
-    fire:    'default fire',
-    ice:     'default ice',
-    krypton: 'default krypton',
-    kirby:   'default kirby',
+    common: {
+      red:     'default red',
+      orange:  'default orange',
+      yellow:  'default yellow',
+      green:   'default green',
+      blue:    'default blue',
+      purple:  'default purple',
+      pink:    'default pink',
+      navy:    'default navy',
+      teal:    'default teal',
+      wood:    'default wood',
+      black:   'default black',
+      white:   'default white',
 
-    lesbian: 'pattern lesbian',
-    gay:     'pattern gay',
-    bi:      'pattern bi',
-    trans:   'pattern trans',
-    pan:     'pattern pan',
-    enby:    'pattern nonbinary',
-    'Ace/Aro':'pattern ace',
-    intersex:'pattern intersex',
+      fire:    'neon fire',
+      ice:     'neon ice',
+      krypton: 'neon krypton',
+      kirby:   'neon kirby'
+    },
 
-    random:  'random'
+    uncommon: {
+      beat:    'default beat',
+      tab:     'default tab',
+      mew:     'default mew',
+      'Yo-Yo': 'default yoyo',
+      poison:  'default poison-jam',
+      shock:   'default love-shock',
+      noise:   'default noise-tank',
+      rhino:   'default rhino'
+    },
+
+    rare: {
+      lesbian: 'pattern lesbian',
+      gay:     'pattern gay',
+      bi:      'pattern bi',
+      trans:   'pattern trans',
+      pan:     'pattern pan',
+      enby:    'pattern nonbinary',
+      'Ace/Aro':'pattern ace',
+      intersex:'pattern intersex'
+    }
   },
 
   currentDiceSkin: 'default red',
@@ -133,11 +147,18 @@ export default {
   },
 
   getRandomDieSkin(seed) {
-    let skinList = Object.keys(this.skins)
+    let skinList = [];
+
+    for (let rarity in this.skins) {
+      for (let skin in this.skins[rarity]) {
+        skinList.push(this.skins[rarity][skin]);
+      }
+    }
+
     if (seed) {
-      return this.skins[skinList[seed % (skinList.length - 1)]]; // -1 because random
+      return skinList[seed % (skinList.length - 1)]; // -1 because random
     } else {
-      return this.skins[skinList[Math.floor(Math.random() * (skinList.length - 1))]];
+      return skinList[Math.floor(Math.random() * (skinList.length - 1))];
     }
   }
 }

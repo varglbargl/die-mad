@@ -12,10 +12,27 @@
   &.wood       .skin { background-color: #DC9; }
   &.black      .skin { background-color: #333; }
   &.white      .skin { background-color: #FFF; }
-  &.fire       .skin { background-color: #F90; background-blend-mode: color-burn; }
-  &.ice        .skin { background-color: #EFF; background-blend-mode: color-burn; }
-  &.krypton    .skin { background-color: #DF0; background-blend-mode: color-burn; }
-  &.kirby      .skin { background-color: #FCD; background-blend-mode: color-burn; }
+
+  &.beat       { color: #0F0; .skin { background-color: #FE0; } }
+  &.tab        { color: #FF2; .skin { background-color: #2AF; } }
+  &.mew        { color: #ADF; .skin { background-color: #2FC; } }
+  &.yoyo       { color: #FA0; .skin { background-color: #AE0; } }
+  &.poison-jam { color: #0AB; .skin { background-color: #DCA; } }
+  &.love-shock { color: #49F; .skin { background-color: #F06; } }
+  &.noise-tank { color: #BFB; .skin { background-color: #DDE; } }
+  &.rhino      { color: #220; .skin { background-color: #FB0; } }
+}
+
+.die.neon {
+
+  .skin {
+    background-blend-mode: color-burn;
+  }
+
+  &.fire       .skin { background-color: #F90; }
+  &.ice        .skin { background-color: #EFF; }
+  &.krypton    .skin { background-color: #DF0; }
+  &.kirby      .skin { background-color: #FCD; }
 }
 
 .die.pattern {
