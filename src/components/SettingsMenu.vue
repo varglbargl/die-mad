@@ -31,6 +31,37 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>
+            <label class="checkbox-container inline">
+              ALL
+            </label>
+          </td>
+          <td @click.prevent="toggleAllDiceSetting('active')">
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="settings.allDice.active" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td @click.prevent="toggleAllDiceSetting('critSuccess')">
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="settings.allDice.critSuccess" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td @click.prevent="toggleAllDiceSetting('critFail')">
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="settings.allDice.critFail" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+          <td @click.prevent="toggleAllDiceSetting('exploding')">
+            <label class="checkbox-container inline">
+              <input type="checkbox" v-model="settings.allDice.exploding" />
+              <span class="checkmark"></span>
+            </label>
+          </td>
+        </tr>
         <tr v-for="(die, name) in settings.diceRack" :key="name">
           <td v-if="name != 'custom'">
             {{ name }}
@@ -107,6 +138,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -132,6 +164,9 @@ export default {
     },
     titlize (str) {
       return utils.titlize(str);
+    },
+    toggleAllDiceSetting (attr) {
+      settings.toggleAllDiceSetting(attr);
     }
   },
   mounted() {
@@ -144,6 +179,35 @@ export default {
     }
 
     cycleSkins();
+  },
+  watch: {
+    settings: {
+      handler: function (/*newVal, oldVal*/) {
+        let allSelected = {
+          active: true,
+          exploding: true,
+          critSuccess: true,
+          critFail: true
+        };
+
+        for (let i in settings.diceRack) {
+          for (let attr in allSelected) {
+            if (!settings.diceRack[i][attr]) {
+              allSelected[attr] = false;
+            }
+          }
+        }
+
+        for (let attr in allSelected) {
+          if (allSelected[attr]) {
+            settings.allDice[attr] = true;
+          } else {
+            settings.allDice[attr] = false;
+          }
+        }
+      },
+      deep: true
+    }
   }
 }
 </script>

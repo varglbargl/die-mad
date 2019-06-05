@@ -37,6 +37,21 @@ export default {
 
   animationsEnabled: true,
 
+  allDice: {
+    active: false,
+    exploding: false,
+    critSuccess: false,
+    critFail: false
+  },
+
+  toggleAllDiceSetting (attr) {
+    this.allDice[attr] = !this.allDice[attr];
+
+    for (let i in this.diceRack) {
+      this.diceRack[i][attr] = this.allDice[attr];
+    }
+  },
+
   diceRack: {
     D100: {
       active: false,

@@ -402,7 +402,8 @@ html, body {
 
   background-color: #000;
 
-  font-size: 48px;
+  font-size: 30px;
+  font-weight: 800;
   color: $red;
   font-style: italic;
 
