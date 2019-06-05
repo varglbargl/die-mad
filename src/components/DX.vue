@@ -184,7 +184,13 @@ export default {
       }
 
       if (this.dieSettings.exploding && this.value === parseInt(this.sides)) {
-        this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
+        if (settings.animationsEnabled) {
+          this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
+        } else {
+          setTimeout(() => {
+            this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
+          }, Math.ceil(Math.random() * 50 + 50))
+        }
       }
     },
     hitTestWalls () {

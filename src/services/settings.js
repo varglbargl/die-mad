@@ -122,7 +122,7 @@ export default {
     if (seed) {
       return this.skins[skinList[seed % (skinList.length - 1)]]; // -1 because random
     } else {
-      return this.skins[skinList[Math.floor(Math.random() * skinList.length - 1)]];
+      return this.skins[skinList[Math.floor(Math.random() * (skinList.length - 1))]];
     }
   }
 }
