@@ -66,9 +66,9 @@
       </div>
     </div>
     <div id="buttons">
-      <button @click="rollAll">ROLL ALL</button>
-      <button @click="clear">CLEAR</button>
-      <button @click="settingsOpen = true">SETTINGS</button>
+      <button class="med-button" @click="rollAll">ROLL</button>
+      <button class="med-button" @click="clear">CLEAR</button>
+      <button class="med-button" @click="settingsOpen = true">SETTINGS</button>
     </div>
     <settings-menu @close="settingsOpen = false" :open="settingsOpen" />
   </main>
@@ -312,7 +312,6 @@ html, body {
     max-width: 80%;
     max-height: 50%;
     margin-top: -10%;
-    margin-bottom: 50px;
   }
 }
 
@@ -347,6 +346,12 @@ html, body {
 }
 
 #buttons {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background-color: #FFF;
 }
 
@@ -394,8 +399,8 @@ html, body {
 }
 
 .big-button {
-  padding: 10px;
-  margin: 10px;
+  padding: 10px 15px;
+  margin: 50px 10px 10px 10px;
   border: 5px solid $red;
   border-radius: 15px;
   outline: none;
@@ -406,15 +411,34 @@ html, body {
   font-weight: 800;
   color: $red;
   font-style: italic;
+  white-space: nowrap;
 
   &:hover {
-    margin: 8px 11px 12px 9px;
+    margin: 48px 11px 12px 9px;
     box-shadow: 4px 8px rgba(0,0,0,0.3);
   }
 
   &:active {
-    margin: 12px 9px 8px 11px;
+    margin: 52px 9px 8px 11px;
     box-shadow: none;
+  }
+}
+
+.med-button {
+  @extend .big-button;
+
+  padding: 5px 10px;
+  margin: 10px;
+  border: 3px solid $red;
+
+  font-size: 20px;
+
+  &:hover {
+    margin: 8px 11px 12px 9px;
+  }
+
+  &:active {
+    margin: 12px 9px 8px 11px;
   }
 }
 

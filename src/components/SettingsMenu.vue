@@ -1,6 +1,6 @@
 <template>
   <div class="menuScreen" :class="{open: open}">
-    <button class="close" @click="$emit('close')">X</button>
+    <button class="med-button" @click="$emit('close')">CLOSE SETTINGS</button>
     <h2>GENERAL SETTINGS</h2>
     <div class="general-settings">
       <label class="checkbox-container">
@@ -32,11 +32,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>
-            <label class="checkbox-container inline">
-              ALL
-            </label>
-          </td>
+          <td>ALL</td>
           <td @click.prevent="toggleAllDiceSetting('active')">
             <label class="checkbox-container inline">
               <input type="checkbox" v-model="settings.allDice.active" />
@@ -118,27 +114,31 @@
         <span style="font-weight: 500">{{ titlize(name) }}</span>
       </div>
     </div>
-    <h2>CREDITS</h2>
-    <div class="credits">
+    <div class="credits" v-if="showingCredits">
+      <h2>CREDITS</h2>
       <span class="bigish-text red">
         Vanessa made this!
       </span>
       <img src="@/assets/me.jpg" />
       <span class="subheader">"You touched my dice, now ur gay."</span>
       <p>
-        Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a>. That's also where you can view the full source code for this project!
+        Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a> and opening an issue. That's also where you can view the full source code for this project!
       </p>
       <p>
-        If this project makes you happy, you can make me happy by supporting my other projects: Making board games with my friends at
+        If this project makes you happy, you can make me happy by supporting my other projects: Making board games with my friends at...
         <a href="http://gamesforspiders.com"><img src="@/assets/gfs_logo.png" /></a>
         Follow us on <a href="https://twitter.com/gamesforspiders">Twitter</a>, <a href="https://www.facebook.com/gamesforspiders">Facebook</a>, or <a href="https://www.instagram.com/games4spiders/">Instagram</a>.
       </p>
     </div>
+    <button
+    class="big-button"
+    @click="showingCredits = !showingCredits">
+      {{ showingCredits ? 'HIDE' : 'SHOW' }} CREDITS
+    </button>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -155,7 +155,8 @@ export default {
     return {
       settings: settings,
       canVibrate: 'vibrate' in navigator,
-      currentRandomSkin: 'default pink'
+      currentRandomSkin: 'default pink',
+      showingCredits: false
     }
   },
   methods: {
@@ -221,26 +222,17 @@ export default {
   top: 100vh;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  padding: 10px;
-  padding-bottom: 60px;
+  height: calc(100vh + 100px);
+  padding: 60px 10px 160px 10px;
 
   background-color: #FFF;
 
-  transition: top 0.2s ease-out;
+  transition: top 0.3s cubic-bezier(0, 0.25, 0.6, 1.5);
 
   &.open {
     top: 0vh;
     overflow-x: hidden;
   }
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  font-size: 20px;
 }
 
 .general-settings, .credits {
