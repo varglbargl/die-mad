@@ -20,7 +20,7 @@
       v-for="(eDie, eI) in bonusDice"
       :key="eDie.id"
       :sides="eDie.sides"
-      skin="default fire"
+      skin="neon fire"
       v-model="bonusRolls[eI]"
       @kill="deleteBonusDie(eI)"
       @explode="explodeDie($event)"
@@ -385,7 +385,7 @@ html, body {
     color: #FFF;
 
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 500;
 
     img {
       height: 45px;

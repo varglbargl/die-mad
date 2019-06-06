@@ -2,7 +2,7 @@
   <div class="menuScreen" :class="{open: open}">
     <button class="med-button" @click="$emit('close')">CLOSE SETTINGS</button>
     <h2>GENERAL SETTINGS</h2>
-    <div class="general-settings">
+    <div class="general-settings section">
       <label class="checkbox-container">
         <span>Shake device to roll dice</span>
         <input type="checkbox" v-model="settings.shakeToRoll" />
@@ -20,7 +20,7 @@
       </label>
     </div>
     <h2>DICE SETTINGS</h2>
-    <table class="dice-settings">
+    <table class="dice-settings section">
       <thead>
         <tr>
           <th></th>
@@ -96,47 +96,61 @@
       </tbody>
     </table>
     <h2>DICE SKINS</h2>
-    <div class="skins-list" v-if="open" v-for="(skins, rarity) in settings.skins" :key="rarity">
+    <div class="tabs">
       <div
-      v-for="(classes, name) in skins"
-      :key="name"
-      class="choice"
-      @click="pickDieSkin(classes)"
-      :class="{selected: settings.currentDiceSkin === classes}">
-        <div class="die d20" :class="classes">
-          <div class="skin"></div>
-          <span>20</span>
-        </div>
-        <span style="font-weight: 500">{{ titlize(name) }}</span>
+      class="tab"
+      v-for="(skins, rarity) in settings.skins"
+      :key="rarity"
+      :class="{selected: selectedDieTab === rarity}"
+      @click="selectedDieTab = rarity">
+        {{ titlize(rarity) }}
       </div>
     </div>
-    <div class="skins-list">
-      <div
-      class="choice"
-      @click="pickDieSkin('random')"
-      :class="{selected: settings.currentDiceSkin === 'random'}">
-        <div class="die d20" :class="currentRandomSkin">
-          <div class="skin"></div>
-          <span>??</span>
+    <div class="section">
+      <div class="skins-list" v-if="open">
+        <div
+        v-for="(classes, name) in settings.skins[selectedDieTab]"
+        :key="name"
+        class="choice"
+        @click="pickDieSkin(classes)"
+        :class="{selected: settings.currentDiceSkin === classes}">
+          <div class="die d20" :class="classes">
+            <div class="skin"></div>
+            <span>20</span>
+          </div>
+          <span style="font-weight: 500">{{ titlize(name) }}</span>
         </div>
-        <span style="font-weight: 500">Random</span>
+      </div>
+      <div class="skins-list">
+        <div
+        class="choice"
+        @click="pickDieSkin('random')"
+        :class="{selected: settings.currentDiceSkin === 'random'}">
+          <div class="die d20" :class="currentRandomSkin">
+            <div class="skin"></div>
+            <span>??</span>
+          </div>
+          <span style="font-weight: 500">Random</span>
+        </div>
       </div>
     </div>
     <div class="credits" v-if="showingCredits">
       <h2>CREDITS</h2>
-      <span class="bigish-text red">
-        Vanessa made this!
-      </span>
-      <img src="@/assets/me.jpg" />
-      <span class="subheader">"You touched my dice, now ur gay."</span>
-      <p>
-        Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a> and opening an issue. That's also where you can view the full source code for this project!
-      </p>
-      <p>
-        If this project makes you happy, you can make me happy by supporting my other projects: Making board games with my friends at...
-        <a href="http://gamesforspiders.com"><img src="@/assets/gfs_logo.png" /></a>
-        Follow us on <a href="https://twitter.com/gamesforspiders">Twitter</a>, <a href="https://www.facebook.com/gamesforspiders">Facebook</a>, or <a href="https://www.instagram.com/games4spiders/">Instagram</a>.
-      </p>
+      <div class="section">
+        <span class="bigish-text red">
+          Vanessa made this!
+        </span>
+        <img src="@/assets/me.jpg" />
+        <span class="subheader">"You touched my dice, now ur gay."</span>
+        <p>
+          Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a> and opening an issue. That's also where you can view the full source code for this project!
+        </p>
+        <p>
+          If this project makes you happy, you can make me happy by supporting my other projects: Making board games with my friends at...
+          <a href="http://gamesforspiders.com"><img src="@/assets/gfs_logo.png" /></a>
+          Follow us on <a href="https://twitter.com/gamesforspiders">Twitter</a>, <a href="https://www.facebook.com/gamesforspiders">Facebook</a>, or <a href="https://www.instagram.com/games4spiders/">Instagram</a>.
+        </p>
+      </div>
     </div>
     <button
     class="big-button"
@@ -164,7 +178,8 @@ export default {
       settings: settings,
       canVibrate: 'vibrate' in navigator,
       currentRandomSkin: 'default pink',
-      showingCredits: false
+      showingCredits: false,
+      selectedDieTab: 'basic'
     }
   },
   methods: {
@@ -245,9 +260,18 @@ export default {
   }
 }
 
-.general-settings, .credits {
-  max-width: 400px;
+.section {
   margin: 0 auto;
+  padding: 10px 2px;
+  max-width: 600px;
+
+  background-color: #222;
+}
+
+.general-settings, .credits {
+  p {
+    padding: 16px;
+  }
 
   img {
     display: block;
@@ -258,8 +282,6 @@ export default {
 
 .dice-settings {
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
   table-layout: fixed;
 
   font-size: 22px;
@@ -285,6 +307,33 @@ export default {
 
 .disabled {
   opacity: 0.4;
+}
+
+.tabs {
+  max-width: 600px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+
+  .tab {
+    padding: 8px 2px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+
+    flex: 1;
+
+    background-color: #222;
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+
+    &.selected {
+      padding-bottom: 8px;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .skins-list {

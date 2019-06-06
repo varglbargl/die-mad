@@ -1,6 +1,6 @@
 export default {
   skins: {
-    common: {
+    basic: {
       red:     'default red',
       orange:  'default orange',
       yellow:  'default yellow',
@@ -12,15 +12,28 @@ export default {
       teal:    'default teal',
       wood:    'default wood',
       black:   'default black',
-      white:   'default white',
+      white:   'default white'
+    },
+
+    rare: {
 
       fire:    'neon fire',
       ice:     'neon ice',
       krypton: 'neon krypton',
-      kirby:   'neon kirby'
+      kirby:   'neon kirby',
+
+      lesbian: 'pattern lesbian',
+      gay:     'pattern gay',
+      bi:      'pattern bi',
+      trans:   'pattern trans',
+      pan:     'pattern pan',
+      enby:    'pattern nonbinary',
+      'Ace/Aro':'pattern ace',
+      intersex:'pattern intersex'
     },
 
-    uncommon: {
+    epic: {
+
       beat:    'default beat',
       tab:     'default tab',
       mew:     'default mew',
@@ -31,15 +44,8 @@ export default {
       rhino:   'default rhino'
     },
 
-    rare: {
-      lesbian: 'pattern lesbian',
-      gay:     'pattern gay',
-      bi:      'pattern bi',
-      trans:   'pattern trans',
-      pan:     'pattern pan',
-      enby:    'pattern nonbinary',
-      'Ace/Aro':'pattern ace',
-      intersex:'pattern intersex'
+    legend: {
+      marble:  'pattern marble'
     }
   },
 
