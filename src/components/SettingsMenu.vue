@@ -233,7 +233,9 @@ export default {
   height: calc(100vh + 100px);
   padding: 60px 10px 160px 10px;
 
-  background-color: #FFF;
+  color: #FFF;
+
+  background-color: #333;
 
   transition: top 0.3s cubic-bezier(0, 0.25, 0.6, 1.5);
 
@@ -278,7 +280,7 @@ export default {
   margin-top: -16px;
   margin-bottom: 16px;
 
-  color: #666;
+  color: #999;
 }
 
 .disabled {

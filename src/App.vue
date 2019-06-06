@@ -65,10 +65,19 @@
         <img src="@/assets/cancel.svg" />
       </div>
     </div>
-    <div id="buttons">
-      <button class="med-button" @click="rollAll">ROLL</button>
-      <button class="med-button" @click="clear">CLEAR</button>
-      <button class="med-button" @click="settingsOpen = true">SETTINGS</button>
+    <div id="menu-bar">
+      <div class="button" @click="rollAll">
+        <img src="@/assets/roll.svg" />
+        <span>ROLL</span>
+      </div>
+      <div class="button" @click="clear">
+        <img src="@/assets/trash.svg" />
+        <span>CLEAR</span>
+      </div>
+      <div class="button" @click="settingsOpen = true">
+        <img src="@/assets/cog.svg" />
+        <span>SETTINGS</span>
+      </div>
     </div>
     <settings-menu @close="settingsOpen = false" :open="settingsOpen" />
   </main>
@@ -278,12 +287,17 @@ html, body {
 }
 
 #app {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #000;
+
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-
-  background-color: #000;
 }
 
 #intro-screen {
@@ -320,7 +334,8 @@ html, body {
   width: 100vw;
   max-width: 800px;
   margin: 0 auto;
-  height: calc(80vh - #{$menu-height});
+
+  flex: 1;
 
   background-image: url("./assets/felt.jpg");
   background-color: $felt-green;
@@ -328,15 +343,16 @@ html, body {
 }
 
 #dice-rack {
-  height: 70px;
+  height: $menu-height;
   overflow: hidden;
+  padding: 5px 0;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  background-color: #FFF;
+  background-color: #222;
 
   .die {
     position: relative;
@@ -345,14 +361,40 @@ html, body {
   }
 }
 
-#buttons {
+#menu-bar {
   width: 100%;
+  height: $menu-height;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: #FFF;
+  background-color: #222;
+
+  .button {
+    height: 100%;
+    border-top: 1px solid #111;
+    cursor: pointer;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFF;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    img {
+      height: 45px;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid #111;
+    }
+  }
 }
 
 .total {
@@ -384,7 +426,7 @@ html, body {
     height: 70px;
     top: 100%;
 
-    background-color: #FFF;
+    background-color: #222;
 
     transition: top 0.08s linear;
 
@@ -393,7 +435,7 @@ html, body {
     }
 
     img {
-      height: 70px;
+      height: 100%;
     }
   }
 }

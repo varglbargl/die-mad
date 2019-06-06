@@ -19,8 +19,8 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
 
  - 💚 Every kind of die imaginable
  - 💜 Drag and throw dice to roll (Without dice-on-dice hit detection, you should be able to drag dice off top of eachother without accidentally throwing it and losing your roll)
- - 💛 A cool logo and intro animation
- - 💛 A passable modern UI
+ - 💚 A cool logo and intro animation
+ - 💛 A passable semi-modern UI
 
 ### SUPER COOL PLANNED FEATURES
 
@@ -37,7 +37,7 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
 
 ### Impossible/Questionable/Stupid Features
 
- - 💜 Dice rolling animations (Look, there's only so much I can do before it gets too laggy. The web just wasn't built for this.)
+ - 💚 Dice rolling animations (Look, there's only so much I can do before it gets too laggy. The web just wasn't built for this. EDIT: I WIN, BROWSERS)
  - 💚 Haptic feedback when dice hit an edge (don't even know if there's a web API for phone vibration. EDIT: THERE IS!!)
  - 💜 Sounds? I feel like nobody wants sounds. I know I don't at least... but maybe some day.
  - 💜 Presets like Fireball Dice (lots and lots of little orange D6s that leave a fire trail)
