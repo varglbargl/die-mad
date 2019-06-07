@@ -1,41 +1,47 @@
 .die.default {
 
-  &.red        .skin { background-color: #F00; }
-  &.orange     .skin { background-color: #F90; }
-  &.yellow     .skin { background-color: #FF0; }
-  &.green      .skin { background-color: #2A2; }
-  &.blue       .skin { background-color: #49F; }
-  &.purple     .skin { background-color: #95B; }
-  &.pink       .skin { background-color: #F7A; }
-  &.navy       .skin { background-color: #238; }
-  &.teal       .skin { background-color: #0DB; }
-  &.wood       .skin { background-color: #DC9; }
-  &.black      .skin { background-color: #333; }
-  &.white      .skin { background-color: #FFF; }
+  &.red        { background-color: #F00; }
+  &.orange     { background-color: #F90; }
+  &.yellow     { background-color: #FF0; }
+  &.green      { background-color: #2A2; }
+  &.blue       { background-color: #49F; }
+  &.purple     { background-color: #95B; }
+  &.pink       { background-color: #F7A; }
+  &.navy       { background-color: #238; }
+  &.teal       { background-color: #0DB; }
+  &.wood       { background-color: #DC9; }
+  &.black      { background-color: #333; }
+  &.white      { background-color: #FFF; }
 
-  &.shale      .skin { background-color: #666; }
-  &.fog        .skin { background-color: #AAA; }
-  &.steel      .skin { background-color: #668; }
-  &.ivory      .skin { background-color: #FFD; }
+  &.shale      { background-color: #666; }
+  &.fog        { background-color: #AAA; }
+  &.olive      { background-color: #780; }
+  &.steel      { background-color: #668; }
+  &.pear       { background-color: #CE0; }
+  &.ivory      { background-color: #FFD; }
+  &.ochre      { background-color: #C40; }
+  &.clay       { background-color: #643; }
+  &.amber      { background-color: #C91; }
+  &.indigo     { background-color: #52E; }
+  &.khaki      { background-color: #FC8; }
+  &.lilac      { background-color: #BAF; }
+  &.jade       { background-color: #7C7; }
+  &.coral      { background-color: #F86; }
+  &.rose       { background-color: #904; }
+  &.sky        { background-color: #9CF; }
+  &.crimson    { background-color: #601; }
+  &.lemon      { background-color: #EF7; }
+  &.latte      { background-color: #A85; }
+  &.cobalt     { background-color: #145; }
 
-  &.ochre      .skin { background-color: #C40; }
-  &.clay       .skin { background-color: #643; }
-  &.amber      .skin { background-color: #C91; }
-  &.indigo     .skin { background-color: #52E; }
-
-  &.lilac      .skin { background-color: #BAF; }
-  &.pear       .skin { background-color: #CE0; }
-  &.olive      .skin { background-color: #780; }
-  &.jade       .skin { background-color: #7C7; }
-
-  &.beat       { color: #0F0; .skin { background-color: #FE0; } }
-  &.tab        { color: #FF2; .skin { background-color: #2AF; } }
-  &.mew        { color: #ADF; .skin { background-color: #2FC; } }
-  &.yoyo       { color: #FA0; .skin { background-color: #AE0; } }
-  &.poison-jam { color: #0AB; .skin { background-color: #DCA; } }
-  &.love-shock { color: #49F; .skin { background-color: #F06; } }
-  &.noise-tank { color: #BFB; .skin { background-color: #DDE; } }
-  &.rhino      { color: #220; .skin { background-color: #FB0; } }
+  &.beat       { color: #0F0; background-color: #FE0; }
+  &.tab        { color: #FF2; background-color: #2AF; }
+  &.mew        { color: #ADF; background-color: #2FC; }
+  &.yoyo       { color: #FA0; background-color: #AE0; }
+  &.poison-jam { color: #0AB; background-color: #DCA; }
+  &.love-shock { color: #49F; background-color: #F06; }
+  &.noise-tank { color: #BFB; background-color: #DDE; }
+  &.rhino      { color: #220; background-color: #FB0; }
 }
 
 .die.neon {
@@ -52,6 +58,9 @@
   &.toxic      .skin { background-color: #C0F; }
   &.tropics    .skin { background-color: #BFE; }
   &.lapis      .skin { background-color: #46F; }
+
+
+  &.explosion  { color: #FC2; .skin { background-color: #F90; } }
 }
 
 .die.pattern {

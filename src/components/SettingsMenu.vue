@@ -122,7 +122,7 @@
           </div>
           <span style="font-weight: 500">{{ skin.name }}</span>
         </div>
-        <p v-if="dieCategoryIsEmpty(selectedDieTab)">
+        <p v-if="dieCategoryIsEmpty(selectedDieTab)" style="margin: 9px auto;">
           {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. But you don't have any yet so...
         </p>
       </div>
@@ -138,7 +138,8 @@
           <span style="font-weight: 500">Random</span>
         </div>
       </div>
-      <button class="med-button" @click="awardRandomDie">GIMME</button>
+      <!-- for testing purposes only: -->
+      <!-- <button class="med-button" @click="awardRandomDie">GIMME</button> -->
     </div>
     <div class="credits" v-if="showingCredits">
       <h2>CREDITS</h2>
@@ -301,6 +302,7 @@ export default {
   background-color: #222;
 
   p {
+    margin: 0;
     padding: 16px;
   }
 }
