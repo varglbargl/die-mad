@@ -1,62 +1,86 @@
+import utils from '@/services/utils.js';
+
 export default {
-  skins: {
-    basic: {
-      red:     'default red',
-      orange:  'default orange',
-      yellow:  'default yellow',
-      green:   'default green',
-      blue:    'default blue',
-      purple:  'default purple',
-      pink:    'default pink',
-      navy:    'default navy',
-      teal:    'default teal',
-      wood:    'default wood',
-      black:   'default black',
-      white:   'default white'
-    },
 
-    rare: {
-
-      fire:    'neon fire',
-      ice:     'neon ice',
-      krypton: 'neon krypton',
-      kirby:   'neon kirby',
-
-      lesbian: 'pattern lesbian',
-      gay:     'pattern gay',
-      bi:      'pattern bi',
-      trans:   'pattern trans',
-      pan:     'pattern pan',
-      enby:    'pattern nonbinary',
-      'Ace/Aro':'pattern ace',
-      intersex:'pattern intersex'
-    },
-
-    epic: {
-
-      beat:    'default beat',
-      tab:     'default tab',
-      mew:     'default mew',
-      'Yo-Yo': 'default yoyo',
-      poison:  'default poison-jam',
-      shock:   'default love-shock',
-      noise:   'default noise-tank',
-      rhino:   'default rhino'
-    },
-
-    legend: {
-      marble:  'pattern marble'
-    }
-  },
-
-  currentDiceSkin: 'default red',
-
+  // Toggle for shaking your device to roll dice. Modify this all you want, if your device and/or browser don't have
+  // access to the accelerometer API it will just never emit a motion event and nothing will happen but it won't break.
   shakeToRoll: true,
 
+  // Toggle for the haptic feedback option in the menu. Don't manipulate this directly, if it's set to true and your
+  // device and/or browser do not have access to the vibration API then dice will just freak out when they hit a wall.
   vibrateOnCollision: false,
 
+  // Toggle for dice rolling animations. If this is false dice will just flip instantly to a random side when "rolled."
   animationsEnabled: true,
 
+  // Here it is. The dice skins. What are they called? Do you have them? What is the CSS class for displaying the skin?
+  skins: {
+    basic: [
+      { name: 'Red',      class: 'default red',        has: true },
+      { name: 'Orange',   class: 'default orange',     has: true },
+      { name: 'Yellow',   class: 'default yellow',     has: true },
+      { name: 'Green',    class: 'default green',      has: true },
+      { name: 'Blue',     class: 'default blue',       has: true },
+      { name: 'Purple',   class: 'default purple',     has: true },
+      { name: 'Pink',     class: 'default pink',       has: true },
+      { name: 'Navy',     class: 'default navy',       has: true },
+      { name: 'Teal',     class: 'default teal',       has: true },
+      { name: 'Wood',     class: 'default wood',       has: true },
+      { name: 'Black',    class: 'default black',      has: true },
+      { name: 'White',    class: 'default white',      has: true },
+      { name: 'Shale',    class: 'default shale',      has: true },
+      { name: 'Fog',      class: 'default fog',        has: true },
+      { name: 'Steel',    class: 'default steel',      has: true },
+      { name: 'Ivory',    class: 'default ivory',      has: true },
+      { name: 'Ochre',    class: 'default ochre',      has: true },
+      { name: 'Clay',     class: 'default clay',       has: true },
+      { name: 'Amber',    class: 'default amber',      has: true },
+      { name: 'Indigo',   class: 'default indigo',     has: true },
+      { name: 'Lilac',    class: 'default lilac',      has: true },
+      { name: 'Pear',     class: 'default pear',       has: true },
+      { name: 'Olive',    class: 'default olive',      has: true },
+      { name: 'Jade',     class: 'default jade',       has: true }
+    ],
+
+    rare: [
+      { name: 'Fire',     class: 'neon fire',          has: false },
+      { name: 'Ice',      class: 'neon ice',           has: false },
+      { name: 'Krypton',  class: 'neon krypton',       has: false },
+      { name: 'Kirby',    class: 'neon kirby',         has: false },
+      { name: 'Shrimps',  class: 'neon headache',      has: false },
+      { name: 'Xenon',    class: 'neon toxic',         has: false },
+      { name: 'Tropics',  class: 'neon tropics',       has: false },
+      { name: 'Lapis',    class: 'neon lapis',         has: false },
+      { name: 'Lesbian',  class: 'pattern lesbian',    has: false },
+      { name: 'Gay',      class: 'pattern gay',        has: false },
+      { name: 'Bi',       class: 'pattern bi',         has: false },
+      { name: 'Trans',    class: 'pattern trans',      has: false },
+      { name: 'Pan',      class: 'pattern pan',        has: false },
+      { name: 'Enby',     class: 'pattern nonbinary',  has: false },
+      { name: 'Ace/Aro',  class: 'pattern ace',        has: false },
+      { name: 'Intersex', class: 'pattern intersex',   has: false }
+    ],
+
+    epic: [
+      { name: 'Beat',     class: 'default beat',       has: false },
+      { name: 'Tab',      class: 'default tab',        has: false },
+      { name: 'Mew',      class: 'default mew',        has: false },
+      { name: 'Yo-Yo',    class: 'default yoyo',       has: false },
+      { name: 'Poison',   class: 'default poison-jam', has: false },
+      { name: 'Shock',    class: 'default love-shock', has: false },
+      { name: 'Noise',    class: 'default noise-tank', has: false },
+      { name: 'Rhino',    class: 'default rhino',      has: false }
+    ],
+
+    legend: [
+      { name: 'Marble',   class: 'pattern marble',     has: false }
+    ]
+  },
+
+  // This is the dice skin you have selected in the menu.
+  currentDiceSkin: 'default red',
+
+  // This is only really useful so the "All" option in the Dice Settings section of the menu has a model.
   allDice: {
     active: false,
     exploding: false,
@@ -64,6 +88,8 @@ export default {
     critFail: false
   },
 
+  // "All" wouldn't mean All unless checking it went through and actually changed all the settings, now would it?
+  // This method does that.
   toggleAllDiceSetting (attr) {
     this.allDice[attr] = !this.allDice[attr];
 
@@ -72,6 +98,7 @@ export default {
     }
   },
 
+  // The settings object for the different types of dice. Directly mapped to the Dice Settings checkboxes in the menu.
   diceRack: {
     D100: {
       active: false,
@@ -138,7 +165,10 @@ export default {
     }
   },
 
-  getDieSettings(d) {
+  // Gets the settings object for random dice, if none exist it returns the custom dice settings.
+  // Uses d instead of this.diceRack.custom.sides because dice with other sides may still exist on the table
+  // but would crash when they try to check if they can crit if you've changed the sides in the settings.
+  getDieSettings (d) {
     for (let die in this.diceRack) {
       if (this.diceRack[die].sides === d) return this.diceRack[die];
     }
@@ -152,19 +182,72 @@ export default {
     };
   },
 
-  getRandomDieSkin(seed) {
+  // Gets a random die skin from the skins you have and returns the associated class.
+  // Seed exists for things like the dice rack that can't be random or they'd change all the time
+  // but seed can also be used to cycle through owned dice in order by passing in 1, then 2, then 3, etc.
+  getRandomDieSkin (seed) {
     let skinList = [];
 
     for (let rarity in this.skins) {
       for (let skin in this.skins[rarity]) {
-        skinList.push(this.skins[rarity][skin]);
+        if (this.skins[rarity][skin].has) skinList.push(this.skins[rarity][skin].class);
       }
     }
 
     if (seed) {
-      return skinList[seed % (skinList.length - 1)]; // -1 because random
+      return skinList[seed % skinList.length];
     } else {
-      return skinList[Math.floor(Math.random() * (skinList.length - 1))];
+      return skinList[Math.floor(Math.random() * skinList.length)];
     }
+  },
+
+  // Awards a random die skin. You can specify a minimum rarity to guarantee at least a rare for example.
+  // minRarity is useful for "card pack" style rewards where they should be guaranteed at least one rare, for example.
+  awardRandomDie (minRarity, duplicates) {
+    let availableDice = [];
+    let roll = Math.random() * 100;
+    let rarity;
+
+    // this way you always have the same chance of getting an Epic or Legendary, even if you set the minimum to Rare etc.
+    if (minRarity === 'rare') {
+      roll = Math.max(roll, 70);
+    } else if (minRarity === 'epic') {
+      roll = Math.max(roll, 90);
+    } else if (minRarity === 'legend') {
+      roll = 100;
+    } // else if minRarity === 'basic' || !minRarity (they're the same thing if you think about it)
+
+    if (roll > 99) {
+      rarity = 'legend';
+    } else if (roll > 90) {
+      rarity = 'epic';
+    } else if (roll > 70) {
+      rarity = 'rare';
+    } else {
+      rarity = 'basic';
+    }
+
+    for (let skin in this.skins[rarity]) {
+      if (duplicates) {
+        availableDice.push(this.skins[rarity][skin]);
+      } else {
+        if (!this.skins[rarity][skin].has) {
+          availableDice.push(this.skins[rarity][skin]);
+        }
+      }
+    }
+
+    if (availableDice.length === 0) {
+      // Gotta handle this somehow. This happens when you have all the dice skins of the rarity you rolled.
+      // Award a crafting resource (glitter)? Default to the next rarity up and try again? What if you have ALL skins??
+      // Honestly, short term solution (and something I'm gonna have to do anyway) is to add like 100 new basic skins lol
+      return;
+    }
+
+    let randomAvailableDie = utils.getRandom(availableDice);
+
+    randomAvailableDie.has = true;
+
+    return [randomAvailableDie.class];
   }
 }

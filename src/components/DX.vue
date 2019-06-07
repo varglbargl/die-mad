@@ -107,7 +107,7 @@ export default {
       return false;
     },
     roll () { // without rolling animations
-      this.value = utils.rollDie(1, this.sides);
+      this.value = utils.rollDie(this.sides);
     },
     throwDie () { // with rolling animations
 

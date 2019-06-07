@@ -1,4 +1,9 @@
 export default {
+
+  // Give it your number of sides and it will return what type of die it is. Self expanatory except for the default
+  // option at the bottom. This is used for setting CSS classes that determine which dice picture and shape to use
+  // so giving it a 37 for example needs to be able to return "custom" not just "d37" which doesnt exist. Similarly,
+  // if your custom dice happen to have 20 sides, this DOES return "d20" and your dice end up an appropriate shape <3
   getDieType (sides) {
     switch (parseInt(sides)) {
       case 100:
@@ -22,10 +27,15 @@ export default {
     }
   },
 
-  rollDie (min, max) {
-    return Math.ceil(Math.random() * max - min) + min;
+  // What it sounds like. Just returns a random whole number between 1 and sides
+  rollDie (sides) {
+    return Math.ceil(Math.random() * sides);
   },
 
+  // Javascript doesn't do vector math so we gotta do it ourself.
+  // Can be used to multiply two vectors of the same size OR one vector and one number.
+  // So like multiplyVector( [1, 2], [3, 4] ) = [3, 8] and multiplyVector( [1, 2, 3], 4 ) = [4, 8, 12] but
+  // multiplyVector( [1, 2], [3, 4, 5] ) just errors out. Something else has gone wrong if it's being called like that.
   multiplyVector (a, b) {
     var result;
 
@@ -59,11 +69,21 @@ export default {
           result[i] = a[i] * b[i];
         }
       }
+
+    } else if (typeof a === 'number' && typeof b === 'number') {
+      // Don't know why you're calling multiplyVector with just two numbers but okay. Nothing TECHNICALLY wrong with that.
+      return a * b;
+
+    } else {
+      throw new Error('You can\'t call multiplyVector with a ' + typeof a + ' or a ' + typeof b + '. You just can\'t.' );
     }
 
     return result;
   },
 
+  // This one is cool. This is used for throwing dice in random directions. You set the velocity vector by setting it to
+  // something like [0, 40], then specify the angle to rotate that to. It preserves that magnitude and just changes it from
+  // straight up to anything else. Thanks, StackOverflow!
   rotateVector2 (vector2, angle) {
     let s = Math.sin(angle);
     let c = Math.cos(angle);
@@ -74,6 +94,9 @@ export default {
     return [xNew, yNew];
   },
 
+  // Compares two objects or arrays, tells you if their values and structure are equal.
+  // Necessary because 1 = 1 but [1] != [1]. That's just the way JavaScript compares objects. You gotta do this yourself.
+  // Not perfect but I can change it if it ends up needing to do more. This fits my needs.
   deepEquals (a, b) {
     if (typeof a !== 'object') return false;
     for (let i in a) {
@@ -90,10 +113,14 @@ export default {
     return true;
   },
 
+  // Just returns a random element from an array you pass in. Just creates easier to read code.
+  // utils.getRandom(colors) just reads so much clearer than "colors[Math.floor(Math.random() * colors.length)]"
   getRandom (arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   },
 
+  // Give it a string and it returns it In Title Case. I always end up needing this fuction in my apps.
+  // Another method that would be a good adition to the EcmaScript specification, along with deepEquals.
   titlize (str) {
     str = str.split(' ');
     var result = [];
@@ -104,6 +131,8 @@ export default {
     return result.join(' ');
   },
 
+  // Simple one but in general anything you're going to call over and over in all kinds of different places in your code
+  // should be made into a function like this, even if it just replaces one line of code with a different one line.
   hapticFeedback (duration) {
     navigator.vibrate(duration);
   }

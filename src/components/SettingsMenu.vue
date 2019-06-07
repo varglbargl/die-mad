@@ -103,23 +103,28 @@
       :key="rarity"
       :class="{selected: selectedDieTab === rarity}"
       @click="selectedDieTab = rarity">
-        {{ titlize(rarity) }}
+        <div>{{ titlize(rarity) }}</div>
+        <div>{{ unlockedCount(rarity) }}</div>
       </div>
     </div>
     <div class="section">
       <div class="skins-list" v-if="open">
         <div
-        v-for="(classes, name) in settings.skins[selectedDieTab]"
-        :key="name"
+        v-for="(skin, i) in settings.skins[selectedDieTab]"
+        :key="i"
         class="choice"
-        @click="pickDieSkin(classes)"
-        :class="{selected: settings.currentDiceSkin === classes}">
-          <div class="die d20" :class="classes">
+        @click="pickDieSkin(skin.class)"
+        :class="{selected: settings.currentDiceSkin === skin.class}"
+        :style="{display: skin.has ? '' : 'none'}">
+          <div class="die d20" :class="skin.class">
             <div class="skin"></div>
             <span>20</span>
           </div>
-          <span style="font-weight: 500">{{ titlize(name) }}</span>
+          <span style="font-weight: 500">{{ skin.name }}</span>
         </div>
+        <p v-if="dieCategoryIsEmpty(selectedDieTab)">
+          {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. But you don't have any yet so...
+        </p>
       </div>
       <div class="skins-list">
         <div
@@ -133,6 +138,7 @@
           <span style="font-weight: 500">Random</span>
         </div>
       </div>
+      <button class="med-button" @click="awardRandomDie">GIMME</button>
     </div>
     <div class="credits" v-if="showingCredits">
       <h2>CREDITS</h2>
@@ -199,6 +205,25 @@ export default {
     },
     toggleAllDiceSetting (attr) {
       settings.toggleAllDiceSetting(attr);
+    },
+    dieCategoryIsEmpty (category) {
+      for (var i = 0; i < settings.skins[category].length; i++) {
+        if (settings.skins[category][i].has) return false;
+      }
+
+      return true;
+    },
+    awardRandomDie (rarity) {
+      settings.awardRandomDie(rarity);
+    },
+    unlockedCount (rarity) {
+      let owned = 0;
+
+      for (var i = 0; i < settings.skins[rarity].length; i++) {
+        if (settings.skins[rarity][i].has) owned++;
+      }
+
+      return owned + '/' + settings.skins[rarity].length;
     }
   },
   mounted() {
@@ -274,13 +299,13 @@ export default {
   max-width: 600px;
 
   background-color: #222;
-}
 
-.general-settings, .credits {
   p {
     padding: 16px;
   }
+}
 
+.general-settings, .credits {
   img {
     display: block;
     margin: 18px auto;

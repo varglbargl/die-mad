@@ -13,6 +13,21 @@
   &.black      .skin { background-color: #333; }
   &.white      .skin { background-color: #FFF; }
 
+  &.shale      .skin { background-color: #666; }
+  &.fog        .skin { background-color: #AAA; }
+  &.steel      .skin { background-color: #668; }
+  &.ivory      .skin { background-color: #FFD; }
+
+  &.ochre      .skin { background-color: #C40; }
+  &.clay       .skin { background-color: #643; }
+  &.amber      .skin { background-color: #C91; }
+  &.indigo     .skin { background-color: #52E; }
+
+  &.lilac      .skin { background-color: #BAF; }
+  &.pear       .skin { background-color: #CE0; }
+  &.olive      .skin { background-color: #780; }
+  &.jade       .skin { background-color: #7C7; }
+
   &.beat       { color: #0F0; .skin { background-color: #FE0; } }
   &.tab        { color: #FF2; .skin { background-color: #2AF; } }
   &.mew        { color: #ADF; .skin { background-color: #2FC; } }
@@ -33,6 +48,10 @@
   &.ice        .skin { background-color: #EFF; }
   &.krypton    .skin { background-color: #DF0; }
   &.kirby      .skin { background-color: #FCD; }
+  &.headache   .skin { background-color: #F0F; }
+  &.toxic      .skin { background-color: #C0F; }
+  &.tropics    .skin { background-color: #BFE; }
+  &.lapis      .skin { background-color: #46F; }
 }
 
 .die.pattern {
