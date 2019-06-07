@@ -1,5 +1,5 @@
 <template>
-  <div id="menu-screen" :class="{open: open}" @input.prevent="fixScrollBug">
+  <div id="menu-screen" :class="{open: open}">
     <button class="med-button" @click="$emit('close')">CLOSE SETTINGS</button>
     <h2>GENERAL SETTINGS</h2>
     <div class="general-settings section">
@@ -65,7 +65,7 @@
           <td v-if="name === 'custom'">
             <label class="checkbox-container inline">
               D
-              <input type="number" min="1" max="1000" step="1" v-model="settings.diceRack.custom.sides" />
+              <input type="number" step="1" @input.prevent="fixScrollBug" v-model="settings.diceRack.custom.sides" />
             </label>
           </td>
           <td>
@@ -187,7 +187,7 @@ export default {
       setTimeout(() => {
         let to = document.getElementsByTagName('body')[0].scrollTop;
 
-        document.getElementById('menu-screen').scrollTop = to;
+        document.getElementById('menu-screen').scrollTop += to;
         document.getElementsByTagName('body')[0].scrollTop = 0;
       }, 1);
     },
