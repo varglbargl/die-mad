@@ -91,7 +91,7 @@ import SettingsMenu from '@/components/SettingsMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
-import { resetStreaks } from '@/services/cheevos.js';
+import { resetStreaks, resetRolls } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -182,6 +182,7 @@ export default {
     rollAll () {
       if (!this.$refs.dice) return;
       resetStreaks();
+      resetRolls();
 
       this.rolls = [];
       this.bonusDice = [];

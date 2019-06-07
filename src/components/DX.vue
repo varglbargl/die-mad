@@ -15,7 +15,7 @@
 <script>
 import utils from '@/services/utils.js';
 import settings from '@/services/settings.js';
-import { addToStreak } from '@/services/cheevos.js';
+import { addToStreak, addToRolls } from '@/services/cheevos.js';
 
 export default {
   name: 'DX',
@@ -127,6 +127,7 @@ export default {
           this.vector = [0, 0];
           this.rotateTo = 0;
           this.$emit('input', this.value);
+          addToRolls(this.value, this.sides);
           this.handleCrits();
         }
       }
@@ -149,6 +150,7 @@ export default {
         this.y = Math.floor(Math.random() * document.getElementById('tabletop').offsetHeight);
         this.hitTestWalls();
         this.$emit('input', this.value);
+        addToRolls(this.value, this.sides);
         this.handleCrits();
         return;
       }

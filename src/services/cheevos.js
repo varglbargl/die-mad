@@ -48,22 +48,6 @@ var checkStreakAchievements = function () {
   }
 };
 
-var awardReward = function (type) {
-  if (type === 'basic' || type === 'rare' || type === 'epic' || type === 'legend') {
-    return settings.awardRandomDie(type);
-  }
-};
-
-var earnAchievement = function (cheevo) {
-  cheevo.got = true;
-  cheevo.reward = awardReward(cheevo.reward);
-  recentAchievements.push({cheevo, id: ++count});
-}
-
-var recentAchievements = [];
-
-var count = 0;
-
 var addToStreak = function (type, data) {
   if (!streaks[type]) {
     streaks[type] = [];
@@ -80,13 +64,115 @@ var resetStreaks = function () {
   }
 };
 
+// ACHIEVEMENT TYPE ROLL ACHIEVEMENT - Anything that needs to check the type and outcome of rolls.
+
+var runningRolls = []; // permanent record
+var rolls = [];
+
+var rollAchievements = {
+  oneOfEach: {
+    requirement () {
+      let types = {};
+
+      for (var i = 0; i < rolls.length; i++) {
+        types[rolls[i].sides] = true;
+      }
+
+      if (types[20] && types[12] && types[10] && types[8] && types[6] && types[4]) {
+        return true;
+      }
+    },
+    name: 'One Of Everything',
+    description: 'Roll one of each of the default dice at once.',
+    reward: 'basic',
+    got: false
+  },
+
+  deeSixtyNine: {
+    requirement () {
+      for (var i = 0; i < rolls.length; i++) {
+        if (rolls[i].sides == 69) return true;
+      }
+    },
+    name: 'The Weed Number',
+    description: 'Roll a d69.',
+    reward: 'basic',
+    got: false
+  },
+
+  deeFourTwenty: {
+    requirement () {
+      for (var i = 0; i < rolls.length; i++) {
+        if (rolls[i].sides == 420) return true;
+      }
+    },
+    name: 'The Sex Number',
+    description: 'Roll a d420.',
+    reward: 'basic',
+    got: false
+  },
+
+  sixtyNineOnADeeFourTwenty: {
+    requirement () {
+      for (var i = 0; i < rolls.length; i++) {
+        if (rolls[i].sides == 420 && rolls[i].roll == 69) return true;
+      }
+    },
+    name: 'NICE NICE NICE NICE NICE',
+    description: 'Roll a 69 on a d420.',
+    reward: 'legend',
+    got: false,
+    secret: true
+  }
+};
+
+var checkRollAchievements = function () {
+  for (let cheevo in rollAchievements) {
+    if (!rollAchievements[cheevo].got && rollAchievements[cheevo].requirement()) {
+      earnAchievement(rollAchievements[cheevo]);
+    }
+  }
+};
+
+var addToRolls = function (roll, sides) {
+  rolls.push({roll, sides});
+  runningRolls.push({roll, sides});
+
+  checkRollAchievements();
+};
+
+var resetRolls = function () {
+  rolls = [];
+}
+
+// BASIC ACHIEVEMENT FUNCTIONALITY
+
+var recentAchievements = [];
+
+var awardReward = function (type) {
+  if (type === 'basic' || type === 'rare' || type === 'epic' || type === 'legend') {
+    return settings.awardRandomDie(type);
+  } // else add and handle other types of rewards (crit animations, board themes, DICE PACKS???)
+};
+
+var count = 0; // stupid but it works
+
+var earnAchievement = function (cheevo) {
+  cheevo.got = true;
+  cheevo.reward = awardReward(cheevo.reward);
+  recentAchievements.push({cheevo, id: ++count});
+}
+
 var checkAchievements = function () {
   checkStreakAchievements();
+  checkRollAchievements();
 };
 
 export {
   addToStreak,
+  addToRolls,
   resetStreaks,
+  resetRolls,
   checkAchievements,
   recentAchievements
 };
