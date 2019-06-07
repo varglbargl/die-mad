@@ -288,6 +288,8 @@ export default {
 
   transition: top 0.3s cubic-bezier(0, 0.25, 0.6, 1.5);
 
+  z-index: 75;
+
   &.open {
     top: 0vh;
     overflow-x: hidden;

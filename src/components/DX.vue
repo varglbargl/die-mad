@@ -15,6 +15,7 @@
 <script>
 import utils from '@/services/utils.js';
 import settings from '@/services/settings.js';
+import { addToStreak } from '@/services/cheevos.js';
 
 export default {
   name: 'DX',
@@ -179,16 +180,20 @@ export default {
 
       if (this.dieSettings.critSuccess && this.value === parseInt(this.sides)) {
         this.$emit('crit', ['success', this.x, this.y]);
+        addToStreak('critSuccess', this.value);
       } else if (this.dieSettings.critFail && this.value === 1) {
         this.$emit('crit', ['fail', this.x, this.y]);
+        addToStreak('critFail', this.value);
       }
 
       if (this.dieSettings.exploding && this.value === parseInt(this.sides)) {
         if (settings.animationsEnabled) {
           this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
+          addToStreak('explosion', this.value);
         } else {
           setTimeout(() => {
             this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
+            addToStreak('explosion', this.value);
           }, Math.ceil(Math.random() * 50 + 50))
         }
       }

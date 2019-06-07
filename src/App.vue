@@ -4,6 +4,7 @@
       <img src="@/assets/logo.svg" />
       <button class="big-button" @click="playIntro($event)">LET'S DIE</button>
     </div>
+    <achievements ref="cheevo"/>
     <div id="tabletop">
       <DX
       v-for="(die, i) in activeDice"
@@ -88,12 +89,15 @@ import Vue from 'vue';
 import DX from '@/components/DX.vue';
 import SettingsMenu from '@/components/SettingsMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
+import Achievements from '@/components/Achievements.vue';
+
+import { resetStreaks } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
 export default {
   name: 'app',
-  components: { DX, SettingsMenu, CritAnimation },
+  components: { DX, SettingsMenu, CritAnimation, Achievements },
   data () {
     return {
       activeDice: [],
@@ -161,7 +165,7 @@ export default {
     }
   },
   methods: {
-    playIntro(clickEvent) {
+    playIntro (clickEvent) {
       this.animateCrit([
         'success',
         clickEvent.clientX - 30 - document.getElementById('tabletop').offsetLeft,
@@ -177,6 +181,7 @@ export default {
     },
     rollAll () {
       if (!this.$refs.dice) return;
+      resetStreaks();
 
       this.rolls = [];
       this.bonusDice = [];
