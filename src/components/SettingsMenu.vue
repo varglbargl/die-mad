@@ -1,5 +1,5 @@
 <template>
-  <div class="menuScreen" :class="{open: open}">
+  <div id="menu-screen" :class="{open: open}" @input.prevent="fixScrollBug">
     <button class="med-button" @click="$emit('close')">CLOSE SETTINGS</button>
     <h2>GENERAL SETTINGS</h2>
     <div class="general-settings section">
@@ -183,6 +183,14 @@ export default {
     }
   },
   methods: {
+    fixScrollBug () {
+      setTimeout(() => {
+        let to = document.getElementsByTagName('body')[0].scrollTop;
+
+        document.getElementById('menu-screen').scrollTop = to;
+        document.getElementsByTagName('body')[0].scrollTop = 0;
+      }, 1);
+    },
     pickDieSkin (color) {
       settings.currentDiceSkin = color;
     },
@@ -240,7 +248,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/checkbox.scss";
 
-.menuScreen {
+#menu-screen {
   position: absolute;
   top: 100vh;
   left: 0;
