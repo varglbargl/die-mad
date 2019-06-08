@@ -19,8 +19,8 @@
         </div>
         <span style="font-weight: 500">{{ cheevo.info.rewarded.name }}</span>
         <crit-animation
-        @kill="stopAnimation(cheevo.id)"
-        v-if="stoppedAnimations[cheevo.id] !== true"
+        @kill="stopAnimation(i)"
+        v-if="stoppedAnimations[i] !== true"
         type="success"
         x="2"
         y="0" />
@@ -31,7 +31,7 @@
 
 <script>
 import CritAnimation from '@/components/CritAnimation.vue';
-import { recentAchievements, checkAchievements } from '@/services/cheevos.js';
+import { recentAchievements } from '@/services/cheevos.js';
 
 export default {
   name: 'Achievements',
@@ -43,11 +43,9 @@ export default {
     }
   },
   methods: {
-    checkAchievements () {
-      checkAchievements();
-    },
     dismissAchievement (index) {
       recentAchievements.splice(index, 1);
+      this.stoppedAnimations.splice(index, 1);
     },
     stopAnimation (index) {
       this.stoppedAnimations[index] = true;

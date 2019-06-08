@@ -75,12 +75,17 @@
         <img src="@/assets/trash.svg" />
         <span>CLEAR</span>
       </div>
+      <div class="button" @click="diceOptionsOpen = true">
+        <img src="@/assets/die.svg" />
+        <span>DICE</span>
+      </div>
       <div class="button" @click="settingsOpen = true">
         <img src="@/assets/cog.svg" />
         <span>SETTINGS</span>
       </div>
     </div>
     <settings-menu @close="settingsOpen = false" :open="settingsOpen" />
+    <dice-menu @close="diceOptionsOpen = false" :open="diceOptionsOpen" />
   </main>
 </template>
 
@@ -88,6 +93,7 @@
 import Vue from 'vue';
 import DX from '@/components/DX.vue';
 import SettingsMenu from '@/components/SettingsMenu.vue';
+import DiceMenu from '@/components/DiceMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
@@ -97,7 +103,7 @@ import utils from '@/services/utils.js';
 
 export default {
   name: 'app',
-  components: { DX, SettingsMenu, CritAnimation, Achievements },
+  components: { DX, SettingsMenu, DiceMenu, CritAnimation, Achievements },
   data () {
     return {
       activeDice: [],
@@ -108,6 +114,7 @@ export default {
       touched: null,
       count: 0,
       settings: settings,
+      diceOptionsOpen: false,
       settingsOpen: false,
       introPlaying: false,
       introPlayed: false,

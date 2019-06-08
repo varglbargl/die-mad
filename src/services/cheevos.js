@@ -222,8 +222,8 @@ var checkAchievements = function () {
 
 export {
   addToStreak,
-  addToRolls,
   resetStreaks,
+  addToRolls,
   resetRolls,
   checkAchievements,
   streakAchievements,
