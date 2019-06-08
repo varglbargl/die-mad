@@ -563,8 +563,8 @@ a {
   background-color: $epic !important;
 }
 
-.legend {
+.mythic {
   border-color: #B83 !important;
-  background-color: $legend !important;
+  background-color: $mythic !important;
 }
 </style>

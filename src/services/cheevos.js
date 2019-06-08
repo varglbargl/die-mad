@@ -132,7 +132,7 @@ var rollAchievements = {
     },
     name: 'NICE NICE NICE NICE NICE NICE NICE',
     description: 'Roll a 69 on a d420.',
-    reward: 'legend',
+    reward: 'mythic',
     got: false,
     secret: true
   },
@@ -202,7 +202,7 @@ var resetRolls = function () {
 var recentAchievements = [];
 
 var awardReward = function (type) {
-  if (type === 'basic' || type === 'rare' || type === 'epic' || type === 'legend') {
+  if (type === 'basic' || type === 'rare' || type === 'epic' || type === 'mythic') {
     return settings.awardRandomDie(type);
   } // else add and handle other types of rewards (crit animations, board themes, DICE PACKS???)
 };

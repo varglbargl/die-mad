@@ -167,7 +167,7 @@ export default {
     border-top-left-radius: 0;
   }
 
-  &.legend-tab {
+  &.mythic-tab {
     border-top-right-radius: 0;
   }
 
@@ -226,8 +226,8 @@ export default {
       background-image: linear-gradient(to bottom, $epic, #222);
     }
 
-    &.legend {
-      background-image: linear-gradient(to bottom, $legend, #222);
+    &.mythic {
+      background-image: linear-gradient(to bottom, $mythic, #222);
     }
   }
 }

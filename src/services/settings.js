@@ -80,7 +80,7 @@ export default {
       { name: 'Rhino',    class: 'default rhino',      has: false }
     ],
 
-    legend: [
+    mythic: [
       { name: 'Marble',   class: 'pattern marble',     has: false }
     ]
   },
@@ -216,17 +216,17 @@ export default {
     let roll = Math.random() * 100;
     let rarity;
 
-    // this way you always have the same chance of getting an Epic or Legendary, even if you set the minimum to Rare etc.
+    // this way you always have the same chance of getting an Epic or mythicary, even if you set the minimum to Rare etc.
     if (minRarity === 'rare') {
       roll = Math.max(roll, 70);
     } else if (minRarity === 'epic') {
       roll = Math.max(roll, 90);
-    } else if (minRarity === 'legend') {
+    } else if (minRarity === 'mythic') {
       roll = 100;
     } // else if minRarity === 'basic' || !minRarity (they're the same thing if you think about it)
 
     if (roll > 99) {
-      rarity = 'legend';
+      rarity = 'mythic';
     } else if (roll > 90) {
       rarity = 'epic';
     } else if (roll > 70) {
