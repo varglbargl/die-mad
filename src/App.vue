@@ -4,7 +4,7 @@
       <img src="@/assets/logo.svg" />
       <button class="big-button" @click="playIntro($event)">LET'S DIE</button>
     </div>
-    <achievements ref="cheevo"/>
+    <achievements />
     <div id="tabletop">
       <DX
       v-for="(die, i) in activeDice"
@@ -218,6 +218,8 @@ export default {
       });
     },
     dropNewDie () {
+      if (!this.touched) return;
+
       this.touched.dragStop();
       this.touched = null;
     },
@@ -272,6 +274,10 @@ export default {
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.deviceMotionHandler, true);
     }
+
+    /* eslint-disable */
+    console.log('You know I can\'t stop you from cheating. So go ahead :)');
+    /* eslint-enable */
   }
 }
 </script>
@@ -511,5 +517,25 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.basic {
+  border-color: #282 !important;
+  background-color: $basic !important;
+}
+
+.rare {
+  border-color: #35B !important;
+  background-color: $rare !important;
+}
+
+.epic {
+  border-color: #72A !important;
+  background-color: $epic !important;
+}
+
+.legend {
+  border-color: #B83 !important;
+  background-color: $legend !important;
 }
 </style>

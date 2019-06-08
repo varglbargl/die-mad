@@ -72,7 +72,7 @@ export default {
   created () {
     setTimeout(() => {
       this.$emit('kill');
-    }, this.timers[this.type] * 1000)
+    }, this.timers[this.type] * 1000);
   }
 }
 </script>

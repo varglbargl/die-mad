@@ -249,13 +249,14 @@ export default {
       // Gotta handle this somehow. This happens when you have all the dice skins of the rarity you rolled.
       // Award a crafting resource (glitter)? Default to the next rarity up and try again? What if you have ALL skins??
       // Honestly, short term solution (and something I'm gonna have to do anyway) is to add like 100 new basic skins lol
-      return;
+      return this.awardRandomDie(minRarity, true);
     }
 
     let randomAvailableDie = utils.getRandom(availableDice);
 
     randomAvailableDie.has = true;
+    randomAvailableDie.rarity = rarity;
 
-    return [randomAvailableDie.class];
+    return randomAvailableDie;
   }
 }

@@ -101,13 +101,13 @@
       class="tab"
       v-for="(skins, rarity) in settings.skins"
       :key="rarity"
-      :class="{selected: selectedDieTab === rarity}"
+      :class="[{selected: selectedDieTab === rarity}, rarity]"
       @click="selectedDieTab = rarity">
         <div>{{ titlize(rarity) }}</div>
         <div>{{ unlockedCount(rarity) }}</div>
       </div>
     </div>
-    <div class="section">
+    <div class="section" :class="selectedDieTab">
       <div class="skins-list" v-if="open">
         <div
         v-for="(skin, i) in settings.skins[selectedDieTab]"
@@ -122,8 +122,8 @@
           </div>
           <span style="font-weight: 500">{{ skin.name }}</span>
         </div>
-        <p v-if="dieCategoryIsEmpty(selectedDieTab)" style="margin: 9px auto;">
-          {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. But you don't have any yet so...
+        <p v-if="dieCategoryIsEmpty(selectedDieTab)">
+          {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. But you don't have any yet. You unlock dice by completing achievements. Check out the achievements section of this menu!
         </p>
       </div>
       <div class="skins-list">
@@ -141,6 +141,19 @@
       <!-- for testing purposes only: -->
       <!-- <button class="med-button" @click="awardRandomDie">GIMME</button> -->
     </div>
+    <h2>ACHIEVEMENTS</h2>
+    <div class="section achievements">
+      <div
+      class="cheevo"
+      v-for="(cheevo, i) in achievements"
+      :key="i"
+      :style="{display: cheevo.secret && !cheevo.got ? 'none' : ''}"
+      :class="cheevo.reward">
+        <h3>{{ cheevo.name }}</h3>
+        <span>{{ cheevo.description }}</span>
+        <span class="big-check" v-if="cheevo.got">&#10003;</span>
+      </div>
+    </div>
     <div class="credits" v-if="showingCredits">
       <h2>CREDITS</h2>
       <div class="section">
@@ -150,7 +163,7 @@
         <img src="@/assets/me.jpg" />
         <span class="subheader">"You touched my dice, now ur gay."</span>
         <p>
-          Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a> and opening an issue. That's also where you can view the full source code for this project!
+          Some icons are from <a href="https://thenounproject.com/">The Noun Project</a> and I paid real money for them. Others are made by me. This whole thing was built using <a href="https://vuejs.org/">Vue.js</a>. If you have bugs to report or features to suggest check out the <a href="https://github.com/vajazzercise/roll-them-bones">GitHub for this project</a> and opening an issue. That's also where you can view the full source code for this project (although, I'm super new to Vue.js so maybe it's not the best example.)
         </p>
         <p>
           If this project makes you happy, you can make me happy by supporting my other projects: Making board games with my friends at...
@@ -169,6 +182,7 @@
 
 <script>
 import settings from '@/services/settings.js';
+import { streakAchievements, rollAchievements } from '@/services/cheevos.js';
 import utils from '@/services/utils.js';
 
 export default {
@@ -187,6 +201,11 @@ export default {
       currentRandomSkin: 'default pink',
       showingCredits: false,
       selectedDieTab: 'basic'
+    }
+  },
+  computed: {
+    achievements () {
+      return Object.assign({}, streakAchievements, rollAchievements);
     }
   },
   methods: {
@@ -298,10 +317,19 @@ export default {
 
 .section {
   margin: 0 auto;
-  padding: 10px 2px;
+  padding: 20px 2px;
   max-width: 600px;
+  border-radius: 8px;
 
   background-color: #222;
+
+  &.basic {
+    border-top-left-radius: 0;
+  }
+
+  &.legend {
+    border-top-right-radius: 0;
+  }
 
   p {
     margin: 0;
@@ -354,9 +382,13 @@ export default {
   flex-direction: row;
 
   .tab {
+    cursor: pointer;
     padding: 8px 2px;
     padding-bottom: 4px;
     margin-bottom: 4px;
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
     flex: 1;
 
@@ -398,6 +430,50 @@ export default {
         left: calc(50% - 14px);
         width: auto;
       }
+    }
+  }
+}
+
+.achievements {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .cheevo {
+    position: relative;
+    padding: 10px;
+    margin: 8px;
+    width: 240px;
+    height: 95px;
+
+    border: 2px solid;
+    border-radius: 8px;
+
+    background-color: #222;
+
+    color: #FFF;
+
+    h2, h3 {
+      margin: 0;
+    }
+
+    h2 {
+      color: $red;
+      font-style: italic;
+    }
+
+    .big-check {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+
+      font-size: 150px;
+      color: $red;
+      line-height: 95px;
+      text-shadow: #222 4px 4px 8px;
     }
   }
 }
