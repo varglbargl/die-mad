@@ -35,6 +35,12 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
    - ♥️ adjust your crit range and boring stuff like that
    - 💜 See my cute face in a credits screen and maybe donate to my kofi(???)
 
+### INSANE OVER THE TOP FEATURES THAT I'M STILL GONNA DO
+
+ - 💛 Achievements! Why not??
+ - 💛 Turn this shit into a full on gatcha game. Dice packs. Crafting.
+ - 💚 STILL ALL FREE AND WITH NO ADS!!!
+
 ### Impossible/Questionable/Stupid Features
 
  - 💚 Dice rolling animations (Look, there's only so much I can do before it gets too laggy. The web just wasn't built for this. EDIT: I WIN, BROWSERS)
@@ -42,7 +48,7 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
  - 💜 Sounds? I feel like nobody wants sounds. I know I don't at least... but maybe some day.
  - 💜 Presets like Fireball Dice (lots and lots of little orange D6s that leave a fire trail)
  - 💜 Some kind of reward for donating or something? I don't know about this one. I mean I want to keep every part of this free.
- - 💜 Saving your settings. Now, this sounds like an obvious feature... but it would mean one of those big horrible Cookies Policy legal notices over part of the screen when you first visit. I DO NOT want to do that.
+ - 💚 Saving your settings. (EDIT: COOKIES!!)
  - 💜 Literal Mode: Actually rolling bones for performing digital geomancy
  - 💜 Dice with all custom faces, not just numbers (why tho?)
 

@@ -13,6 +13,18 @@ export default {
   // Toggle for dice rolling animations. If this is false dice will just flip instantly to a random side when "rolled."
   animationsEnabled: true,
 
+  // Initially set to the default of whether or not you have cookies enabled. Mapped to the option in the settings.
+  cookiesEnabled: false,
+
+  toggleCookiesEnabled () {
+    this.cookiesEnabled = !this.cookiesEnabled;
+    if (this.cookiesEnabled) {
+      utils.saveProgress();
+    } else {
+      utils.deleteSave();
+    }
+  },
+
   // Here it is. The dice skins. What are they called? Do you have them? What is the CSS class for displaying the skin?
   skins: {
     basic: [
@@ -256,6 +268,8 @@ export default {
 
     randomAvailableDie.has = true;
     randomAvailableDie.rarity = rarity;
+
+    utils.saveProgress();
 
     return randomAvailableDie;
   }

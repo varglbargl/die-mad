@@ -29,7 +29,7 @@
           <span style="font-weight: 500">{{ skin.name }}</span>
         </div>
         <p v-if="dieCategoryIsEmpty(selectedDieTab)">
-          {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. But you don't have any yet. You unlock dice by completing achievements. Check out the achievements section of this menu!
+          {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. You can unlock dice by completing achievements. Check out the achievements section of this menu!
         </p>
       </div>
       <div class="skins-list">
@@ -86,12 +86,13 @@ export default {
   },
   computed: {
     achievements () {
-      return Object.assign({}, streakAchievements, rollAchievements);
+      return rollAchievements.concat(streakAchievements);
     }
   },
   methods: {
     pickDieSkin (color) {
       settings.currentDiceSkin = color;
+      utils.saveProgress();
     },
     titlize (str) {
       return utils.titlize(str);

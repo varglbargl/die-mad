@@ -4,8 +4,8 @@ import settings from '@/services/settings.js';
 
 var streaks = {};
 
-var streakAchievements = {
-  threeExplosions: {
+var streakAchievements = [
+  {
     requirement () {
       if (streaks.explosion) {
         return streaks.explosion.length >= 3;
@@ -15,9 +15,7 @@ var streakAchievements = {
     description: 'Get 3 exploding dice in one roll.',
     reward: 'basic',
     got: false
-  },
-
-  threeCrits: {
+  }, {
     requirement () {
       if (streaks.critSuccess) {
         return streaks.critSuccess.length >= 3;
@@ -27,9 +25,7 @@ var streakAchievements = {
     description: 'Get 3 critical successes in one roll.',
     reward: 'rare',
     got: false
-  },
-
-  threeFails: {
+  }, {
     requirement () {
       if (streaks.critFail) {
         return streaks.critFail.length >= 3;
@@ -40,7 +36,7 @@ var streakAchievements = {
     reward: 'epic',
     got: false
   }
-};
+];
 
 var checkStreakAchievements = function () {
   for (let cheevo in streakAchievements) {
@@ -71,8 +67,8 @@ var resetStreaks = function () {
 var totalRolls = 0;
 var rolls = [];
 
-var rollAchievements = {
-  rollOne: {
+var rollAchievements =  [
+  {
     requirement () {
       return totalRolls > 0;
     },
@@ -80,9 +76,7 @@ var rollAchievements = {
     description: 'Roll one single die ever.',
     reward: 'basic',
     got: false
-  },
-
-  oneOfEach: {
+  }, {
     requirement () {
       let types = {};
 
@@ -98,9 +92,7 @@ var rollAchievements = {
     description: 'Roll one of each of the default dice at once.',
     reward: 'basic',
     got: false
-  },
-
-  deeSixtyNine: {
+  }, {
     requirement () {
       for (var i = 0; i < rolls.length; i++) {
         if (rolls[i].sides == 69) return true;
@@ -110,9 +102,7 @@ var rollAchievements = {
     description: 'Roll a d69.',
     reward: 'basic',
     got: false
-  },
-
-  deeFourTwenty: {
+  }, {
     requirement () {
       for (var i = 0; i < rolls.length; i++) {
         if (rolls[i].sides == 420) return true;
@@ -122,9 +112,7 @@ var rollAchievements = {
     description: 'Roll a d420.',
     reward: 'basic',
     got: false
-  },
-
-  sixtyNineOnADeeFourTwenty: {
+  }, {
     requirement () {
       for (var i = 0; i < rolls.length; i++) {
         if (rolls[i].sides == 420 && rolls[i].roll == 69) return true;
@@ -135,9 +123,7 @@ var rollAchievements = {
     reward: 'mythic',
     got: false,
     secret: true
-  },
-
-  oneHundredRolls: {
+  }, {
     requirement () {
       if (totalRolls > 100) return true;
     },
@@ -145,9 +131,7 @@ var rollAchievements = {
     description: 'Roll a hundred dice ever.',
     reward: 'basic',
     got: false
-  },
-
-  fiveHundredRolls: {
+  }, {
     requirement () {
       if (totalRolls > 500) return true;
     },
@@ -155,9 +139,7 @@ var rollAchievements = {
     description: 'Roll five hundred dice ever.',
     reward: 'rare',
     got: false
-  },
-
-  oneThousandRolls: {
+  }, {
     requirement () {
       if (totalRolls > 1000) return true;
     },
@@ -165,9 +147,7 @@ var rollAchievements = {
     description: 'Roll a thousand dice ever.',
     reward: 'epic',
     got: false
-  },
-
-  fiveThousandRolls: {
+  }, {
     requirement () {
       if (totalRolls > 5000) return true;
     },
@@ -176,7 +156,7 @@ var rollAchievements = {
     reward: 'epic',
     got: false
   }
-};
+];
 
 var checkRollAchievements = function () {
   for (let cheevo in rollAchievements) {

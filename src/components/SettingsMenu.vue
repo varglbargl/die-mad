@@ -1,6 +1,6 @@
 <template>
   <div id="menu-screen" :class="{open: open}">
-    <button class="med-button" @click="$emit('close')">CLOSE</button>
+    <button class="med-button" @click="closeMenu">{{ settings.cookiesEnabled ? 'SAVE SETTINGS' : 'CLOSE' }}</button>
     <h2>GENERAL SETTINGS</h2>
     <div class="general-settings section">
       <label class="checkbox-container">
@@ -16,6 +16,11 @@
       <label class="checkbox-container">
         <span>Enable rolling animations</span>
         <input type="checkbox" v-model="settings.animationsEnabled" />
+        <span class="checkmark"></span>
+      </label>
+      <label @click.prevent="toggleCookiesEnabled" class="checkbox-container">
+        <span>Save unlock progress</span>
+        <input type="checkbox" v-model="settings.cookiesEnabled" :disabled="!canSaveCookies" />
         <span class="checkmark"></span>
       </label>
     </div>
@@ -130,10 +135,15 @@ export default {
   data() {
     return {
       settings: settings,
-      canVibrate: 'vibrate' in navigator
+      canVibrate: 'vibrate' in navigator,
+      canSaveCookies: utils.canSaveCookies()
     }
   },
   methods: {
+    closeMenu () {
+      if (settings.cookiesEnabled) utils.saveProgress();
+      this.$emit('close');
+    },
     fixScrollBug () {
       setTimeout(() => {
         let to = document.getElementsByTagName('body')[0].scrollTop;
@@ -144,6 +154,9 @@ export default {
     },
     titlize (str) {
       return utils.titlize(str);
+    },
+    toggleCookiesEnabled () {
+      settings.toggleCookiesEnabled();
     },
     toggleAllDiceSetting (attr) {
       settings.toggleAllDiceSetting(attr);

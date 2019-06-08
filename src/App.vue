@@ -281,13 +281,14 @@ export default {
     }
   },
   mounted () {
+    utils.loadSave();
+
     if (window.DeviceMotionEvent) {
       window.addEventListener('devicemotion', this.deviceMotionHandler, true);
     }
 
-    /* eslint-disable */
+    // eslint-disable-next-line
     console.log('You know I can\'t stop you from cheating. So go ahead :)');
-    /* eslint-enable */
   }
 }
 </script>

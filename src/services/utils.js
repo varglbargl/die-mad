@@ -1,3 +1,7 @@
+import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie';
+import settings from '@/services/settings.js';
+import { streakAchievements, rollAchievements } from '@/services/cheevos.js';
+
 export default {
 
   // Give it your number of sides and it will return what type of die it is. Self expanatory except for the default
@@ -135,5 +139,164 @@ export default {
   // should be made into a function like this, even if it just replaces one line of code with a different one line.
   hapticFeedback (duration) {
     navigator.vibrate(duration);
+  },
+
+  // COOKIES!!
+
+  encodeSaveData () {
+    let unlocks = [];
+
+    let compressData = function (data) {
+      return parseInt(data.join(''), 2).toString(36);
+    }
+
+    let rarities = Object.keys(settings.skins).sort();
+
+    for (let i = 0; i < rarities.length; i++) {
+      for (let j = 0; j < settings.skins[rarities[i]].length; j++) {
+        let has = settings.skins[rarities[i]][j].has; // oof
+
+        unlocks.push(has ? '1' : '0');
+      }
+    }
+
+    unlocks = compressData(unlocks);
+
+    let userSettings = [
+      settings.cookiesEnabled ? '1' : '0',
+      settings.shakeToRoll ? '1' : '0',
+      settings.vibrateOnCollision ? '1' : '0',
+      settings.animationsEnabled ? '1' : '0'
+    ];
+
+    userSettings = compressData(userSettings);
+
+    let diceSettings = ['1'];
+
+    let dieTypes = ['D100', 'D20', 'D12', 'D10', 'D8', 'D6', 'D4', 'D2', 'custom'];
+
+    for (let i = 0; i < dieTypes.length; i++) {
+      let die = settings.diceRack[dieTypes[i]];
+
+      diceSettings.push(die.active ? '1' : '0');
+      diceSettings.push(die.exploding ? '1' : '0');
+      diceSettings.push(die.critSuccess ? '1' : '0');
+      diceSettings.push(die.critFail ? '1' : '0');
+    }
+
+    diceSettings = settings.currentDiceSkin.split(' ').join('_') + ';' + compressData(diceSettings);
+
+    let achievements = ['1'];
+
+    let cheevoTypes = [streakAchievements, rollAchievements];
+
+    for (var i = 0; i < cheevoTypes.length; i++) {
+      for (var j = 0; j < cheevoTypes[i].length; j++) {
+        achievements.push(cheevoTypes[i][j].got ? '1' : '0');
+      }
+    }
+
+    achievements = compressData(achievements);
+
+    return {unlocks, userSettings, diceSettings, achievements};
+  },
+
+  decodeSaveData () {
+
+    let decompressData = function (data) {
+      return parseInt(data, 36).toString(2).split('');
+    }
+
+    let unlocks = getCookie('unlocks');
+    if (unlocks) unlocks = decompressData(unlocks);
+
+    let userSettings = getCookie('userSettings');
+    if (userSettings) userSettings = decompressData(userSettings);
+
+    let diceSettings = getCookie('diceSettings');
+    if (diceSettings) {
+      diceSettings = diceSettings.split(';');
+
+      let currentDiceSkin = diceSettings[0];
+      diceSettings = decompressData(diceSettings[1]).splice(1);
+      diceSettings.unshift(currentDiceSkin);
+    }
+
+    let achievements = getCookie('achievements');
+    if (achievements) achievements = decompressData(achievements).splice(1);
+
+    return {unlocks, userSettings, diceSettings, achievements}
+  },
+
+  canSaveCookies () {
+    return isCookieEnabled();
+  },
+
+  saveProgress () {
+    if (!settings.cookiesEnabled) return;
+
+    setCookie('unlocks', this.encodeSaveData().unlocks);
+    setCookie('userSettings', this.encodeSaveData().userSettings);
+    setCookie('diceSettings', this.encodeSaveData().diceSettings);
+    setCookie('achievements', this.encodeSaveData().achievements);
+  },
+
+  loadSave () {
+    let saveData = this.decodeSaveData();
+
+    if (saveData.unlocks) {
+      let rarities = Object.keys(settings.skins).sort();
+
+      for (let i = 0, j = 0, k = 0; i < saveData.unlocks.length; i++, j++) { // OOF
+        let currentRarity = rarities[k];
+
+        if (j >= settings.skins[currentRarity].length) {
+          j = 0;
+          currentRarity = rarities[++k];
+        }
+        settings.skins[currentRarity][j].has = !!parseInt(saveData.unlocks[i]);
+      }
+    }
+
+    if (saveData.userSettings) {
+      settings.cookiesEnabled = !!parseInt(saveData.userSettings[0]);
+      settings.shakeToRoll = !!parseInt(saveData.userSettings[1]);
+      settings.vibrateOnCollision = !!parseInt(saveData.userSettings[2]);
+      settings.animationsEnabled = !!parseInt(saveData.userSettings[3]);
+    }
+
+    if (saveData.diceSettings) {
+      let dieTypes = ['D100', 'D20', 'D12', 'D10', 'D8', 'D6', 'D4', 'D2', 'custom'];
+
+      settings.currentDiceSkin = saveData.diceSettings[0].split('_').join(' ');
+
+      for (let i = 1; i < dieTypes.length; i++) {
+        settings.diceRack[dieTypes[i]].active = !!parseInt(saveData.diceSettings[i * 4 + 1]);
+        settings.diceRack[dieTypes[i]].exploding = !!parseInt(saveData.diceSettings[i * 4 + 2]);
+        settings.diceRack[dieTypes[i]].critSuccess = !!parseInt(saveData.diceSettings[i * 4 + 3]);
+        settings.diceRack[dieTypes[i]].critFail = !!parseInt(saveData.diceSettings[i * 4 + 4]);
+      }
+    }
+
+    if (saveData.achievements) {
+
+      let cheevoTypes = [streakAchievements, rollAchievements];
+
+      for (let i = 0, j = 0, k = 0; i < saveData.achievements.length; i++, j++) {
+        if (!cheevoTypes[k][j]) {
+          j = 0;
+          k++;
+        }
+
+        cheevoTypes[k][j].got = !!parseInt(saveData.achievements[i]);
+      }
+    }
+  },
+
+  deleteSave () {
+    removeCookie('unlocks');
+    removeCookie('userSettings');
+    removeCookie('diceSettings');
+    removeCookie('achievements');
   }
 }
