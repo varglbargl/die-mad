@@ -239,9 +239,9 @@ export default {
 
     if (roll > 99) {
       rarity = 'mythic';
-    } else if (roll > 90) {
+    } else if (roll >= 90) {
       rarity = 'epic';
-    } else if (roll > 70) {
+    } else if (roll >= 70) {
       rarity = 'rare';
     } else {
       rarity = 'basic';

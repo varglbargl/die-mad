@@ -552,20 +552,25 @@ a {
 .basic {
   border-color: #282 !important;
   background-color: $basic !important;
+  background-image: linear-gradient(to bottom, $basic, #222) !important;
 }
 
 .rare {
   border-color: #35B !important;
   background-color: $rare !important;
+  background-image: linear-gradient(to bottom, $rare, #222) !important;
 }
 
 .epic {
   border-color: #72A !important;
   background-color: $epic !important;
+  background-image: linear-gradient(to bottom, $epic, #222) !important;
 }
 
 .mythic {
   border-color: #B83 !important;
   background-color: $mythic !important;
+  background-image: linear-gradient(to bottom, $mythic, #222) !important;
 }
+
 </style>

@@ -214,22 +214,6 @@ export default {
       padding-bottom: 8px;
       margin-bottom: 0;
     }
-
-    &.basic {
-      background-image: linear-gradient(to bottom, $basic, #222);
-    }
-
-    &.rare {
-      background-image: linear-gradient(to bottom, $rare, #222);
-    }
-
-    &.epic {
-      background-image: linear-gradient(to bottom, $epic, #222);
-    }
-
-    &.mythic {
-      background-image: linear-gradient(to bottom, $mythic, #222);
-    }
   }
 }
 
@@ -305,4 +289,5 @@ export default {
     }
   }
 }
+
 </style>
