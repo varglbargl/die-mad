@@ -13,7 +13,7 @@
         <div>{{ unlockedCount(rarity) }}</div>
       </div>
     </div>
-    <div class="section" :class="selectedDieTab">
+    <div class="section" :class="selectedDieTab + '-tab'">
       <div class="skins-list" v-if="open">
         <div
         v-for="(skin, i) in settings.skins[selectedDieTab]"
@@ -163,11 +163,11 @@ export default {
 
   background-color: #222;
 
-  &.basic {
+  &.basic-tab {
     border-top-left-radius: 0;
   }
 
-  &.legend {
+  &.legend-tab {
     border-top-right-radius: 0;
   }
 
@@ -212,6 +212,22 @@ export default {
     &.selected {
       padding-bottom: 8px;
       margin-bottom: 0;
+    }
+
+    &.basic {
+      background-image: linear-gradient(to bottom, $basic, #222);
+    }
+
+    &.rare {
+      background-image: linear-gradient(to bottom, $rare, #222);
+    }
+
+    &.epic {
+      background-image: linear-gradient(to bottom, $epic, #222);
+    }
+
+    &.legend {
+      background-image: linear-gradient(to bottom, $legend, #222);
     }
   }
 }

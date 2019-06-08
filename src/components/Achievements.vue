@@ -10,20 +10,22 @@
         <h3>{{ cheevo.info.name }}</h3>
         <span>{{ cheevo.info.description }}</span>
       </div>
-      <div class="reward-card" :class="cheevo.info.rewarded.rarity">
-        <div
-        class="die d20"
-        :class="cheevo.info.rewarded.class">
-          <div class="skin"></div>
-          <span> 20 </span>
+      <div style="display: flex; align-items: center;">
+        <div class="reward-card" :class="cheevo.info.rewarded.rarity">
+          <div
+          class="die d20"
+          :class="cheevo.info.rewarded.class">
+            <div class="skin"></div>
+            <span> 20 </span>
+          </div>
+          <span style="font-weight: 500">{{ cheevo.info.rewarded.name }}</span>
+          <crit-animation
+          @kill="stopAnimation(i)"
+          v-if="stoppedAnimations[i] !== true"
+          type="success"
+          x="2"
+          y="0" />
         </div>
-        <span style="font-weight: 500">{{ cheevo.info.rewarded.name }}</span>
-        <crit-animation
-        @kill="stopAnimation(i)"
-        v-if="stoppedAnimations[i] !== true"
-        type="success"
-        x="2"
-        y="0" />
       </div>
     </div>
   </div>

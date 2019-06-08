@@ -37,7 +37,10 @@
       :y="crit.y" />
     </div>
     <div class="total">
-      {{ rolledDiceList }}<span v-if="totalRolled !== 0"> = {{ totalRolled }}</span>
+      <div class="total-text">
+        <span class="equasion">{{ rolledDiceList }}</span>
+        <span class="equals" v-if="totalRolled !== 0">&nbsp;= {{ totalRolled }}</span>
+      </div>
     </div>
     <div id="dice-rack">
       <div
@@ -77,7 +80,7 @@
       </div>
       <div class="button" @click="diceOptionsOpen = true">
         <img src="@/assets/die.svg" />
-        <span>DICE</span>
+        <span>TREASURE</span>
       </div>
       <div class="button" @click="settingsOpen = true">
         <img src="@/assets/cog.svg" />
@@ -365,6 +368,7 @@ html, body {
   height: $menu-height;
   overflow: hidden;
   padding: 5px 0;
+  border-top: 1px solid #111;
 
   display: flex;
   flex-direction: row;
@@ -425,14 +429,32 @@ html, body {
 .total {
   position: relative;
   margin-top: -24px;
+  padding: 0 4px;
   height: 24px;
   pointer-events: none;
 
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
 
   font-size: 18px;
   font-weight: 800;
   color: #FFF;
+
+  .total-text {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    max-width: 100%;
+
+    .equasion {
+      flex-shrink: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .equals {
+      flex-shrink: 0;
+    }
+  }
 }
 
 #cancel-box {
@@ -456,7 +478,7 @@ html, body {
     transition: top 0.08s linear;
 
     &.open {
-      top: 0%;
+      top: 1px;
     }
 
     img {

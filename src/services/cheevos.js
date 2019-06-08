@@ -11,7 +11,7 @@ var streakAchievements = {
         return streaks.explosion.length >= 3;
       }
     },
-    name: 'Explosive',
+    name: 'The Ol\' Spicy Dice Bag',
     description: 'Get 3 exploding dice in one roll.',
     reward: 'basic',
     got: false
@@ -23,7 +23,7 @@ var streakAchievements = {
         return streaks.critSuccess.length >= 3;
       }
     },
-    name: 'Critters Always Win',
+    name: 'Crit Criminal',
     description: 'Get 3 critical successes in one roll.',
     reward: 'rare',
     got: false
