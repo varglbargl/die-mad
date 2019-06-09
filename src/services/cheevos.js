@@ -177,11 +177,20 @@ var rollAchievements =  [
       if ((new Date()).getMonth() === 9 && (new Date()).getDate() === 31) return true;
     },
     reward () {
-      settings.awardSpecificDie('Spoopy');
-
-      return {name: 'Spoopy', class: 'default halloween', rarity: 'epic'};
+      return settings.awardSpecificDie('Spoopy');
     },
     rarity: 'epic',
+    got: false
+  }, {
+    name: 'B My QTD20',
+    description: 'Roll a die on Valentines Day.',
+    requirement () {
+      if ((new Date()).getMonth() === 1 && (new Date()).getDate() === 14) return true;
+    },
+    reward () {
+      return settings.awardSpecificDie('Cupid');
+    },
+    rarity: 'rare',
     got: false
   }
 ];

@@ -39,7 +39,7 @@
         :class="{selected: settings.currentDiceSkin === 'random'}">
           <div class="die d20" :class="currentRandomSkin">
             <div class="skin"></div>
-            <span>??</span>
+            <span style="left: calc(50% - 12px)">??</span>
           </div>
           <span style="font-weight: 500">Random</span>
         </div>

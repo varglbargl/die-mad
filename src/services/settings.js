@@ -90,7 +90,8 @@ export default {
       { name: 'Shock',    class: 'default love-shock', has: false },
       { name: 'Noise',    class: 'default noise-tank', has: false },
       { name: 'Rhino',    class: 'default rhino',      has: false },
-      { name: 'Spoopy',   class: 'default halloween',  has: false,   event: 'Halloween' }
+      { name: 'Spoopy',   class: 'default halloween',  has: false,  event: 'Halloween' },
+      { name: 'Cupid',    class: 'default valentines', has: false,  event: 'Valentines Day' }
     ],
 
     mythic: [
@@ -280,6 +281,8 @@ export default {
       for (let i = 0; i < this.skins[rarity].length; i++) {
         if (this.skins[rarity][i].name === name) {
           this.skins[rarity][i].has = true;
+          this.skins[rarity][i].rarity = rarity;
+
           return this.skins[rarity][i];
         }
       }
