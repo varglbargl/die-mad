@@ -54,7 +54,8 @@ export default {
         top: this.y + 'px',
         left: this.x + 'px',
         zIndex: this.dragging ? 100 : 'unset',
-        transform: 'rotate(' + this.rotateTo + 'deg)'
+        transform: 'rotate(' + this.rotateTo + 'deg)',
+        animationDelay: '-' + this.sides * 7 + 's'
       }
     }
   },

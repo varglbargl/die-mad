@@ -91,11 +91,12 @@ export default {
       { name: 'Noise',    class: 'default noise-tank', has: false },
       { name: 'Rhino',    class: 'default rhino',      has: false },
       { name: 'Spoopy',   class: 'default halloween',  has: false,  event: 'Halloween' },
-      { name: 'Cupid',    class: 'default valentines', has: false,  event: 'Valentines Day' }
+      { name: 'Cupid',    class: 'default valentines', has: false,  event: 'Valentines Day' },
+      { name: 'Marble',   class: 'pattern marble',     has: false }
     ],
 
     mythic: [
-      { name: 'Marble',   class: 'pattern marble',     has: false }
+      { name: 'Lava',     class: 'animated lava-lamp', has: false }
     ]
   },
 

@@ -57,7 +57,7 @@
         settings.getRandomDieSkin(die.sides) :
         settings.currentDiceSkin
       ]"
-      :style="{display: die.active ? 'flex' : 'none'}">
+      :style="{display: die.active ? 'flex' : 'none', animationDelay: '-' + die.sides * 7 + 's'}">
         <div class="skin"></div>
         <span :style="{fontSize: Math.min(32 - totalActiveDice * 2, 20) + 'px'}">
           D{{ die.sides }}
