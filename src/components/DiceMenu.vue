@@ -54,7 +54,7 @@
       v-for="(cheevo, i) in achievements"
       :key="i"
       :style="{display: cheevo.secret && !cheevo.got ? 'none' : ''}"
-      :class="cheevo.reward">
+      :class="cheevo.rarity || cheevo.reward">
         <h3>{{ cheevo.name }}</h3>
         <span>{{ cheevo.description }}</span>
         <span class="big-check" v-if="cheevo.got">&#10003;</span>

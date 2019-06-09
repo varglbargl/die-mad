@@ -149,6 +149,25 @@ var rollAchievements =  [
     },
     reward: 'epic',
     got: false
+  }, {
+    name: 'TRANS RIGHTS',
+    description: 'Roll a die during pride month.',
+    requirement () {
+      if ((new Date()).getMonth() === 5) return true;
+    },
+    reward () {
+      let gayDice = ['Lesbian', 'Gay', 'Bi', 'Trans', 'Pan', 'Enby', 'Ace/Aro', 'Intersex'];
+
+      for (let i = 0; i < settings.skins.rare.length; i++) {
+        if (gayDice.indexOf(settings.skins.rare[i].name) !== -1) {
+          settings.skins.rare[i].has = true;
+        }
+      }
+
+      return {name: 'Dice x8', class: 'pattern gay', rarity: 'rare'};
+    },
+    rarity: 'rare',
+    got: false
   }
 ];
 
@@ -188,9 +207,13 @@ var addToStreak = function (type, data) {
 
 var recentAchievements = [];
 
-var awardReward = function (type) {
-  if (type === 'basic' || type === 'rare' || type === 'epic' || type === 'mythic') {
-    return settings.awardRandomDie(type);
+var awardReward = function (reward) {
+  if (typeof reward === 'function') {
+    return reward();
+  }
+
+  if (reward === 'basic' || reward === 'rare' || reward === 'epic' || reward === 'mythic') {
+    return settings.awardRandomDie(reward);
   } // else add and handle other types of rewards (crit animations, board themes, DICE PACKS???)
 };
 
