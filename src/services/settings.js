@@ -75,10 +75,10 @@ export default {
       { name: 'Gay',      class: 'pattern gay',        has: true },
       { name: 'Bi',       class: 'pattern bi',         has: true },
       { name: 'Trans',    class: 'pattern trans',      has: true },
-      { name: 'Pan',      class: 'pattern pan',        has: false },
-      { name: 'Enby',     class: 'pattern nonbinary',  has: false },
-      { name: 'Ace/Aro',  class: 'pattern ace',        has: false },
-      { name: 'Intersex', class: 'pattern intersex',   has: false }
+      { name: 'Pan',      class: 'pattern pan',        has: true },
+      { name: 'Enby',     class: 'pattern nonbinary',  has: true },
+      { name: 'Ace/Aro',  class: 'pattern ace',        has: true },
+      { name: 'Intersex', class: 'pattern intersex',   has: true }
     ],
 
     epic: [
