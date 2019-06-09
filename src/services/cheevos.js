@@ -149,7 +149,11 @@ var rollAchievements =  [
     },
     reward: 'epic',
     got: false
-  }, {
+  },
+
+  // EVENT DICE
+
+  {
     name: 'TRANS RIGHTS',
     description: 'Roll a die during pride month.',
     requirement () {
@@ -158,15 +162,26 @@ var rollAchievements =  [
     reward () {
       let gayDice = ['Lesbian', 'Gay', 'Bi', 'Trans', 'Pan', 'Enby', 'Ace/Aro', 'Intersex'];
 
-      for (let i = 0; i < settings.skins.rare.length; i++) {
-        if (gayDice.indexOf(settings.skins.rare[i].name) !== -1) {
-          settings.skins.rare[i].has = true;
-        }
+      for (let i = 0; i < gayDice.length; i++) {
+        settings.awardSpecificDie(gayDice[i]);
       }
 
       return {name: 'Dice x8', class: 'pattern gay', rarity: 'rare'};
     },
     rarity: 'rare',
+    got: false
+  }, {
+    name: 'Trick or Treat',
+    description: 'Roll a die on Halloween.',
+    requirement () {
+      if ((new Date()).getMonth() === 9 && (new Date()).getDate() === 31) return true;
+    },
+    reward () {
+      settings.awardSpecificDie('Spoopy');
+
+      return {name: 'Spoopy', class: 'default halloween', rarity: 'epic'};
+    },
+    rarity: 'epic',
     got: false
   }
 ];

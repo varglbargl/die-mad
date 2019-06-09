@@ -89,7 +89,8 @@ export default {
       { name: 'Poison',   class: 'default poison-jam', has: false },
       { name: 'Shock',    class: 'default love-shock', has: false },
       { name: 'Noise',    class: 'default noise-tank', has: false },
-      { name: 'Rhino',    class: 'default rhino',      has: false }
+      { name: 'Rhino',    class: 'default rhino',      has: false },
+      { name: 'Spoopy',   class: 'default halloween',  has: false,   event: 'Halloween' }
     ],
 
     mythic: [
@@ -251,7 +252,7 @@ export default {
       if (duplicates) {
         availableDice.push(this.skins[rarity][skin]);
       } else {
-        if (!this.skins[rarity][skin].has) {
+        if (!this.skins[rarity][skin].has && !this.skins[rarity][skin].event) {
           availableDice.push(this.skins[rarity][skin]);
         }
       }
@@ -272,5 +273,17 @@ export default {
     utils.saveProgress();
 
     return randomAvailableDie;
+  },
+
+  awardSpecificDie (name) {
+    for (let rarity in this.skins) {
+      for (let i = 0; i < this.skins[rarity].length; i++) {
+        if (this.skins[rarity][i].name === name) {
+          this.skins[rarity][i].has = true;
+          return this.skins[rarity][i];
+        }
+      }
+    }
   }
+
 }
