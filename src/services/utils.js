@@ -1,6 +1,6 @@
 import { isCookieEnabled, getCookie, setCookie, removeCookie } from 'tiny-cookie';
 import settings from '@/services/settings.js';
-import { streakAchievements, rollAchievements } from '@/services/cheevos.js';
+import { rollAchievements } from '@/services/cheevos.js';
 
 export default {
 
@@ -188,7 +188,7 @@ export default {
 
     let achievements = ['1'];
 
-    let cheevoTypes = [streakAchievements, rollAchievements];
+    let cheevoTypes = [rollAchievements]; // there may be more than one type later
 
     for (var i = 0; i < cheevoTypes.length; i++) {
       for (var j = 0; j < cheevoTypes[i].length; j++) {
@@ -280,7 +280,7 @@ export default {
 
     if (saveData.achievements) {
 
-      let cheevoTypes = [streakAchievements, rollAchievements];
+      let cheevoTypes = [rollAchievements];
 
       for (let i = 0, j = 0, k = 0; i < saveData.achievements.length; i++, j++) {
         if (!cheevoTypes[k][j]) {

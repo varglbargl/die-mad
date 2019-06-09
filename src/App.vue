@@ -100,7 +100,7 @@ import DiceMenu from '@/components/DiceMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
-import { resetStreaks, resetRolls } from '@/services/cheevos.js';
+import { resetRollTracking } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -191,8 +191,7 @@ export default {
     },
     rollAll () {
       if (!this.$refs.dice) return;
-      resetStreaks();
-      resetRolls();
+      resetRollTracking();
 
       this.rolls = [];
       this.bonusDice = [];

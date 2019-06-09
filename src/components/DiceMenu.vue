@@ -65,7 +65,7 @@
 
 <script>
 import settings from '@/services/settings.js';
-import { streakAchievements, rollAchievements } from '@/services/cheevos.js';
+import { rollAchievements } from '@/services/cheevos.js';
 import utils from '@/services/utils.js';
 
 export default {
@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     achievements () {
-      return rollAchievements.concat(streakAchievements);
+      return rollAchievements;
     }
   },
   methods: {
@@ -247,6 +247,7 @@ export default {
 }
 
 .achievements {
+  max-width: 1080px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

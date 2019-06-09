@@ -94,6 +94,7 @@ export default {
 
   .info {
     flex: 1;
+    margin-right: 2px;
   }
 
   .reward-card {
