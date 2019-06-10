@@ -26,6 +26,7 @@ export default {
   },
 
   // Here it is. The dice skins. What are they called? Do you have them? What is the CSS class for displaying the skin?
+  // From now on, never rearrange these dice. Only add dice onto the end so it doesn't mess up people's saves.
   skins: {
     basic: [
       { name: 'Red',      class: 'default red',        has: true },
@@ -90,9 +91,9 @@ export default {
       { name: 'Shock',    class: 'default love-shock', has: false },
       { name: 'Noise',    class: 'default noise-tank', has: false },
       { name: 'Rhino',    class: 'default rhino',      has: false },
+      { name: 'Marble',   class: 'pattern marble',     has: false },
       { name: 'Spoopy',   class: 'default halloween',  has: false,  event: 'Halloween' },
-      { name: 'Cupid',    class: 'default valentines', has: false,  event: 'Valentines Day' },
-      { name: 'Marble',   class: 'pattern marble',     has: false }
+      { name: 'Cupid',    class: 'default valentines', has: false,  event: 'Valentines Day' }
     ],
 
     mythic: [
@@ -284,6 +285,7 @@ export default {
           this.skins[rarity][i].has = true;
           this.skins[rarity][i].rarity = rarity;
 
+          utils.saveProgress();
           return this.skins[rarity][i];
         }
       }

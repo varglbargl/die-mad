@@ -19,7 +19,7 @@
         <span class="checkmark"></span>
       </label>
       <label @click.prevent="toggleCookiesEnabled" class="checkbox-container">
-        <span>Save unlock progress</span>
+        <span>Save progress and settings</span>
         <input type="checkbox" v-model="settings.cookiesEnabled" :disabled="!canSaveCookies" />
         <span class="checkmark"></span>
       </label>

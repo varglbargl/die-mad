@@ -149,11 +149,7 @@ var rollAchievements =  [
     },
     reward: 'epic',
     got: false
-  },
-
-  // EVENT DICE
-
-  {
+  }, {
     name: 'TRANS RIGHTS',
     description: 'Roll a die during pride month.',
     requirement () {
@@ -182,7 +178,7 @@ var rollAchievements =  [
     rarity: 'epic',
     got: false
   }, {
-    name: 'B My QTD20',
+    name: 'QTD20', // rename this. it's lame.
     description: 'Roll a die on Valentines Day.',
     requirement () {
       if ((new Date()).getMonth() === 1 && (new Date()).getDate() === 14) return true;
