@@ -13,39 +13,41 @@
         <div>{{ unlockedCount(rarity) }}</div>
       </div>
     </div>
-    <div class="section" :class="selectedDieTab + '-tab'">
-      <div class="skins-list" v-if="open">
-        <div
-        v-for="(skin, i) in settings.skins[selectedDieTab]"
-        :key="i"
-        class="choice"
-        @click="pickDieSkin(skin.class)"
-        :class="{selected: settings.currentDiceSkin === skin.class}"
-        :style="{display: skin.has ? '' : 'none'}">
-          <div class="die d20" :class="skin.class">
-            <div class="skin"></div>
-            <span>20</span>
+    <div class="section dice-skins" :class="selectedDieTab + '-tab'">
+      <div v-if="open">
+        <div class="skins-list">
+          <div
+          v-for="(skin, i) in settings.skins[selectedDieTab]"
+          :key="i"
+          class="choice"
+          @click="pickDieSkin(skin.class)"
+          :class="{selected: settings.currentDiceSkin === skin.class}"
+          :style="{display: skin.has ? '' : 'none'}">
+            <div class="die d20" :class="skin.class">
+              <div class="skin"></div>
+              <span>20</span>
+            </div>
+            <span style="font-weight: 500">{{ skin.name }}</span>
           </div>
-          <span style="font-weight: 500">{{ skin.name }}</span>
+          <p v-if="dieCategoryIsEmpty(selectedDieTab)">
+            {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. You can unlock dice by completing achievements. Check out the achievements section of this menu!
+          </p>
         </div>
-        <p v-if="dieCategoryIsEmpty(selectedDieTab)">
-          {{ titlize(selectedDieTab) }} dice you unlock will be displayed here. You can unlock dice by completing achievements. Check out the achievements section of this menu!
-        </p>
-      </div>
-      <div class="skins-list">
-        <div
-        class="choice"
-        @click="pickDieSkin('random')"
-        :class="{selected: settings.currentDiceSkin === 'random'}">
-          <div class="die d20" :class="currentRandomSkin">
-            <div class="skin"></div>
-            <span style="left: calc(50% - 12px)">??</span>
+        <div class="skins-list">
+          <div
+          class="choice"
+          @click="pickDieSkin('random')"
+          :class="{selected: settings.currentDiceSkin === 'random'}">
+            <div class="die d20" :class="currentRandomSkin">
+              <div class="skin"></div>
+              <span style="left: calc(50% - 12px)">??</span>
+            </div>
+            <span style="font-weight: 500">Random</span>
           </div>
-          <span style="font-weight: 500">Random</span>
         </div>
+        <!-- for testing purposes only: -->
+        <!-- <button class="med-button" @click="awardRandomDie">GIMME</button> -->
       </div>
-      <!-- for testing purposes only: -->
-      <!-- <button class="med-button" @click="awardRandomDie">GIMME</button> -->
     </div>
     <h2>ACHIEVEMENTS</h2>
     <div class="section achievements">
@@ -139,8 +141,8 @@ export default {
   top: 100vh;
   left: 0;
   width: 100vw;
-  height: calc(100vh + 100px);
-  padding: 60px 10px 160px 10px;
+  height: calc(100vh + 200px);
+  padding: 60px 10px;
 
   color: #FFF;
 
@@ -153,6 +155,8 @@ export default {
   &.open {
     top: 0vh;
     overflow-x: hidden;
+    height: 100vh;
+    transition: top 0.3s cubic-bezier(0, 0.25, 0.6, 1.5), height 0s 0.3s linear;
   }
 }
 
@@ -215,6 +219,10 @@ export default {
       margin-bottom: 0;
     }
   }
+}
+
+.dice-skins {
+  min-height: 220px;
 }
 
 .skins-list {

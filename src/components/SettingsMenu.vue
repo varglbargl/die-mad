@@ -203,8 +203,8 @@ export default {
   top: 100vh;
   left: 0;
   width: 100vw;
-  height: calc(100vh + 100px);
-  padding: 60px 10px 160px 10px;
+  height: calc(100vh + 200px);
+  padding: 60px 10px;
 
   color: #FFF;
 
@@ -217,6 +217,8 @@ export default {
   &.open {
     top: 0vh;
     overflow-x: hidden;
+    height: 100vh;
+    transition: top 0.3s cubic-bezier(0, 0.25, 0.6, 1.5), height 0s 0.3s linear;
   }
 }
 
