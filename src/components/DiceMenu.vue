@@ -58,7 +58,8 @@
       :style="{display: cheevo.secret && !cheevo.got ? 'none' : ''}"
       :class="cheevo.rarity || cheevo.reward">
         <h3>{{ cheevo.name }}</h3>
-        <span>{{ cheevo.description }}</span>
+        <span v-if="cheevo.got">{{ cheevo.description }}</span>
+        <span v-if="!cheevo.got" style="font-weight: 800">? ? ?</span>
         <span class="big-check" v-if="cheevo.got">&#10003;</span>
       </div>
     </div>
@@ -264,8 +265,9 @@ export default {
   .cheevo {
     position: relative;
     padding: 10px;
+    padding-right: 50px;
     margin: 8px;
-    width: 240px;
+    width: 300px;
     height: 95px;
 
     border: 2px solid;
@@ -287,11 +289,10 @@ export default {
     .big-check {
       position: absolute;
       top: 0;
-      left: 0;
+      right: -20px;
       height: 100%;
-      width: 100%;
 
-      font-size: 150px;
+      font-size: 100px;
       color: $red;
       line-height: 95px;
       text-shadow: #222 4px 4px 8px;

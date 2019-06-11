@@ -3,7 +3,12 @@ import settings from '@/services/settings.js';
 // ACHIEVEMENT TYPE: ROLL - Anything that needs to check the outcome of rolls.
 
 var totalRolls = 0;
+
+// ex: [{roll: 4, sides: 6}, {roll: 1, sides: 20}]
 var rolls = [];
+
+// ex: {'critSuccess': [20, 12], 'critFail': [1, 1, 1]}
+var streaks = {};
 
 var rollAchievements =  [
   {
@@ -188,6 +193,55 @@ var rollAchievements =  [
     },
     rarity: 'rare',
     got: false
+  }, {
+    name: 'Happy Birthday!',
+    description: 'Roll a die on Vanessa\'s birthday. She\'s the person who made this dice roller!',
+    requirement () {
+      if ((new Date()).getMonth() === 0 && (new Date()).getDate() === 30) return true;
+    },
+    reward: 'epic',
+    got: false
+  }, {
+    name: 'Happy New Year!',
+    description: 'Roll a die on New Years Eve/Day.',
+    requirement () {
+      if (
+        (new Date()).getMonth() === 0 && (new Date()).getDate() === 1 ||
+        (new Date()).getMonth() === 11 && (new Date()).getDate() === 31
+      ) return true;
+    },
+    reward: 'epic',
+    got: false
+  }, {
+    name: 'Saint Patrick\'s Day!',
+    description: 'Roll a die on Saint Patrick\'s Day.',
+    requirement () {
+      if ((new Date()).getMonth() === 2 && (new Date()).getDate() === 17) return true;
+    },
+    reward: 'epic',
+    got: false
+  }, {
+    name: 'Cinco de Mayo!',
+    description: 'Roll a die on Cinco de Mayo.',
+    requirement () {
+      if ((new Date()).getMonth() === 4 && (new Date()).getDate() === 5) return true;
+    },
+    reward: 'epic',
+    got: false
+  }, {
+    name: 'Snake Eyessssss',
+    description: 'Roll snake eyessssss.',
+    requirement () {
+      if (rolls.length   === 2 &&
+          rolls[0].sides === 6 &&
+          rolls[0].roll  === 1 &&
+          rolls[1].sides === 6 &&
+          rolls[1].roll  === 1) {
+        return true;
+      }
+    },
+    reward: 'basic',
+    got: false
   }
 ];
 
@@ -210,8 +264,6 @@ var resetRollTracking = function () {
   rolls = [];
   streaks = {};
 }
-
-var streaks = {};
 
 var addToStreak = function (type, data) {
   if (!streaks[type]) {
