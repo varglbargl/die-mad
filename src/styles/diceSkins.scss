@@ -83,59 +83,24 @@
   &.marble   { color: #DB2; background-image: url("./assets/marble.gif"); }
 }
 
-@keyframes lava-up {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
-
 .die.animated.lava-lamp {
-  background-image: linear-gradient(to bottom, #504, #708);
+
+  &.d20, &.d8, &.d2 {
+    background-image: url("./assets/lava1.gif");
+  }
+
+  &.d100, &.d10, &.d4 {
+    background-image: url("./assets/lava2.gif");
+  }
+
+  &.custom, &.d12, &.d6 {
+    background-image: url("./assets/lava3.gif");
+  }
+
+  background-size: cover;
   color: #F28;
 
   span {
     text-shadow: #305 0 0 5px;
-    animation-delay: inherit;
-  }
-
-  .skin {
-    animation-delay: inherit;
-  }
-
-  .skin::after {
-    position: absolute;
-    top: calc( 50% - 200px);
-    left: calc(50% - 300px);
-
-    content: '';
-    height: 400px;
-    padding-left: 400px;
-    background-image: url("./assets/lava.png");
-    animation: lava-up 60s linear infinite;
-    animation-delay: inherit;
-
-    background-size: 100px 100px;
-    transform-origin: 200px 200px;
-
-    transform: rotate(0deg);
-    opacity: 0.6;
-  }
-
-  ::after {
-    position: absolute;
-    top: calc(50% - 200px);
-    left: calc(50% - 100px);
-
-    content: '';
-    height: 400px;
-    padding-left: 400px;
-    background-image: url("./assets/lava.png");
-    animation: lava-up 90s linear infinite;
-    animation-delay: inherit;
-
-    background-size: 100px 100px;
-    transform-origin: 200px 200px;
-
-    transform: rotate(0deg);
-    opacity: 0.3;
   }
 }
