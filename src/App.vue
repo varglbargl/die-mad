@@ -2,7 +2,7 @@
   <main id="app">
     <div id="intro-screen" v-if="!introPlayed" :class="{open: introPlaying}">
       <img src="@/assets/logo.svg" />
-      <button class="big-button" @click="playIntro($event)">LET'S DIE</button>
+      <button class="big-button" @click="playIntro($event)">{{ playButtonText }}</button>
     </div>
     <achievements />
     <div id="tabletop">
@@ -101,7 +101,7 @@ import DiceMenu from '@/components/DiceMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
-import { resetRollTracking } from '@/services/cheevos.js';
+import { resetRollTracking, timesRolledWithoutLanding } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -122,6 +122,7 @@ export default {
       settingsOpen: false,
       introPlaying: false,
       introPlayed: false,
+      playButtonText: 'LET\'S DIE',
       lastRolled: 0
     }
   },
@@ -267,6 +268,7 @@ export default {
         if (shakeSpeed > 20) {
           this.rollAll();
           this.lastRolled = now;
+          timesShakenWithoutLanding++;
         }
       }
     },
@@ -296,6 +298,11 @@ export default {
 
     // eslint-disable-next-line
     console.log('You know I can\'t stop you from cheating. So go ahead :)');
+
+
+    let funGoofs = ['i\'m mad', 'let\'s roll', 'like a katamari'];
+
+    this.playButtonText = utils.getRandom(funGoofs).toUpperCase();
   }
 }
 </script>

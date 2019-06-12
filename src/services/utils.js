@@ -279,7 +279,6 @@ export default {
       for (let i = 0; i < rarities.length; i++) {
         saveData.a[i].shift();
         for (let j = 0; j < settings.skins[rarities[i]].length; j++) {
-          if (!saveData.a[i][j]) saveData.a[i][j] = 0;
           settings.skins[rarities[i]][j].has = !!parseInt(saveData.a[i][j]);
         }
       }

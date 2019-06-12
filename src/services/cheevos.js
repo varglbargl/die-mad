@@ -7,6 +7,7 @@ var totalRolls = 0;
 
 // ex: [{roll: 4, sides: 6}, {roll: 1, sides: 20}]
 var rolls = [];
+var timesShakenWithoutLanding = 0;
 
 // ex: {critSuccess: [20, 12], critFail: [1, 1, 1], explosion: [6]}
 var streaks = {};
@@ -140,7 +141,7 @@ var rollAchievements =  [
     requirement () {
       if (totalRolls > 500) return true;
     },
-    reward: 'rare',
+    reward: 'basic',
     got: false
   }, {
     name: '1,000 Dice!!!',
@@ -148,7 +149,7 @@ var rollAchievements =  [
     requirement () {
       if (totalRolls > 1000) return true;
     },
-    reward: 'epic',
+    reward: 'rare',
     got: false
   }, {
     name: '5,000 DICE!?!?',
@@ -272,7 +273,7 @@ var rollAchievements =  [
     got: false
   }, {
     name: 'Awoooooooooo 2',
-    description: 'Roll a critical success during a full moon.',
+    description: 'Roll a critical success under a full moon.',
     requirement () {
       let moonPhase = utils.calculateMoonPhase();
       let hour = (new Date()).getHours();
@@ -293,6 +294,14 @@ var rollAchievements =  [
     },
     reward: 'basic',
     got: false
+  }, {
+    name: 'Serious Arm Workout',
+    description: 'Shake your dice more than 50 times before they land.',
+    requirement () {
+      if (timesShakenWithoutLanding > 50) return true;
+    },
+    reward: 'basic',
+    got: false
   }
 ];
 
@@ -307,6 +316,7 @@ var checkRollAchievements = function () {
 var addToRolls = function (roll, sides) {
   rolls.push({roll, sides});
   totalRolls++;
+  timesRolledWithoutLanding = 0;
 
   checkRollAchievements();
 };
@@ -353,6 +363,7 @@ export {
   addToRolls,
   resetRollTracking,
   rollAchievements,
+  timesShakenWithoutLanding,
 
   recentAchievements
 };
