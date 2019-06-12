@@ -101,7 +101,7 @@ import DiceMenu from '@/components/DiceMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
-import { resetRollTracking, timesRolledWithoutLanding } from '@/services/cheevos.js';
+import { resetRollTracking, timesShakenWithoutLanding } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -122,7 +122,7 @@ export default {
       settingsOpen: false,
       introPlaying: false,
       introPlayed: false,
-      playButtonText: 'LET\'S DIE',
+      playButtonText: 'LET\'S ROLL',
       lastRolled: 0
     }
   },

@@ -316,7 +316,7 @@ var checkRollAchievements = function () {
 var addToRolls = function (roll, sides) {
   rolls.push({roll, sides});
   totalRolls++;
-  timesRolledWithoutLanding = 0;
+  timesShakenWithoutLanding = 0;
 
   checkRollAchievements();
 };
