@@ -202,7 +202,7 @@ var rollAchievements =  [
     reward () {
       return settings.awardSpecificDie('Cupid');
     },
-    rarity: 'rare',
+    rarity: 'epic',
     got: false
   }, {
     name: 'Happy Birthday!',
@@ -310,7 +310,7 @@ var rollAchievements =  [
     reward: 'basic',
     got: false
   }, {
-    name: 'Hail Satan, Tonight',
+    name: 'Hail Satan Tonight',
     description: 'Roll an 18 on 3d6.',
     requirement () {
       if (dieOnTheTable.length === 3 && rolls.length === 3) {
@@ -321,7 +321,26 @@ var rollAchievements =  [
         return true;
       }
     },
-    reward: 'rare',
+    reward: 'basic',
+    got: false
+  }, {
+    name: 'Be Agressive',
+    description: '"Tens and twenties what\'s so funny funckin twenty ten."',
+    requirement () {
+      if (dieOnTheTable.length === 2 &&
+          rolls.length   === 2 &&
+          (rolls[0].sides === 20 &&
+          rolls[0].roll  === 20 &&
+          rolls[1].sides === 10 &&
+          rolls[1].roll  === 10) ||
+          (rolls[0].sides === 10 &&
+          rolls[0].roll  === 10 &&
+          rolls[1].sides === 20 &&
+          rolls[1].roll  === 20)) {
+        return true;
+      }
+    },
+    reward: 'basic',
     got: false
   }
 ];
