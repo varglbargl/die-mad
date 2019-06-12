@@ -23,7 +23,7 @@
           @click="pickDieSkin(skin.class)"
           :class="{selected: settings.currentDiceSkin === skin.class}"
           :style="{display: skin.has ? '' : 'none'}">
-            <div class="die d20" :class="skin.class">
+            <div class="die d20" :class="[skin.class, moonPhase(skin.class)]">
               <div class="skin"></div>
               <span>20</span>
             </div>
@@ -118,6 +118,13 @@ export default {
       }
 
       return owned + '/' + settings.skins[rarity].length;
+    },
+    moonPhase (skin) {
+      if (skin === 'animated moon') {
+        return utils.calculateMoonPhase();
+      } else {
+        return '';
+      }
     }
   },
   mounted() {

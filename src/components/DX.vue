@@ -1,7 +1,7 @@
 <template>
   <div
   class="die"
-  :class="[dieType, this.skin, {rolling: speed > 0}]"
+  :class="[dieType, this.skin, {rolling: speed > 0}, moonPhase]"
   @mousedown.prevent="dragStart"
   @touchstart.prevent="dragStart"
   @mouseup.prevent="dragStop"
@@ -56,6 +56,13 @@ export default {
         zIndex: this.dragging ? 100 : 'unset',
         transform: 'rotate(' + this.rotateTo + 'deg)',
         animationDelay: '-' + this.sides * 7 + 's'
+      }
+    },
+    moonPhase () {
+      if (this.skin === 'animated moon') {
+        return utils.calculateMoonPhase();
+      } else {
+        return '';
       }
     }
   },

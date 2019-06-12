@@ -1,4 +1,5 @@
 import settings from '@/services/settings.js';
+import utils from '@/services/utils.js';
 
 // ACHIEVEMENT TYPE: ROLL - Anything that needs to check the outcome of rolls.
 
@@ -7,7 +8,7 @@ var totalRolls = 0;
 // ex: [{roll: 4, sides: 6}, {roll: 1, sides: 20}]
 var rolls = [];
 
-// ex: {'critSuccess': [20, 12], 'critFail': [1, 1, 1]}
+// ex: {critSuccess: [20, 12], critFail: [1, 1, 1], explosion: [6]}
 var streaks = {};
 
 var rollAchievements =  [
@@ -119,7 +120,10 @@ var rollAchievements =  [
         if (rolls[i].sides == 420 && rolls[i].roll == 69) return true;
       }
     },
-    reward: 'mythic',
+    reward () {
+      return settings.awardSpecificDie('Lava');
+    },
+    rarity: 'mythic',
     got: false,
     secret: true
   }, {
@@ -239,6 +243,53 @@ var rollAchievements =  [
           rolls[1].roll  === 1) {
         return true;
       }
+    },
+    reward: 'basic',
+    got: false
+  }, {
+    name: 'The Phone Melter 1',
+    description: 'Roll at least 10 dice at once with animations turned on.',
+    requirement () {
+      if (rolls.length >= 10 && settings.animationsEnabled) return true;
+    },
+    reward: 'basic',
+    got: false
+  }, {
+    name: 'The Phone Melter 2',
+    description: 'Roll an exploding d1 with animations turned off.',
+    requirement () {
+      if (streaks.explosion && streaks.explosion.indexOf(1) !== -1 && !settings.animationsEnabled) return true;
+    },
+    reward: 'rare',
+    got: false
+  }, {
+    name: 'Awoooooooooo 1',
+    description: 'Roll a die after midnight.',
+    requirement () {
+      if ((new Date()).getHours() < 6) return true;
+    },
+    reward: 'basic',
+    got: false
+  }, {
+    name: 'Awoooooooooo 2',
+    description: 'Roll a critical success during a full moon.',
+    requirement () {
+      let moonPhase = utils.calculateMoonPhase();
+      let hour = (new Date()).getHours();
+
+      return (moonPhase === 'phase-4' && (hour > 17 || hour < 7) && streaks.critSuccess); // full moon and night time(ish)
+    },
+    reward () {
+      return settings.awardSpecificDie('Laika');
+    },
+    rarity: 'mythic',
+    got: false,
+    secret: true
+  }, {
+    name: 'AW COME ON!',
+    description: 'Roll a 99 on a d100.',
+    requirement () {
+      if (rolls[rolls.length - 1].sides === 100 && rolls[rolls.length - 1].roll === 99) return true;
     },
     reward: 'basic',
     got: false

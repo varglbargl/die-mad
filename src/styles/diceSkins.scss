@@ -104,3 +104,22 @@
     text-shadow: #305 0 0 5px;
   }
 }
+
+.die.animated.moon {
+
+  &.phase-0 { background-image: url("./assets/moon-0.jpg"); }
+  &.phase-1 { background-image: url("./assets/moon-1.jpg"); }
+  &.phase-2 { background-image: url("./assets/moon-2.jpg"); }
+  &.phase-3 { background-image: url("./assets/moon-3.jpg"); }
+  &.phase-4 { background-image: url("./assets/moon-4.jpg"); }
+  &.phase-5 { background-image: url("./assets/moon-5.jpg"); }
+  &.phase-6 { background-image: url("./assets/moon-6.jpg"); }
+  &.phase-7 { background-image: url("./assets/moon-7.jpg"); }
+
+  background-size: cover;
+  color: #EEE;
+
+  span {
+    text-shadow: #000 0 0 5px;
+  }
+}

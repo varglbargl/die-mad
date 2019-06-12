@@ -55,7 +55,8 @@
         dieType(die.sides),
         settings.currentDiceSkin === 'random' ?
         settings.getRandomDieSkin(die.sides) :
-        settings.currentDiceSkin
+        settings.currentDiceSkin,
+        moonPhase
       ]"
       :style="{display: die.active ? 'flex' : 'none', animationDelay: '-' + die.sides * 7 + 's'}">
         <div class="skin"></div>
@@ -172,6 +173,13 @@ export default {
       }
 
       return total;
+    },
+    moonPhase () {
+      if (settings.currentDiceSkin === 'animated moon') {
+        return utils.calculateMoonPhase();
+      } else {
+        return '';
+      }
     }
   },
   methods: {
