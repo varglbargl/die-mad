@@ -342,6 +342,16 @@ var rollAchievements =  [
     },
     reward: 'basic',
     got: false
+  }, {
+    name: 'Basically A Sphere',
+    description: 'Roll a custom die with 1000 or more sides.',
+    requirement () {
+      if (rolls[rolls.length - 1].sides >= 1000) {
+        return true;
+      }
+    },
+    reward: 'basic',
+    got: false
   }
 ];
 
