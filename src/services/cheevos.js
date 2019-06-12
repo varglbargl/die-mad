@@ -9,7 +9,7 @@ var totalRolls = 0;
 // used for one achievement but it's a fun one
 var timesShakenWithoutLanding = 0;
 
-// totally metal name for a variable
+// technically it should be "diceOnTheTable" but this is a totally metal name for a variable
 var dieOnTheTable = [];
 
 // ex: [{roll: 4, sides: 6}, {roll: 1, sides: 20}]
@@ -172,13 +172,13 @@ var rollAchievements =  [
       if ((new Date()).getMonth() === 5) return true;
     },
     reward () {
-      let gayDice = ['Lesbian', 'Gay', 'Bi', 'Trans', 'Pan', 'Enby', 'Ace/Aro', 'Intersex'];
+      let gayDice = ['Lesbian', 'Gay', 'Bi', 'Trans', 'Pan', 'Enby', 'Ace', 'Aro', 'Fluid', 'Intersex'];
 
       for (let i = 0; i < gayDice.length; i++) {
         settings.awardSpecificDie(gayDice[i]);
       }
 
-      return {name: 'Dice x8', class: 'pattern gay', rarity: 'rare'};
+      return {name: 'Dice x10', class: 'pattern gay', rarity: 'rare'};
     },
     rarity: 'rare',
     got: false

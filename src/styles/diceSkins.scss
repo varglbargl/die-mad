@@ -71,14 +71,16 @@
     opacity: 0.75;
   }
 
-  &.lesbian  { background-image: url("./assets/lesbiab.gif"); }
-  &.gay      { background-image: url("./assets/imgay.gif"); }
-  &.bi       { background-image: url("./assets/bi.gif"); }
-  &.trans    { background-image: url("./assets/transrights.gif"); }
-  &.pan      { background-image: url("./assets/pan.gif"); }
-  &.ace      { background-image: url("./assets/acearo.gif"); }
-  &.nonbinary{ background-image: url("./assets/nonbinary.gif"); }
-  &.intersex { background-image: url("./assets/intersex.gif"); }
+  &.lesbian    { background-image: url("./assets/lesbiab.gif"); }
+  &.gay        { background-image: url("./assets/imgay.gif"); }
+  &.bi         { background-image: url("./assets/bi.gif"); }
+  &.trans      { background-image: url("./assets/transrights.gif"); }
+  &.pan        { background-image: url("./assets/pan.gif"); }
+  &.ace        { background-image: url("./assets/ace.gif"); }
+  &.aro        { background-image: url("./assets/aro.gif"); }
+  &.nonbinary  { background-image: url("./assets/nonbinary.gif"); }
+  &.intersex   { background-image: url("./assets/intersex.gif"); }
+  &.genderfluid{ background-image: url("./assets/drinkthe.gif"); }
 
   &.marble   { color: #DB2; background-image: url("./assets/marble.gif"); }
 }
