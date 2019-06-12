@@ -18,7 +18,11 @@
             <div class="skin"></div>
             <span> 20 </span>
           </div>
-          <span style="font-weight: 500">{{ cheevo.info.rewarded.name }}</span>
+          <span
+          style="font-weight: 500;"
+          :style="cheevo.info.reward.class === 'pattern genderfluid' ? 'letter-spacing: -1.6px; font-size: 15px;' : ''">
+            {{ cheevo.info.rewarded.name }}
+          </span>
           <crit-animation
           @kill="stopAnimation(i)"
           v-if="stoppedAnimations[i] !== true"

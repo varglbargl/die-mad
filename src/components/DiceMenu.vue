@@ -22,7 +22,7 @@
           class="choice"
           @click="pickDieSkin(skin.class)"
           :class="{selected: settings.currentDiceSkin === skin.class}"
-          :style="{display: skin.has ? '' : 'none'}">
+          :style="{display: skin.has ? '' : 'none', letterSpacing: skin.class === 'pattern genderfluid' ? '-1.6px' : '', fontSize: skin.class === 'pattern genderfluid' ? '15px' : ''}">
             <div class="die d20" :class="[skin.class, moonPhase(skin.class)]">
               <div class="skin"></div>
               <span>20</span>

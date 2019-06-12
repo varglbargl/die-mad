@@ -172,7 +172,7 @@ var rollAchievements =  [
       if ((new Date()).getMonth() === 5) return true;
     },
     reward () {
-      let gayDice = ['Lesbian', 'Gay', 'Bi', 'Trans', 'Pan', 'Enby', 'Ace', 'Aro', 'Fluid', 'Intersex'];
+      let gayDice = ['Lesbian', 'Gay', 'Bi', 'Trans', 'Pan', 'Enby', 'Ace', 'Aro', 'Genderfluid', 'Intersex'];
 
       for (let i = 0; i < gayDice.length; i++) {
         settings.awardSpecificDie(gayDice[i]);
