@@ -242,7 +242,7 @@ export default {
       roll = 100;
     } // else if minRarity === 'basic' || !minRarity (they're the same thing if you think about it)
 
-    if (roll > 99) {
+    if (roll > 99.5) {
       rarity = 'mythic';
     } else if (roll >= 90) {
       rarity = 'epic';
