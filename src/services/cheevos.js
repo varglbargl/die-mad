@@ -3,11 +3,17 @@ import utils from '@/services/utils.js';
 
 // ACHIEVEMENT TYPE: ROLL - Anything that needs to check the outcome of rolls.
 
+// total rolls since the app opened. todo: keep track of this in the player save.
 var totalRolls = 0;
+
+// used for one achievement but it's a fun one
+var timesShakenWithoutLanding = 0;
+
+// totally metal name for a variable
+var dieOnTheTable = [];
 
 // ex: [{roll: 4, sides: 6}, {roll: 1, sides: 20}]
 var rolls = [];
-var timesShakenWithoutLanding = 0;
 
 // ex: {critSuccess: [20, 12], critFail: [1, 1, 1], explosion: [6]}
 var streaks = {};
@@ -237,7 +243,8 @@ var rollAchievements =  [
     name: 'Snake Eyessssss',
     description: 'Roll snake eyessssss.',
     requirement () {
-      if (rolls.length   === 2 &&
+      if (dieOnTheTable.length === 2 &&
+          rolls.length   === 2 &&
           rolls[0].sides === 6 &&
           rolls[0].roll  === 1 &&
           rolls[1].sides === 6 &&
@@ -251,7 +258,7 @@ var rollAchievements =  [
     name: 'The Phone Melter 1',
     description: 'Roll at least 10 dice at once with animations turned on.',
     requirement () {
-      if (rolls.length >= 10 && settings.animationsEnabled) return true;
+      if (dieOnTheTable.length >= 10 && settings.animationsEnabled) return true;
     },
     reward: 'basic',
     got: false
@@ -301,6 +308,20 @@ var rollAchievements =  [
       if (timesShakenWithoutLanding > 50) return true;
     },
     reward: 'basic',
+    got: false
+  }, {
+    name: 'Hail Satan, Tonight',
+    description: 'Roll an 18 on 3d6.',
+    requirement () {
+      if (dieOnTheTable.length === 3 && rolls.length === 3) {
+        for (var i = 0; i < 3; i++) {
+          if (rolls[i].sides !== 6 || rolls[i].roll !== 6) return false;
+        }
+
+        return true;
+      }
+    },
+    reward: 'rare',
     got: false
   }
 ];
@@ -356,7 +377,11 @@ var earnAchievement = function (cheevo) {
   cheevo.got = true;
   cheevo.rewarded = awardReward(cheevo.reward);
   recentAchievements.push({info: cheevo, id: ++count});
-}
+};
+
+var setDieOnTheTable = function (dice) {
+  dieOnTheTable = dice;
+};
 
 export {
   addToStreak,
@@ -364,6 +389,7 @@ export {
   resetRollTracking,
   rollAchievements,
   timesShakenWithoutLanding,
+  setDieOnTheTable,
 
   recentAchievements
 };

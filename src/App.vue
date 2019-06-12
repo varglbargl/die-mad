@@ -101,7 +101,7 @@ import DiceMenu from '@/components/DiceMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
-import { resetRollTracking, timesShakenWithoutLanding } from '@/services/cheevos.js';
+import { resetRollTracking, timesShakenWithoutLanding, setDieOnTheTable } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -220,6 +220,8 @@ export default {
         this.activeDice.push({sides, id: ++this.count, skin: settings.currentDiceSkin});
       }
 
+      setDieOnTheTable(this.activeDice);
+
       Vue.nextTick(() => { // because the actual die component doesn't exist yet
         this.touched = this.$refs.dice[this.activeDice.length - 1];
 
@@ -251,6 +253,7 @@ export default {
     },
     clear () {
       this.activeDice = [];
+      setDieOnTheTable([]);
       this.rolls = [];
       this.bonusDice = [];
       this.bonusRolls = [];
