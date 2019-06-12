@@ -14,7 +14,7 @@
         <div class="reward-card" :class="cheevo.info.rewarded.rarity">
           <div
           class="die d20"
-          :class="cheevo.info.rewarded.class">
+          :class="[cheevo.info.rewarded.class, moonPhase(cheevo.info.rewarded.class)]">
             <div class="skin"></div>
             <span> 20 </span>
           </div>
@@ -34,6 +34,7 @@
 <script>
 import CritAnimation from '@/components/CritAnimation.vue';
 import { recentAchievements } from '@/services/cheevos.js';
+import utils from '@/services/utils.js';
 
 export default {
   name: 'Achievements',
@@ -52,6 +53,13 @@ export default {
     stopAnimation (index) {
       this.stoppedAnimations[index] = true;
       this.$forceUpdate(); // I cannot believe this is necessarry... WHY??
+    },
+    moonPhase (skin) {
+      if (skin === 'animated moon') {
+        return utils.calculateMoonPhase();
+      } else {
+        return '';
+      }
     }
   }
 }
