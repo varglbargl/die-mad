@@ -98,7 +98,7 @@ export default {
 
     mythic: [
       { name: 'Lava',     class: 'animated lava-lamp', has: false },
-      { name: 'Laika',    class: 'animated moon',      has: true }
+      { name: 'Laika',    class: 'animated moon',      has: false }
     ]
   },
 

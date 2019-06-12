@@ -185,7 +185,7 @@ export default {
     let rarities = [ 'basic', 'rare', 'epic', 'mythic' ];
 
     for (let i = 0; i < rarities.length; i++) {
-      unlocks[i] = [];
+      unlocks[i] = ['1'];
 
       for (let j = 0; j < settings.skins[rarities[i]].length; j++) {
         let has = settings.skins[rarities[i]][j].has;
@@ -277,10 +277,10 @@ export default {
       let rarities = [ 'basic', 'rare', 'epic', 'mythic' ];
 
       for (let i = 0; i < rarities.length; i++) {
+        saveData.a[i].shift();
         for (let j = 0; j < settings.skins[rarities[i]].length; j++) {
-          if (!saveData.a[i][saveData.a - j -1]) saveData.a[i][saveData.a - j -1] = 0;
-          // Yeesh, what a mess. Let us never have to edit this again.
-          settings.skins[rarities[i]][settings.skins[rarities[i]].length - j - 1].has = !!parseInt(saveData.a[i][saveData.a[i].length - j -1]);
+          if (!saveData.a[i][j]) saveData.a[i][j] = 0;
+          settings.skins[rarities[i]][j].has = !!parseInt(saveData.a[i][j]);
         }
       }
     }
