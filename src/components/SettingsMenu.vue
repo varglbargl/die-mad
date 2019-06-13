@@ -1,5 +1,5 @@
 <template>
-  <div id="menu-screen" :class="{open: open}">
+  <div id="settings-menu" :class="{open: open}">
     <button class="med-button" @click="closeMenu">{{ settings.cookiesEnabled ? 'SAVE SETTINGS' : 'CLOSE' }}</button>
     <h2>GENERAL SETTINGS</h2>
     <div class="general-settings section">
@@ -148,7 +148,7 @@ export default {
       setTimeout(() => {
         let to = document.getElementsByTagName('body')[0].scrollTop;
 
-        document.getElementById('menu-screen').scrollTop += to;
+        document.getElementById('settings-menu').scrollTop += to;
         document.getElementsByTagName('body')[0].scrollTop = 0;
       }, 1);
     },
@@ -198,7 +198,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/checkbox.scss";
 
-#menu-screen {
+#settings-menu {
   position: absolute;
   top: 100vh;
   left: 0;

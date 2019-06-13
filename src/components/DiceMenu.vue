@@ -1,5 +1,5 @@
 <template>
-  <div id="menu-screen" :class="{open: open}">
+  <div id="treasure-menu" :class="{open: open}">
     <button class="med-button" @click="$emit('close')">CLOSE</button>
     <h2>DICE SKINS</h2>
     <div class="tabs">
@@ -59,7 +59,7 @@
       :class="cheevo.rarity || cheevo.reward">
         <h3>{{ cheevo.name }}</h3>
         <span v-if="cheevo.got">{{ cheevo.description }}</span>
-        <span v-if="!cheevo.got" style="font-weight: 800">? ? ?</span>
+        <span v-if="!cheevo.got" style="font-size: 38px">? ? ?</span>
         <span class="big-check" v-if="cheevo.got">&#10003;</span>
       </div>
     </div>
@@ -144,7 +144,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-#menu-screen {
+#treasure-menu {
   position: absolute;
   top: 100vh;
   left: 0;
