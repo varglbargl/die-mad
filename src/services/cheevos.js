@@ -45,7 +45,7 @@ var rollAchievements =  [
         return streaks.critSuccess.length >= 3;
       }
     },
-    reward: 'rare',
+    reward: 'basic',
     got: false
   }, {
     name: 'Critters Never Win',
@@ -55,7 +55,7 @@ var rollAchievements =  [
         return streaks.critFail.length >= 3;
       }
     },
-    reward: 'epic',
+    reward: 'basic',
     got: false
   }, {
     name: 'Rollin on Dubs',
@@ -206,7 +206,7 @@ var rollAchievements =  [
     got: false
   }, {
     name: 'Dicemother\'s Day',
-    description: 'Roll a die on Vanessa\'s birthday. You know, Vanessa, the person who made this dice roller!',
+    description: 'Roll a die on Vanessa\'s birthday. Vanessa made this dice roller!',
     requirement () {
       if ((new Date()).getMonth() === 0 && (new Date()).getDate() === 30) return true;
     },

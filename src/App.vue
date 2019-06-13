@@ -303,9 +303,9 @@ export default {
     console.log('You know I can\'t stop you from cheating. So go ahead :)');
 
 
-    let funGoofs = ['i\'m mad', 'let\'s roll', 'like a katamari'];
+    let funGoofs = ['i\'m mad', 'let\'s die', 'send dice pics', 'let\'s roll', 'like a katamari', 'cybergeomancy', 'roll them bones'];
 
-    this.playButtonText = utils.getRandom(funGoofs).toUpperCase();
+    if (settings.cookiesEnabled) this.playButtonText = utils.getRandom(funGoofs).toUpperCase();
   }
 }
 </script>
@@ -374,12 +374,14 @@ html, body {
   width: 100vw;
   max-width: 800px;
   margin: 0 auto;
+  overflow: show;
 
   flex: 1;
 
   background-image: url("./assets/felt.jpg");
   background-color: $felt-green;
-  overflow: show;
+  background-size: cover;
+  background-position: center;
 }
 
 #dice-rack {
