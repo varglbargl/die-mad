@@ -107,6 +107,14 @@ export default {
   // This is the dice skin you have selected in the menu.
   currentDiceSkin: 'default red',
 
+  // Table themes! Works basically like the dice skins. They have a name, a class, and whether or not you have it.
+  tableThemes: [
+    { name: 'Felt',  class: 'strexture felt',  has: true },
+    { name: 'Space', class: 'strexture space', has: true }
+  ],
+
+  currentTableTheme: 'strexture felt',
+
   // This is only really useful so the "All" option in the Dice Settings section of the menu has a model.
   allDice: {
     active: false,

@@ -5,7 +5,7 @@
       <button class="big-button" @click="playIntro($event)">{{ playButtonText }}</button>
     </div>
     <achievements />
-    <div id="tabletop">
+    <div id="tabletop" :class="settings.currentTableTheme">
       <DX
       v-for="(die, i) in activeDice"
       :key="die.id"
@@ -313,6 +313,7 @@ export default {
 <style lang="scss">
 @import "@/styles/dice.scss";
 @import "@/styles/diceSkins.scss";
+@import "@/styles/tableThemes.scss";
 
 * {
   box-sizing: border-box;
@@ -378,10 +379,7 @@ html, body {
 
   flex: 1;
 
-  background-image: url("./assets/felt.jpg");
-  background-color: $felt-green;
-  background-size: cover;
-  background-position: center;
+  background-color: #444;
 }
 
 #dice-rack {
