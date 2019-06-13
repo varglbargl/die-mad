@@ -306,6 +306,9 @@ export default {
     let funGoofs = ['i\'m mad', 'let\'s die', 'send dice pics', 'let\'s roll', 'like a katamari', 'cybergeomancy', 'roll them bones'];
 
     if (settings.cookiesEnabled) this.playButtonText = utils.getRandom(funGoofs).toUpperCase();
+  },
+  watch: {
+    'settings.currentTableTheme' () {} // unclear why i have to do this for table themes but not dice skins
   }
 }
 </script>

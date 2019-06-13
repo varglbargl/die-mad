@@ -175,7 +175,7 @@ export default {
   // COOKIES!!
 
   encodeSaveData () {
-    let unlocks = [];
+    let diceSkins = [];
 
     let compressData = function (data) {
       return parseInt(data.join(''), 2).toString(36);
@@ -185,15 +185,15 @@ export default {
     let rarities = [ 'basic', 'rare', 'epic', 'mythic' ];
 
     for (let i = 0; i < rarities.length; i++) {
-      unlocks[i] = ['1'];
+      diceSkins[i] = ['1'];
 
       for (let j = 0; j < settings.skins[rarities[i]].length; j++) {
-        let has = settings.skins[rarities[i]][j].has;
+        let has = settings.skins[rarities[i]][j].got;
 
-        unlocks[i].push(has ? '1' : '0');
+        diceSkins[i].push(has ? '1' : '0');
       }
 
-      unlocks[i] = compressData(unlocks[i]);
+      diceSkins[i] = compressData(diceSkins[i]);
     }
 
     let userSettings = [
@@ -222,7 +222,7 @@ export default {
       diceSettings[i] = compressData(diceSettings[i]);
     }
 
-    diceSettings[dieTypes.length] = settings.currentDiceSkin.split(' ').join('_');
+    diceSettings.push(settings.currentDiceSkin.split(' ').join('_'));
 
     let achievements = [];
 
@@ -232,7 +232,17 @@ export default {
 
     achievements = compressData(achievements);
 
-    return JSON.stringify({a: unlocks, b: userSettings, c: diceSettings, d: achievements});
+    let tableThemes = [];
+
+    for (let i = 0; i < settings.tableThemes.length; i++) {
+      tableThemes.push(settings.tableThemes[i].got ? '1' : '0');
+    }
+
+    tableThemes = [compressData(tableThemes)];
+
+    tableThemes.push(settings.currentTableTheme.split(' ').join('_'));
+
+    return JSON.stringify({a: diceSkins, b: userSettings, c: diceSettings, d: achievements, e: tableThemes});
   },
 
   decodeSaveData () {
@@ -255,7 +265,11 @@ export default {
       save.c[i] = [0,0,0,0].concat(decompressData(save.c[i])).slice(-4);
     }
 
+    save.c[save.c.length - 1] = save.c[save.c.length - 1].split('_').join(' ');
+
     save.d = decompressData(save.d);
+
+    save.e = [decompressData(save.e[0]), save.e[1].split('_').join(' ')];
 
     return save;
   },
@@ -279,7 +293,7 @@ export default {
       for (let i = 0; i < rarities.length; i++) {
         saveData.a[i].shift();
         for (let j = 0; j < settings.skins[rarities[i]].length; j++) {
-          settings.skins[rarities[i]][j].has = !!parseInt(saveData.a[i][j]);
+          settings.skins[rarities[i]][j].got = !!parseInt(saveData.a[i][j]);
         }
       }
     }
@@ -302,14 +316,23 @@ export default {
         settings.diceRack[dieTypes[i]].critFail = !!parseInt(saveData.c[i][3]);
       }
 
-      settings.currentDiceSkin = saveData.c[dieTypes.length].split('_').join(' ');
+      settings.currentDiceSkin = saveData.c[dieTypes.length];
     }
 
     if (saveData.d) {
-      for (var i = rollAchievements.length - 1; i >= 0; i--) {
+      for (let i = 0; i < rollAchievements.length; i++) {
         if (!saveData.d[i]) saveData.d[i] = 0;
         rollAchievements[i].got = !!parseInt(saveData.d[i]);
       }
+    }
+
+    if (saveData.e) {
+      for (let i = 0; i < settings.tableThemes.length; i++) {
+        if (!saveData.e[0][i]) saveData.e[0][i] = 0;
+        settings.tableThemes[i].got = !!parseInt(saveData.e[0][i]);
+      }
+
+      settings.currentTableTheme = saveData.e[1];
     }
   },
 

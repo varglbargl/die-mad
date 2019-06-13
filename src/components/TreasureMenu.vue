@@ -22,7 +22,7 @@
           class="choice"
           @click="pickDieSkin(skin.class)"
           :class="{selected: settings.currentDiceSkin === skin.class}"
-          :style="{display: skin.has ? '' : 'none', letterSpacing: skin.class === 'pattern genderfluid' ? '-1.6px' : '', fontSize: skin.class === 'pattern genderfluid' ? '15px' : ''}">
+          :style="{display: skin.got ? '' : 'none', letterSpacing: skin.class === 'pattern genderfluid' ? '-1.6px' : '', fontSize: skin.class === 'pattern genderfluid' ? '15px' : ''}">
             <div class="die d20" :class="[skin.class, moonPhase(skin.class)]">
               <div class="skin"></div>
               <span>20</span>
@@ -47,6 +47,21 @@
         </div>
         <!-- for testing purposes only: -->
         <!-- <button class="med-button" @click="awardRandomDie">GIMME</button> -->
+      </div>
+    </div>
+    <h2>TABLE THEMES</h2>
+    <div class="section table-themes">
+      <div
+      v-for="(theme, i) in settings.tableThemes"
+      :key="i"
+      class="choice"
+      @click="pickTableTheme(theme.class)"
+      :class="{selected: settings.currentTableTheme === theme.class}">
+        <div
+        class="table-theme"
+        :class="theme.class">
+        </div>
+        <span style="font-weight: 500">{{ theme.name }}</span>
       </div>
     </div>
     <h2>ACHIEVEMENTS</h2>
@@ -97,12 +112,16 @@ export default {
       settings.currentDiceSkin = color;
       utils.saveProgress();
     },
+    pickTableTheme (theme) {
+      settings.currentTableTheme = theme;
+      utils.saveProgress();
+    },
     titlize (str) {
       return utils.titlize(str);
     },
     dieCategoryIsEmpty (category) {
       for (var i = 0; i < settings.skins[category].length; i++) {
-        if (settings.skins[category][i].has) return false;
+        if (settings.skins[category][i].got) return false;
       }
 
       return true;
@@ -114,7 +133,7 @@ export default {
       let owned = 0;
 
       for (var i = 0; i < settings.skins[rarity].length; i++) {
-        if (settings.skins[rarity][i].has) owned++;
+        if (settings.skins[rarity][i].got) owned++;
       }
 
       return owned + '/' + settings.skins[rarity].length;
@@ -257,6 +276,68 @@ export default {
       span {
         left: calc(50% - 14px);
         width: auto;
+      }
+    }
+  }
+}
+
+.table-themes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+
+  .choice {
+    padding: 8px 8px 8px 38px;
+    margin: 10px 6px;
+    max-width: calc(50% - 12px);
+    border: 3px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.selected {
+      border-color: $red;
+    }
+
+    span {
+      margin-left: -30px;
+    }
+
+    .table-theme {
+      margin-bottom: 4px;
+      border: 1px solid #000;
+      position: relative;
+      width: 30vw;
+      max-width: 100%;
+      height: 30vh;
+
+      &::before {
+        padding-left: 30px;
+        left: -31px;
+        box-shadow: none;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .choice {
+      padding: 8px;
+
+      span {
+        margin-left: 0;
+      }
+
+      .table-theme {
+        width: 40vw;
+
+        &::before {
+          display: none;
+        }
       }
     }
   }

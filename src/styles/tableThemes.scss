@@ -1,41 +1,44 @@
-#tabletop.strexture {
-  background-size: cover;
-  background-position: center;
-
-  &::before, &::after {
-    content: "";
-    padding-left: 60px;
-    height: 100%;
-    position: absolute;
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-    box-shadow: 0 0 15px #000;
-
+#tabletop, .table-theme {
+  &.strexture {
     background-size: cover;
-  }
-
-  &::before {
-    left: -62px;
-  }
-
-  &::after {
-    right: -62px;
-  }
-
-  &.felt {
-    background-image: url("./assets/themes/felt.jpg");
+    background-position: center;
 
     &::before, &::after {
-      border-color: #320;
-      background-image: url("./assets/themes/wood-panel.jpg");
+      content: "";
+      padding-left: 60px;
+      height: 100%;
+      position: absolute;
+      border-left: 1px solid #000;
+      border-right: 1px solid #000;
+      box-shadow: 0 0 15px #000;
     }
-  }
 
-  &.space1 {
-    background-image: url("./assets/themes/space1.jpg");
+    &::before {
+      left: -62px;
+    }
 
-    &::before, &::after {
-      background-image: url("./assets/themes/metal-panel.jpg");
+    &::after {
+      right: -62px;
+    }
+
+    &.felt {
+      background-image: url("./assets/themes/felt.jpg");
+
+      &::before, &::after {
+        border-color: #320;
+        background-image: url("./assets/themes/wood-panel.jpg");
+        background-size: cover;
+      }
+    }
+
+    &.space1 {
+      background-image: url("./assets/themes/space1.jpg");
+
+      &::before, &::after {
+        background-image: url("./assets/themes/metal-panel.jpg");
+        background-size: 100%;
+        background-position-y: 80px;
+      }
     }
   }
 }

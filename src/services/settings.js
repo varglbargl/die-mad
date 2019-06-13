@@ -29,78 +29,78 @@ export default {
   // From now on, never rearrange these dice. Only add dice onto the end so it doesn't mess up people's saves.
   skins: {
     basic: [
-      { name: 'Red',      class: 'default red',        has: true },
-      { name: 'Orange',   class: 'default orange',     has: true },
-      { name: 'Yellow',   class: 'default yellow',     has: true },
-      { name: 'Green',    class: 'default green',      has: true },
-      { name: 'Blue',     class: 'default blue',       has: true },
-      { name: 'Purple',   class: 'default purple',     has: true },
-      { name: 'Black',    class: 'default black',      has: true },
-      { name: 'White',    class: 'default white',      has: true },
-      { name: 'Pink',     class: 'default pink',       has: false },
-      { name: 'Navy',     class: 'default navy',       has: false },
-      { name: 'Teal',     class: 'default teal',       has: false },
-      { name: 'Wood',     class: 'default wood',       has: false },
-      { name: 'Shale',    class: 'default shale',      has: false },
-      { name: 'Fog',      class: 'default fog',        has: false },
-      { name: 'Olive',    class: 'default olive',      has: false },
-      { name: 'Steel',    class: 'default steel',      has: false },
-      { name: 'Pear',     class: 'default pear',       has: false },
-      { name: 'Ivory',    class: 'default ivory',      has: false },
-      { name: 'Ochre',    class: 'default ochre',      has: false },
-      { name: 'Clay',     class: 'default clay',       has: false },
-      { name: 'Amber',    class: 'default amber',      has: false },
-      { name: 'Indigo',   class: 'default indigo',     has: false },
-      { name: 'Khaki',    class: 'default khaki',      has: false },
-      { name: 'Lilac',    class: 'default lilac',      has: false },
-      { name: 'Jade',     class: 'default jade',       has: false },
-      { name: 'Coral',    class: 'default coral',      has: false },
-      { name: 'Rose',     class: 'default rose',       has: false },
-      { name: 'Sky',      class: 'default sky',        has: false },
-      { name: 'Crimson',  class: 'default crimson',    has: false },
-      { name: 'Lemon',    class: 'default lemon',      has: false },
-      { name: 'Latte',    class: 'default latte',      has: false },
-      { name: 'Cobalt',   class: 'default cobalt',     has: false }
+      { name: 'Red',      class: 'default red',        got: true },
+      { name: 'Orange',   class: 'default orange',     got: true },
+      { name: 'Yellow',   class: 'default yellow',     got: true },
+      { name: 'Green',    class: 'default green',      got: true },
+      { name: 'Blue',     class: 'default blue',       got: true },
+      { name: 'Purple',   class: 'default purple',     got: true },
+      { name: 'Black',    class: 'default black',      got: true },
+      { name: 'White',    class: 'default white',      got: true },
+      { name: 'Pink',     class: 'default pink',       got: false },
+      { name: 'Navy',     class: 'default navy',       got: false },
+      { name: 'Teal',     class: 'default teal',       got: false },
+      { name: 'Wood',     class: 'default wood',       got: false },
+      { name: 'Shale',    class: 'default shale',      got: false },
+      { name: 'Fog',      class: 'default fog',        got: false },
+      { name: 'Olive',    class: 'default olive',      got: false },
+      { name: 'Steel',    class: 'default steel',      got: false },
+      { name: 'Pear',     class: 'default pear',       got: false },
+      { name: 'Ivory',    class: 'default ivory',      got: false },
+      { name: 'Ochre',    class: 'default ochre',      got: false },
+      { name: 'Clay',     class: 'default clay',       got: false },
+      { name: 'Amber',    class: 'default amber',      got: false },
+      { name: 'Indigo',   class: 'default indigo',     got: false },
+      { name: 'Khaki',    class: 'default khaki',      got: false },
+      { name: 'Lilac',    class: 'default lilac',      got: false },
+      { name: 'Jade',     class: 'default jade',       got: false },
+      { name: 'Coral',    class: 'default coral',      got: false },
+      { name: 'Rose',     class: 'default rose',       got: false },
+      { name: 'Sky',      class: 'default sky',        got: false },
+      { name: 'Crimson',  class: 'default crimson',    got: false },
+      { name: 'Lemon',    class: 'default lemon',      got: false },
+      { name: 'Latte',    class: 'default latte',      got: false },
+      { name: 'Cobalt',   class: 'default cobalt',     got: false }
     ],
 
     rare: [
-      { name: 'Fire',     class: 'neon fire',          has: false },
-      { name: 'Ice',      class: 'neon ice',           has: false },
-      { name: 'Krypton',  class: 'neon krypton',       has: false },
-      { name: 'Kirby',    class: 'neon kirby',         has: false },
-      { name: 'Shrimps',  class: 'neon headache',      has: false },
-      { name: 'Xenon',    class: 'neon toxic',         has: false },
-      { name: 'Tropics',  class: 'neon tropics',       has: false },
-      { name: 'Lapis',    class: 'neon lapis',         has: false },
-      { name: 'Lesbian',  class: 'pattern lesbian',    has: false },
-      { name: 'Gay',      class: 'pattern gay',        has: false },
-      { name: 'Bi',       class: 'pattern bi',         has: false },
-      { name: 'Trans',    class: 'pattern trans',      has: false },
-      { name: 'Pan',      class: 'pattern pan',        has: false },
-      { name: 'Enby',     class: 'pattern nonbinary',  has: false },
-      { name: 'Ace',      class: 'pattern ace',        has: false },
-      { name: 'Aro',      class: 'pattern aro',        has: false },
-      { name: 'Intersex', class: 'pattern intersex',   has: false },
-      { name: 'Genderfluid',class: 'pattern genderfluid',has: false }
+      { name: 'Fire',     class: 'neon fire',          got: false },
+      { name: 'Ice',      class: 'neon ice',           got: false },
+      { name: 'Krypton',  class: 'neon krypton',       got: false },
+      { name: 'Kirby',    class: 'neon kirby',         got: false },
+      { name: 'Shrimps',  class: 'neon headache',      got: false },
+      { name: 'Xenon',    class: 'neon toxic',         got: false },
+      { name: 'Tropics',  class: 'neon tropics',       got: false },
+      { name: 'Lapis',    class: 'neon lapis',         got: false },
+      { name: 'Lesbian',  class: 'pattern lesbian',    got: false },
+      { name: 'Gay',      class: 'pattern gay',        got: false },
+      { name: 'Bi',       class: 'pattern bi',         got: false },
+      { name: 'Trans',    class: 'pattern trans',      got: false },
+      { name: 'Pan',      class: 'pattern pan',        got: false },
+      { name: 'Enby',     class: 'pattern nonbinary',  got: false },
+      { name: 'Ace',      class: 'pattern ace',        got: false },
+      { name: 'Aro',      class: 'pattern aro',        got: false },
+      { name: 'Intersex', class: 'pattern intersex',   got: false },
+      { name: 'Genderfluid',class: 'pattern genderfluid',got: false }
     ],
 
     epic: [
-      { name: 'Beat',     class: 'default beat',       has: false },
-      { name: 'Tab',      class: 'default tab',        has: false },
-      { name: 'Mew',      class: 'default mew',        has: false },
-      { name: 'Yo-Yo',    class: 'default yoyo',       has: false },
-      { name: 'Poison',   class: 'default poison-jam', has: false },
-      { name: 'Shock',    class: 'default love-shock', has: false },
-      { name: 'Noise',    class: 'default noise-tank', has: false },
-      { name: 'Rhino',    class: 'default rhino',      has: false },
-      { name: 'Marble',   class: 'pattern marble',     has: false },
-      { name: 'Spoopy',   class: 'default halloween',  has: false,  event: 'Halloween' },
-      { name: 'Cupid',    class: 'default valentines', has: false,  event: 'Valentines Day' }
+      { name: 'Beat',     class: 'default beat',       got: false },
+      { name: 'Tab',      class: 'default tab',        got: false },
+      { name: 'Mew',      class: 'default mew',        got: false },
+      { name: 'Yo-Yo',    class: 'default yoyo',       got: false },
+      { name: 'Poison',   class: 'default poison-jam', got: false },
+      { name: 'Shock',    class: 'default love-shock', got: false },
+      { name: 'Noise',    class: 'default noise-tank', got: false },
+      { name: 'Rhino',    class: 'default rhino',      got: false },
+      { name: 'Marble',   class: 'pattern marble',     got: false },
+      { name: 'Spoopy',   class: 'default halloween',  got: false,  event: 'Halloween' },
+      { name: 'Cupid',    class: 'default valentines', got: false,  event: 'Valentines Day' }
     ],
 
     mythic: [
-      { name: 'Lava',     class: 'animated lava-lamp', has: false },
-      { name: 'Laika',    class: 'animated moon',      has: false }
+      { name: 'Lava',     class: 'animated lava-lamp', got: false },
+      { name: 'Laika',    class: 'animated moon',      got: false }
     ]
   },
 
@@ -109,8 +109,8 @@ export default {
 
   // Table themes! Works basically like the dice skins. They have a name, a class, and whether or not you have it.
   tableThemes: [
-    { name: 'Felt',  class: 'strexture felt',  has: true },
-    { name: 'Space', class: 'strexture space', has: true }
+    { name: 'Felt',    class: 'strexture felt',   got: true },
+    { name: 'Space 1', class: 'strexture space1', got: true }
   ],
 
   currentTableTheme: 'strexture felt',
@@ -225,7 +225,7 @@ export default {
 
     for (let rarity in this.skins) {
       for (let skin in this.skins[rarity]) {
-        if (this.skins[rarity][skin].has) skinList.push(this.skins[rarity][skin].class);
+        if (this.skins[rarity][skin].got) skinList.push(this.skins[rarity][skin].class);
       }
     }
 
@@ -266,7 +266,7 @@ export default {
       if (duplicates) {
         availableDice.push(this.skins[rarity][skin]);
       } else {
-        if (!this.skins[rarity][skin].has && !this.skins[rarity][skin].event) {
+        if (!this.skins[rarity][skin].got && !this.skins[rarity][skin].event) {
           availableDice.push(this.skins[rarity][skin]);
         }
       }
@@ -281,7 +281,7 @@ export default {
 
     let randomAvailableDie = utils.getRandom(availableDice);
 
-    randomAvailableDie.has = true;
+    randomAvailableDie.got = true;
     randomAvailableDie.rarity = rarity;
 
     utils.saveProgress();
@@ -293,7 +293,7 @@ export default {
     for (let rarity in this.skins) {
       for (let i = 0; i < this.skins[rarity].length; i++) {
         if (this.skins[rarity][i].name === name) {
-          this.skins[rarity][i].has = true;
+          this.skins[rarity][i].got = true;
           this.skins[rarity][i].rarity = rarity;
 
           utils.saveProgress();
