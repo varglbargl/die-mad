@@ -205,8 +205,8 @@ var rollAchievements =  [
     rarity: 'epic',
     got: false
   }, {
-    name: 'Happy Birthday!',
-    description: 'Roll a die on Vanessa\'s birthday. She\'s the person who made this dice roller!',
+    name: 'Dicemother\'s Day',
+    description: 'Roll a die on Vanessa\'s birthday. You know, Vanessa, the person who made this dice roller!',
     requirement () {
       if ((new Date()).getMonth() === 0 && (new Date()).getDate() === 30) return true;
     },
@@ -222,7 +222,8 @@ var rollAchievements =  [
       ) return true;
     },
     reward: 'epic',
-    got: false
+    got: false,
+    secret: true // until I come up with better a reward like a BOARD THEME.
   }, {
     name: 'Saint Patrick\'s Day!',
     description: 'Roll a die on Saint Patrick\'s Day.',
@@ -230,7 +231,8 @@ var rollAchievements =  [
       if ((new Date()).getMonth() === 2 && (new Date()).getDate() === 17) return true;
     },
     reward: 'epic',
-    got: false
+    got: false,
+    secret: true // until I come up with better a reward like a BOARD THEME.
   }, {
     name: 'Cinco de Mayo!',
     description: 'Roll a die on Cinco de Mayo.',
@@ -238,7 +240,8 @@ var rollAchievements =  [
       if ((new Date()).getMonth() === 4 && (new Date()).getDate() === 5) return true;
     },
     reward: 'epic',
-    got: false
+    got: false,
+    secret: true // until I come up with better a reward like a BOARD THEME.
   }, {
     name: 'Snake Eyessssss',
     description: 'Roll snake eyessssss.',
@@ -303,12 +306,14 @@ var rollAchievements =  [
     got: false
   }, {
     name: 'Serious Arm Workout',
-    description: 'Shake your dice more than 50 times before they land.',
+    description: 'Shake your dice more than 25 times before they land.',
     requirement () {
-      if (timesShakenWithoutLanding > 50) return true;
+      // Problem: There is currently nothing checking achievements while rolling and I'm not sure I want there to be.
+      if (timesShakenWithoutLanding > 25) return true;
     },
     reward: 'basic',
-    got: false
+    got: false,
+    secret: true // Until I can get this working.
   }, {
     name: 'Hail Satan Tonight',
     description: 'Roll an 18 on 3d6.',
@@ -347,6 +352,16 @@ var rollAchievements =  [
     description: 'Roll a custom die with 1000 or more sides.',
     requirement () {
       if (rolls[rolls.length - 1].sides >= 1000) {
+        return true;
+      }
+    },
+    reward: 'basic',
+    got: false
+  }, {
+    name: 'Triple Spicy Roll Combo',
+    description: 'Get 3 or more exploding dice from rolling a single die.',
+    requirement () {
+      if (dieOnTheTable.length === 1 && streaks.explosion && streaks.explosion.length >= 3) {
         return true;
       }
     },

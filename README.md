@@ -8,6 +8,7 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
  - 💛 = started
  - ♥️ = not started
  - 💜 = might not ever do... who knows
+ - 💙 = working fine but there will always be room to add more onto it
 
 ### Minimum Viable Product
 
@@ -17,10 +18,10 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
 
 ### Obvious Planned Features
 
- - 💚 Every kind of die imaginable
+ - 💙 Every kind of die imaginable
  - 💜 Drag and throw dice to roll (Without dice-on-dice hit detection, you should be able to drag dice off top of eachother without accidentally throwing it and losing your roll)
- - 💚 A cool logo and intro animation
- - 💛 A passable semi-modern UI
+ - 💚 A cool logo and intro animation (EDIT: Good enough!)
+ - 💙 A passable semi-modern UI
 
 ### SUPER COOL PLANNED FEATURES
 
@@ -29,16 +30,16 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
  - 💚 Cool animations for crit successes and crit fails!
  - ♥️ Advantage and disadvantage dice!
  - ♥️ Mario Paint/KidPix Studio style table clearing spells!
- - 💛 Settings menu where you can:
-   - 💛 customize basically any of the features above
+ - 💙 Settings menu where you can:
+   - 💙 customize basically any of the features above
    - 💚 toggle AUTO-EXPLODING DICE
    - ♥️ adjust your crit range and boring stuff like that
    - 💜 See my cute face in a credits screen and maybe donate to my kofi(???)
 
 ### INSANE OVER THE TOP FEATURES THAT I'M STILL GONNA DO
 
- - 💛 Achievements! Why not??
- - 💛 Turn this shit into a full on gatcha game. Dice packs. Crafting.
+ - 💙 Achievements! Why not??
+ - 💛 Turn this shit into a full on gatcha game. Dice packs! Crafting!
  - 💚 STILL ALL FREE AND WITH NO ADS!!!
 
 ### Impossible/Questionable/Stupid Features

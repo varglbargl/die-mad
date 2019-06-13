@@ -128,10 +128,14 @@ svg {
 }
 
 .spinner {
+  transform-origin: 50%;
+  transform-box: fill-box; /* firefox only, don't ask */
   animation: spin 0.7s linear infinite;
 }
 
 .skull {
+  transform-origin: 50%;
+  transform-box: fill-box; /* firefox only, don't ask */
   animation: smoke 1s ease-out infinite;
 }
 </style>
