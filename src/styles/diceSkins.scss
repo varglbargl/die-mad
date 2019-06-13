@@ -71,32 +71,32 @@
     opacity: 0.75;
   }
 
-  &.lesbian    { background-image: url("./assets/lesbiab.gif"); }
-  &.gay        { background-image: url("./assets/imgay.gif"); }
-  &.bi         { background-image: url("./assets/bi.gif"); }
-  &.trans      { background-image: url("./assets/transrights.gif"); }
-  &.pan        { background-image: url("./assets/pan.gif"); }
-  &.ace        { background-image: url("./assets/ace.gif"); }
-  &.aro        { background-image: url("./assets/aro.gif"); }
-  &.nonbinary  { background-image: url("./assets/nonbinary.gif"); }
-  &.intersex   { background-image: url("./assets/intersex.gif"); }
-  &.genderfluid{ background-image: url("./assets/drinkthe.gif"); }
+  &.lesbian    { background-image: url("./assets/skins/lesbiab.gif"); }
+  &.gay        { background-image: url("./assets/skins/imgay.gif"); }
+  &.bi         { background-image: url("./assets/skins/bi.gif"); }
+  &.trans      { background-image: url("./assets/skins/transrights.gif"); }
+  &.pan        { background-image: url("./assets/skins/pan.gif"); }
+  &.ace        { background-image: url("./assets/skins/ace.gif"); }
+  &.aro        { background-image: url("./assets/skins/aro.gif"); }
+  &.nonbinary  { background-image: url("./assets/skins/nonbinary.gif"); }
+  &.intersex   { background-image: url("./assets/skins/intersex.gif"); }
+  &.genderfluid{ background-image: url("./assets/skins/drinkthe.gif"); }
 
-  &.marble   { color: #DB2; background-image: url("./assets/marble.gif"); }
+  &.marble   { color: #DB2; background-image: url("./assets/skins/marble.gif"); }
 }
 
 .die.animated.lava-lamp {
 
   &.d20, &.d8, &.d2 {
-    background-image: url("./assets/lava1.gif");
+    background-image: url("./assets/skins/lava1.gif");
   }
 
   &.d100, &.d10, &.d4 {
-    background-image: url("./assets/lava2.gif");
+    background-image: url("./assets/skins/lava2.gif");
   }
 
   &.custom, &.d12, &.d6 {
-    background-image: url("./assets/lava3.gif");
+    background-image: url("./assets/skins/lava3.gif");
   }
 
   background-size: cover;
@@ -109,14 +109,14 @@
 
 .die.animated.moon {
 
-  &.phase-0 { background-image: url("./assets/moon-0.jpg"); }
-  &.phase-1 { background-image: url("./assets/moon-1.jpg"); }
-  &.phase-2 { background-image: url("./assets/moon-2.jpg"); }
-  &.phase-3 { background-image: url("./assets/moon-3.jpg"); }
-  &.phase-4 { background-image: url("./assets/moon-4.jpg"); }
-  &.phase-5 { background-image: url("./assets/moon-5.jpg"); }
-  &.phase-6 { background-image: url("./assets/moon-6.jpg"); }
-  &.phase-7 { background-image: url("./assets/moon-7.jpg"); }
+  &.phase-0 { background-image: url("./assets/skins/moon-0.jpg"); }
+  &.phase-1 { background-image: url("./assets/skins/moon-1.jpg"); }
+  &.phase-2 { background-image: url("./assets/skins/moon-2.jpg"); }
+  &.phase-3 { background-image: url("./assets/skins/moon-3.jpg"); }
+  &.phase-4 { background-image: url("./assets/skins/moon-4.jpg"); }
+  &.phase-5 { background-image: url("./assets/skins/moon-5.jpg"); }
+  &.phase-6 { background-image: url("./assets/skins/moon-6.jpg"); }
+  &.phase-7 { background-image: url("./assets/skins/moon-7.jpg"); }
 
   background-size: cover;
   color: #EEE;

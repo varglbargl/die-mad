@@ -10,6 +10,8 @@
     border-left: 1px solid #000;
     border-right: 1px solid #000;
     box-shadow: 0 0 15px #000;
+
+    background-size: cover;
   }
 
   &::before {
@@ -21,11 +23,19 @@
   }
 
   &.felt {
-    background-image: url("./assets/felt.jpg");
+    background-image: url("./assets/themes/felt.jpg");
 
     &::before, &::after {
       border-color: #320;
-      background-image: url("./assets/wood-panel.jpg");
+      background-image: url("./assets/themes/wood-panel.jpg");
+    }
+  }
+
+  &.space1 {
+    background-image: url("./assets/themes/space1.jpg");
+
+    &::before, &::after {
+      background-image: url("./assets/themes/metal-panel.jpg");
     }
   }
 }

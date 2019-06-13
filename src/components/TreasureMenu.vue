@@ -72,7 +72,7 @@ import { rollAchievements } from '@/services/cheevos.js';
 import utils from '@/services/utils.js';
 
 export default {
-  name: 'DiceMenu',
+  name: 'TreasureMenu',
   props: {
     open: {
       type: Boolean,
