@@ -26,8 +26,8 @@ DIE MAD is an actually good online dice roller. There weren't any really good on
 ### SUPER COOL PLANNED FEATURES
 
  - 💚 Shake your phone to roll the dice!
- - 💛 Dice skins and table themes!
- - 💚 Cool animations for crit successes and crit fails!
+ - 💙 Dice skins and table themes!
+ - 💙 Cool animations for crit successes and crit fails!
  - ♥️ Advantage and disadvantage dice!
  - ♥️ Mario Paint/KidPix Studio style table clearing spells!
  - 💙 Settings menu where you can:

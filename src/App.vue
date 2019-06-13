@@ -101,7 +101,7 @@ import TreasureMenu from '@/components/TreasureMenu.vue';
 import CritAnimation from '@/components/CritAnimation.vue';
 import Achievements from '@/components/Achievements.vue';
 
-import { resetRollTracking, timesShakenWithoutLanding, setDieOnTheTable } from '@/services/cheevos.js';
+import { resetRollTracking, setDieOnTheTable } from '@/services/cheevos.js';
 import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
@@ -271,7 +271,7 @@ export default {
         if (shakeSpeed > 20) {
           this.rollAll();
           this.lastRolled = now;
-          timesShakenWithoutLanding++;
+          // timesShakenWithoutLanding++;
         }
       }
     },
