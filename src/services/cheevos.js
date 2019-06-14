@@ -333,16 +333,17 @@ var rollAchievements =  [
     description: '"Tens and twenties what\'s so funny funckin twenty ten."',
     requirement () {
       if (dieOnTheTable.length === 2 &&
-          rolls.length   === 2 &&
-          (rolls[0].sides === 20 &&
-          rolls[0].roll  === 20 &&
-          rolls[1].sides === 10 &&
-          rolls[1].roll  === 10) ||
-          (rolls[0].sides === 10 &&
-          rolls[0].roll  === 10 &&
-          rolls[1].sides === 20 &&
-          rolls[1].roll  === 20)) {
-        return true;
+          rolls.length === 2) {
+        if ((rolls[0].sides === 20 &&
+            rolls[0].roll === 20 &&
+            rolls[1].sides === 10 &&
+            rolls[1].roll === 10) ||
+            (rolls[0].sides === 10 &&
+            rolls[0].roll === 10 &&
+            rolls[1].sides === 20 &&
+            rolls[1].roll === 20)) {
+          return true;
+        }
       }
     },
     reward: 'basic',
