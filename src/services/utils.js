@@ -255,21 +255,31 @@ export default {
 
     if (!save) return {};
 
-    for (let i = 0; i < save.a.length; i++) {
-      save.a[i] = decompressData(save.a[i]);
+    if (save.a) {
+      for (let i = 0; i < save.a.length; i++) {
+        save.a[i] = decompressData(save.a[i]);
+      }
     }
 
-    save.b = decompressData(save.b);
-
-    for (let i = 0; i < save.c.length - 1; i++) {
-      save.c[i] = [0,0,0,0].concat(decompressData(save.c[i])).slice(-4);
+    if (save.b) {
+      save.b = decompressData(save.b);
     }
 
-    save.c[save.c.length - 1] = save.c[save.c.length - 1].split('_').join(' ');
+    if (save.c) {
+      for (let i = 0; i < save.c.length - 1; i++) {
+        save.c[i] = [0,0,0,0].concat(decompressData(save.c[i])).slice(-4);
+      }
 
-    save.d = decompressData(save.d);
+      save.c[save.c.length - 1] = save.c[save.c.length - 1].split('_').join(' ');
+    }
 
-    save.e = [decompressData(save.e[0]), save.e[1].split('_').join(' ')];
+    if (save.d) {
+      save.d = decompressData(save.d);
+    }
+
+    if (save.e) {
+      save.e = [decompressData(save.e[0]), save.e[1].split('_').join(' ')];
+    }
 
     return save;
   },
