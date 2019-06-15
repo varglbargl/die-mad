@@ -1,6 +1,9 @@
 <template>
-  <div class="container" :style="{left: x - 30 + 'px', top: y - 30 + 'px'}">
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 120 120" v-if="type === 'success'">
+  <div class="animation-container" :style="{left: x - 30 + 'px', top: y - 30 + 'px'}">
+
+    <!-- CRITICAL SUCCESS: -->
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 120 120" v-if="type === 'success default'">
       <g
       v-for="(spark, i) in sparkles(8)"
       :key="i"
@@ -29,7 +32,11 @@
       </g>
     </svg>
 
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" v-if="type === 'fail'">
+    <img :src="'img/lightning.gif?x=' + (_uid % 10)" class="gif align-bottom" style="bottom: 25px" v-if="type === 'success pixel'" />
+
+    <!-- CRITICAL FAIL: -->
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" v-if="type === 'fail default'">
       <g class="transform-center apperator ease-out">
         <g class="fade-in-out ease-way-in">
           <path fill="#507" stroke="#90C" stroke-width="4px"
@@ -38,7 +45,11 @@
       </g>
     </svg>
 
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0"viewBox="-70 -70 140 140" v-if="type === 'explosion'">
+    <img :src="'img/fail.gif?x=' + (_uid % 10)" class="gif align-bottom" style="bottom: 10px" v-if="type === 'fail pixel'" />
+
+    <!-- EXPLODING DICE: -->
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="-70 -70 140 140" v-if="type === 'explosion default'">
       <g
       v-for="(fuff, i) in sparkles(8)"
       :key="i"
@@ -64,22 +75,22 @@
       </g>
     </svg>
 
+    <img :src="'img/pixel-explode.gif?x=' + (_uid % 10)" class="gif align-bottom pixel-explosion" style="bottom: 25px" v-if="type === 'explosion pixel'" />
+
   </div>
 </template>
 
 <script>
 import utils from '@/services/utils.js';
+import settings from '@/services/settings.js';
 
 export default {
   name: 'CritAnimation',
   props: ['x', 'y', 'type'],
   data () {
     return {
-      timers: {
-        fail: 1,
-        success: 0.7,
-        explosion: 1
-      }
+      settings: settings,
+      duration: settings.getAnimationDuration(this.type)
     }
   },
   methods: {
@@ -102,13 +113,12 @@ export default {
   created () {
     setTimeout(() => {
       this.$emit('kill');
-    }, this.timers[this.type] * 1000);
+    }, this.duration * 1000);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 * {
   pointer-events: none; /* good thing this is scoped */
 }
@@ -118,25 +128,42 @@ svg {
   height: 120px;
 }
 
-.container {
+.animation-container {
   position: absolute;
+  width: 120px;
+  height: 120px;
+  overflow: visible;
+
   z-index: 120;
 }
 
+.gif.align-bottom {
+  position: absolute;
+  max-height: 150px;
+  width: 100%;
+  max-width: 100%;
+  bottom: 0;
+  left: 0;
+
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
 @keyframes eject {
-  0% { transform: translate(0px); }
-  100% { transform: translate(40px); }
+  0% { transform: translate(0px) }
+  100% { transform: translate(40px) }
 }
 
 @keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }
 
 @keyframes fade-in-out {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+  0% { opacity: 0 }
+  50% { opacity: 1 }
+  100% { opacity: 0 }
 }
 
 @keyframes spin {
@@ -145,13 +172,13 @@ svg {
 }
 
 @keyframes poof {
-  0% { transform: scale(0.6) rotate(0deg); }
-  100% { transform: scale(1) rotate(100deg); }
+  0% { transform: scale(0.6) rotate(0deg) }
+  100% { transform: scale(1) rotate(100deg) }
 }
 
 @keyframes apperate {
-  0% { transform: scale(0.2); }
-  100% { transform: scale(0.8); }
+  0% { transform: scale(0.2) }
+  100% { transform: scale(0.8) }
 }
 
 @keyframes flame-out-dark {
@@ -174,37 +201,37 @@ svg {
 }
 
 .ejector {
-  animation: eject 1s linear 1;
+  animation: eject 1s linear infinite;
 }
 
 .spinner {
-  animation: spin 1s linear 1;
+  animation: spin 1s linear infinite;
 }
 
 .poofer {
-  animation: poof 1s linear 1;
+  animation: poof 1s linear infinite;
 }
 
 .apperator {
-  animation: apperate 1s linear 1;
+  animation: apperate 1s linear infinite;
 }
 
 .fade-in {
   opacity: 0;
-  animation: fade-in 1s linear 1;
+  animation: fade-in 1s linear infinite;
 }
 
 .fade-in-out {
   opacity: 0;
-  animation: fade-in-out 1s linear 1;
+  animation: fade-in-out 1s linear infinite;
 }
 
 .flame-out-dark {
-  animation: flame-out-dark 1s linear 1;
+  animation: flame-out-dark 1s linear infinite;
 }
 
 .flame-out-light {
-  animation: flame-out-light 1s linear 1;
+  animation: flame-out-light 1s linear infinite;
 }
 
 .short {

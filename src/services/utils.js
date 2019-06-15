@@ -242,7 +242,27 @@ export default {
 
     tableThemes.push(settings.currentTableTheme.split(' ').join('_'));
 
-    return JSON.stringify({a: diceSkins, b: userSettings, c: diceSettings, d: achievements, e: tableThemes});
+    let critAnimations = { a: [[]], b: [[]], c: [[]] };
+
+    for (let i = 0; i < settings.critAnimations.success.length; i++) {
+      critAnimations.a[0].push(settings.critAnimations.success[i].got ? '1' : '0');
+    }
+    critAnimations.a[0] = compressData(critAnimations.a[0]);
+    critAnimations.a.push(settings.currentCritAnimations.success.split(' ').join('_'));
+
+    for (let i = 0; i < settings.critAnimations.fail.length; i++) {
+      critAnimations.b[0].push(settings.critAnimations.fail[i].got ? '1' : '0');
+    }
+    critAnimations.b[0] = compressData(critAnimations.b[0]);
+    critAnimations.b.push(settings.currentCritAnimations.fail.split(' ').join('_'));
+
+    for (let i = 0; i < settings.critAnimations.explosion.length; i++) {
+      critAnimations.c[0].push(settings.critAnimations.explosion[i].got ? '1' : '0');
+    }
+    critAnimations.c[0] = compressData(critAnimations.c[0]);
+    critAnimations.c.push(settings.currentCritAnimations.explosion.split(' ').join('_'));
+
+    return JSON.stringify({a: diceSkins, b: userSettings, c: diceSettings, d: achievements, e: tableThemes, f: critAnimations});
   },
 
   decodeSaveData () {
@@ -279,6 +299,14 @@ export default {
 
     if (save.e) {
       save.e = [decompressData(save.e[0]), save.e[1].split('_').join(' ')];
+    }
+
+    if (save.f) {
+      save.f = {
+        a: [decompressData(save.f.a[0]), save.f.a[1].split('_').join(' ')],
+        b: [decompressData(save.f.b[0]), save.f.b[1].split('_').join(' ')],
+        c: [decompressData(save.f.c[0]), save.f.c[1].split('_').join(' ')]
+      }
     }
 
     return save;
@@ -343,6 +371,27 @@ export default {
       }
 
       settings.currentTableTheme = saveData.e[1];
+    }
+
+    if (saveData.f) {
+      for (let i = 0; i < settings.critAnimations.success.length; i++) {
+        if (!saveData.f.a[0][i]) saveData.f.a[0][i] = 0;
+        settings.critAnimations.success[i].got = !!parseInt(saveData.f.a[0][i]);
+      }
+      settings.currentCritAnimations.success = saveData.f.a[1];
+
+      for (let i = 0; i < settings.critAnimations.fail.length; i++) {
+        if (!saveData.f.b[0][i]) saveData.f.b[0][i] = 0;
+        settings.critAnimations.fail[i].got = !!parseInt(saveData.f.b[0][i]);
+      }
+      settings.currentCritAnimations.fail = saveData.f.b[1];
+
+      for (let i = 0; i < settings.critAnimations.explosion.length; i++) {
+        if (!saveData.f.c[0][i]) saveData.f.c[0][i] = 0;
+        settings.critAnimations.explosion[i].got = !!parseInt(saveData.f.c[0][i]);
+      }
+      settings.currentCritAnimations.explosion = saveData.f.c[1];
+
     }
   },
 

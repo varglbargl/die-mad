@@ -5,12 +5,12 @@
     <div class="tabs">
       <div
       class="tab"
-      v-for="(skins, rarity) in settings.skins"
+      v-for="(skin, rarity) in settings.skins"
       :key="rarity"
       :class="[{selected: selectedDieTab === rarity}, rarity]"
       @click="selectedDieTab = rarity">
         <div>{{ titlize(rarity) }}</div>
-        <div>{{ unlockedCount(rarity) }}</div>
+        <div>{{ unlockedDieCount(rarity) }}</div>
       </div>
     </div>
     <div class="section dice-skins" :class="selectedDieTab + '-tab'">
@@ -50,6 +50,7 @@
       </div>
     </div>
     <h2>TABLE THEMES</h2>
+    <span class="subheader">More coming soon!</span>
     <div class="section table-themes">
       <div
       v-for="(theme, i) in settings.tableThemes"
@@ -62,6 +63,30 @@
         :class="theme.class">
         </div>
         <span style="font-weight: 500">{{ theme.name }}</span>
+      </div>
+    </div>
+    <h2>ANIMATIONS</h2>
+    <span class="subheader">More coming soon!</span>
+    <div class="tabs">
+      <div
+      class="tab"
+      v-for="(tab, name) in settings.critAnimations"
+      :key="name"
+      :class="{selected: selectedAnimationTab === name}"
+      @click="selectedAnimationTab = name">
+        <div>{{ titlize(name) }}</div>
+        <div>{{ unlockedAnimationCount(name) }}</div>
+      </div>
+    </div>
+    <div class="section animations" :class="selectedAnimationTab + '-tab'">
+      <div
+      v-for="(animation, i) in settings.critAnimations[selectedAnimationTab]"
+      :key="i"
+      class="choice"
+      @click="pickAnimation(animation.type)"
+      :class="{selected: settings.currentCritAnimations[selectedAnimationTab] === animation.type}">
+        <crit-animation :type="animation.type" />
+        <span style="font-weight: 500">{{ animation.name }}</span>
       </div>
     </div>
     <h2>ACHIEVEMENTS</h2>
@@ -82,12 +107,14 @@
 </template>
 
 <script>
+import CritAnimation from '@/components/CritAnimation.vue';
 import settings from '@/services/settings.js';
 import { rollAchievements } from '@/services/cheevos.js';
 import utils from '@/services/utils.js';
 
 export default {
   name: 'TreasureMenu',
+  components: { CritAnimation },
   props: {
     open: {
       type: Boolean,
@@ -99,7 +126,8 @@ export default {
     return {
       settings: settings,
       currentRandomSkin: 'default pink',
-      selectedDieTab: 'basic'
+      selectedDieTab: 'basic',
+      selectedAnimationTab: 'success'
     }
   },
   computed: {
@@ -116,6 +144,10 @@ export default {
       settings.currentTableTheme = theme;
       utils.saveProgress();
     },
+    pickAnimation (animation) {
+      settings.currentCritAnimations[this.selectedAnimationTab] = animation;
+      utils.saveProgress();
+    },
     titlize (str) {
       return utils.titlize(str);
     },
@@ -129,7 +161,7 @@ export default {
     awardRandomDie (rarity) {
       settings.awardRandomDie(rarity);
     },
-    unlockedCount (rarity) {
+    unlockedDieCount (rarity) {
       let owned = 0;
 
       for (var i = 0; i < settings.skins[rarity].length; i++) {
@@ -137,6 +169,15 @@ export default {
       }
 
       return owned + '/' + settings.skins[rarity].length;
+    },
+    unlockedAnimationCount (type) {
+      let owned = 0;
+
+      for (var i = 0; i < settings.critAnimations[type].length; i++) {
+        if (settings.critAnimations[type][i].got) owned++;
+      }
+
+      return owned + '/' + settings.critAnimations[type].length;
     },
     moonPhase (skin) {
       if (skin === 'animated moon') {
@@ -195,11 +236,11 @@ export default {
 
   background-color: #222;
 
-  &.basic-tab {
+  &.basic-tab, &.success-tab {
     border-top-left-radius: 0;
   }
 
-  &.mythic-tab {
+  &.mythic-tab, &.explosion-tab {
     border-top-right-radius: 0;
   }
 
@@ -225,6 +266,7 @@ export default {
   flex-direction: row;
 
   .tab {
+    min-height: 50px;
     cursor: pointer;
     padding: 8px 2px;
     padding-bottom: 4px;
@@ -236,6 +278,7 @@ export default {
     flex: 1;
 
     background-color: #222;
+    background-image: linear-gradient(to bottom, #1A1A1A, #222);
 
     &:not(:last-child) {
       margin-right: 4px;
@@ -248,7 +291,7 @@ export default {
   }
 }
 
-.dice-skins {
+.section.dice-skins {
   min-height: 220px;
 }
 
@@ -281,7 +324,7 @@ export default {
   }
 }
 
-.table-themes {
+.section.table-themes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -343,7 +386,30 @@ export default {
   }
 }
 
-.achievements {
+.section.animations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .choice {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.selected {
+      border-color: $red;
+    }
+  }
+
+  .animation-container {
+    position: relative;
+    display: flex;
+  }
+}
+
+.section.achievements {
   max-width: 1080px;
   display: flex;
   flex-direction: row;

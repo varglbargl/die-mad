@@ -9,7 +9,7 @@
         <span class="checkmark"></span>
       </label>
       <label class="checkbox-container">
-        <span :class="{disabled: !canVibrate}">Haptic feedback <span class="red">(BETA)</span></span>
+        <span :class="{disabled: !canVibrate}">Haptic feedback</span>
         <input type="checkbox" v-model="settings.vibrateOnCollision" :disabled="!canVibrate" />
         <span class="checkmark"></span>
       </label>
@@ -19,7 +19,7 @@
         <span class="checkmark"></span>
       </label>
       <label @click.prevent="toggleCookiesEnabled" class="checkbox-container">
-        <span>Save progress and settings</span>
+        <span :class="{disabled: !canSaveCookies}">Save progress and settings</span>
         <input type="checkbox" v-model="settings.cookiesEnabled" :disabled="!canSaveCookies" />
         <span class="checkmark"></span>
       </label>

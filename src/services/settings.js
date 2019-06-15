@@ -107,13 +107,46 @@ export default {
   // This is the dice skin you have selected in the menu.
   currentDiceSkin: 'default red',
 
-  // Table themes! Works basically like the dice skins. They have a name, a class, and whether or not you have it.
+  // TABLE THEMES
+
+  // Works basically like the dice skins. They have a name, a class, and whether or not you have it.
   tableThemes: [
-    { name: 'Felt',    class: 'strexture felt',   got: true },
-    { name: 'Space 1', class: 'strexture space1', got: true }
+    { name: 'Felt',      class: 'strexture felt',    got: true },
+    { name: 'Space 1',   class: 'strexture space1',  got: true }
   ],
 
   currentTableTheme: 'strexture felt',
+
+  // CRIT ANIMATIONS
+
+  critAnimations: {
+    success: [
+      { name: 'Default', type: 'success default',   duration: 0.7, got: true },
+      { name: 'Pixel',   type: 'success pixel',     duration: 0.6, got: true }
+    ],
+    fail: [
+      { name: 'Default', type: 'fail default',      duration: 1,   got: true },
+      { name: 'Pixel',   type: 'fail pixel',        duration: 0.7, got: true }
+    ],
+    explosion: [
+      { name: 'Default', type: 'explosion default', duration: 1,   got: true },
+      { name: 'Pixel',   type: 'explosion pixel',   duration: 0.7, got: true }
+    ]
+  },
+
+  currentCritAnimations: {
+    success: 'success default',
+    fail: 'fail default',
+    explosion: 'explosion default'
+  },
+
+  getAnimationDuration (type) {
+    for (let crit in this.critAnimations) {
+      for (var i = 0; i < this.critAnimations[crit].length; i++) {
+        if (this.critAnimations[crit][i].type === type) return this.critAnimations[crit][i].duration;
+      }
+    }
+  },
 
   // This is only really useful so the "All" option in the Dice Settings section of the menu has a model.
   allDice: {

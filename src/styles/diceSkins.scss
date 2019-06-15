@@ -61,7 +61,7 @@
   &.lapis      .skin { background-color: #46F; }
 
 
-  &.explosion  { color: #FC2; .skin { background-color: #F90; } }
+  &.explosion  { color: #FD5; .skin { background-color: #F90; } span { text-shadow: #F00 0 0 5px } }
 }
 
 .die.pattern {
