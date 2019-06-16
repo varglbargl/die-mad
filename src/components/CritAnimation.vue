@@ -95,7 +95,7 @@ export default {
   props: ['x', 'y', 'type'],
   data () {
     return {
-      settings: settings,
+      settings,
       duration: settings.getAnimationDuration(this.type)
     }
   },

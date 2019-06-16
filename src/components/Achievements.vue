@@ -26,7 +26,7 @@
           <crit-animation
           @kill="stopAnimation(i)"
           v-if="stoppedAnimations[i] !== true"
-          type="success"
+          :type="settings.currentCritAnimations.success"
           x="2"
           y="0" />
         </div>
@@ -37,7 +37,9 @@
 
 <script>
 import CritAnimation from '@/components/CritAnimation.vue';
+
 import { recentAchievements } from '@/services/cheevos.js';
+import settings from '@/services/settings.js';
 import utils from '@/services/utils.js';
 
 export default {
@@ -45,6 +47,7 @@ export default {
   components: { CritAnimation },
   data() {
     return {
+      settings,
       recentAchievements,
       stoppedAnimations: []
     }

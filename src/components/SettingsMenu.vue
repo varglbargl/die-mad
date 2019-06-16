@@ -134,7 +134,7 @@ export default {
   },
   data() {
     return {
-      settings: settings,
+      settings,
       canVibrate: 'vibrate' in navigator,
       canSaveCookies: utils.canSaveCookies()
     }

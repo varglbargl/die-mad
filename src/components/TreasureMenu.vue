@@ -108,6 +108,7 @@
 
 <script>
 import CritAnimation from '@/components/CritAnimation.vue';
+
 import settings from '@/services/settings.js';
 import { rollAchievements } from '@/services/cheevos.js';
 import utils from '@/services/utils.js';
@@ -124,7 +125,7 @@ export default {
   },
   data() {
     return {
-      settings: settings,
+      settings,
       currentRandomSkin: 'default pink',
       selectedDieTab: 'basic',
       selectedAnimationTab: 'success'

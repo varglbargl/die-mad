@@ -110,6 +110,7 @@ export default {
   components: { DX, SettingsMenu, TreasureMenu, CritAnimation, Achievements },
   data () {
     return {
+      settings,
       activeDice: [],
       bonusDice: [],
       rolls: [],
@@ -117,7 +118,6 @@ export default {
       critRolls: [],
       touched: null,
       count: 0,
-      settings: settings,
       treasureOpen: false,
       settingsOpen: false,
       introPlaying: false,
