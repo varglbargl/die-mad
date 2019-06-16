@@ -121,16 +121,19 @@ export default {
 
   critAnimations: {
     success: [
-      { name: 'Default', type: 'success default',   duration: 0.7, got: true },
-      { name: 'Pixel',   type: 'success pixel',     duration: 0.6, got: true }
+      { name: 'Default',   type: 'success default',     duration: 0.7, got: true },
+      { name: 'Pixel',     type: 'success pixel',       duration: 0.6, got: true },
+      { name: 'Geocities', type: 'success geocities',   duration: 0.8, got: true }
     ],
     fail: [
-      { name: 'Default', type: 'fail default',      duration: 1,   got: true },
-      { name: 'Pixel',   type: 'fail pixel',        duration: 0.7, got: true }
+      { name: 'Default',   type: 'fail default',        duration: 1,   got: true },
+      { name: 'Pixel',     type: 'fail pixel',          duration: 0.7, got: true },
+      { name: 'Geocities', type: 'fail geocities',      duration: 0.8, got: true }
     ],
     explosion: [
-      { name: 'Default', type: 'explosion default', duration: 1,   got: true },
-      { name: 'Pixel',   type: 'explosion pixel',   duration: 0.7, got: true }
+      { name: 'Default',   type: 'explosion default',   duration: 1,   got: true },
+      { name: 'Pixel',     type: 'explosion pixel',     duration: 0.7, got: true },
+      { name: 'Geocities', type: 'explosion geocities', duration: 0.8, got: true }
     ]
   },
 

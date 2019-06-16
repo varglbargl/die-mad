@@ -34,6 +34,8 @@
 
     <img :src="'img/lightning.gif?x=' + (_uid % 10)" class="gif align-bottom" style="bottom: 25px" v-if="type === 'success pixel'" />
 
+    <img src="img/geocool.gif" class="gif align-bottom" style="bottom: 25px" v-if="type === 'success geocities'" />
+
     <!-- CRITICAL FAIL: -->
 
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" v-if="type === 'fail default'">
@@ -46,6 +48,8 @@
     </svg>
 
     <img :src="'img/fail.gif?x=' + (_uid % 10)" class="gif align-bottom" style="bottom: 10px" v-if="type === 'fail pixel'" />
+
+    <img src="img/geoskull.gif" class="gif align-bottom" style="bottom: 15px" v-if="type === 'fail geocities'" />
 
     <!-- EXPLODING DICE: -->
 
@@ -75,7 +79,9 @@
       </g>
     </svg>
 
-    <img :src="'img/pixel-explode.gif?x=' + (_uid % 10)" class="gif align-bottom pixel-explosion" style="bottom: 25px" v-if="type === 'explosion pixel'" />
+    <img :src="'img/pixel-explode.gif?x=' + (_uid % 10)" class="gif align-bottom" style="bottom: 25px" v-if="type === 'explosion pixel'" />
+
+    <img src="img/geoku.gif" class="gif align-bottom" v-if="type === 'explosion geocities'" />
 
   </div>
 </template>
