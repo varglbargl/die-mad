@@ -319,7 +319,7 @@ export default {
   saveProgress () {
     if (!settings.cookiesEnabled) return;
 
-    setCookie('save', this.encodeSaveData());
+    setCookie('save', this.encodeSaveData(), {expires: '1Y'});
   },
 
   loadSave () {
