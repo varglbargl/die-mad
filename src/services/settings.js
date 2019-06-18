@@ -112,7 +112,8 @@ export default {
   // Works basically like the dice skins. They have a name, a class, and whether or not you have it.
   tableThemes: [
     { name: 'Felt',      class: 'strexture felt',    got: true },
-    { name: 'Space 1',   class: 'strexture space1',  got: true }
+    { name: 'Space 1',   class: 'strexture space1',  got: true },
+    { name: 'Hex Grid',  class: 'strexture hex',     got: true }
   ],
 
   currentTableTheme: 'strexture felt',

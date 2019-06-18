@@ -8,17 +8,17 @@
       padding-left: 60px;
       height: 100%;
       position: absolute;
-      border-left: 1px solid #000;
-      border-right: 1px solid #000;
       box-shadow: 0 0 15px #000;
     }
 
     &::before {
-      left: -62px;
+      left: -61px;
+      border-right: 1px solid #000;
     }
 
     &::after {
-      right: -62px;
+      right: -61px;
+      border-left: 1px solid #000;
     }
 
     &.felt {
@@ -38,6 +38,16 @@
         background-image: url("./assets/themes/metal-panel.jpg");
         background-size: 100%;
         background-position-y: 80px;
+      }
+    }
+
+    &.hex {
+      background-image: url("./assets/themes/hex-grid.jpg");
+
+      &::before, &::after {
+        border-color: #320;
+        background-image: url("./assets/themes/book-spine.jpg");
+        background-size: 100% 100%;
       }
     }
   }
