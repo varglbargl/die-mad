@@ -177,63 +177,81 @@ export default {
       sides: 100,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 100,
+      critFail: false,
+      critFailMaximum: 1
     },
     D20: {
       active: true,
       sides: 20,
       exploding: false,
       critSuccess: true,
-      critFail: true
+      critSuccessMinimum: 20,
+      critFail: true,
+      critFailMaximum: 1
     },
     D12: {
       active: true,
       sides: 12,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 12,
+      critFail: false,
+      critFailMaximum: 1
     },
     D10: {
       active: true,
       sides: 10,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 10,
+      critFail: false,
+      critFailMaximum: 1
     },
     D8: {
       active: true,
       sides: 8,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 8,
+      critFail: false,
+      critFailMaximum: 1
     },
     D6: {
       active: true,
       sides: 6,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 6,
+      critFail: false,
+      critFailMaximum: 1
     },
     D4: {
       active: true,
       sides: 4,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 4,
+      critFail: false,
+      critFailMaximum: 1
     },
     D2: {
       active: false,
       sides: 2,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 2,
+      critFail: false,
+      critFailMaximum: 1
     },
     custom: {
       active: false,
       sides: 69,
       exploding: false,
       critSuccess: false,
-      critFail: false
+      critSuccessMinimum: 69,
+      critFail: false,
+      critFailMaximum: 1
     }
   },
 
@@ -250,7 +268,9 @@ export default {
       sides: d,
       exploding: this.diceRack.custom.exploding,
       critSuccess: this.diceRack.custom.critSuccess,
-      critFail: this.diceRack.custom.critFail
+      critSuccessMinimum: this.diceRack.custom.critSuccessMinimum,
+      critFail: this.diceRack.custom.critFail,
+      critFailMaximum: this.diceRack.custom.critFailMaximum
     };
   },
 

@@ -188,7 +188,7 @@ export default {
     handleCrits() {
       // CRITS! EXPLODING DICE! Todo: add crit range to the settings
 
-      if (this.dieSettings.critSuccess && this.value === parseInt(this.sides)) {
+      if (this.dieSettings.critSuccess && this.value >= settings.getDieSettings(this.sides).critSuccessMinimum) {
         this.$emit('crit', ['success', this.x, this.y]);
         addToStreak('critSuccess', this.value);
       } else if (this.dieSettings.critFail && this.value === 1) {
@@ -196,7 +196,7 @@ export default {
         addToStreak('critFail', this.value);
       }
 
-      if (this.dieSettings.exploding && this.value === parseInt(this.sides)) {
+      if (this.dieSettings.exploding && this.value >= settings.getDieSettings(this.sides).critSuccessMinimum) {
         if (settings.animationsEnabled) {
           this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
           addToStreak('explosion', this.value);

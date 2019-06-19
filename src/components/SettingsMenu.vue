@@ -63,14 +63,16 @@
             </label>
           </td>
         </tr>
-        <tr v-for="(die, name) in settings.diceRack" :key="name">
+      </tbody>
+      <tbody v-for="(die, name) in settings.diceRack" :key="name">
+        <tr>
           <td v-if="name != 'custom'">
             {{ name }}
           </td>
           <td v-if="name === 'custom'">
             <label class="checkbox-container inline">
               D
-              <input type="number" step="1" @input.prevent="fixScrollBug" v-model="settings.diceRack.custom.sides" />
+              <input type="number" min="1" step="1" @input.prevent="fixScrollBug" v-model="settings.diceRack.custom.sides" />
             </label>
           </td>
           <td>
@@ -95,6 +97,24 @@
             <label class="checkbox-container inline">
               <input type="checkbox" v-model="die.exploding" />
               <span class="checkmark"></span>
+            </label>
+          </td>
+        </tr>
+        <tr v-if="die.critSuccess">
+          <td colspan="2">
+            <label class="checkbox-container inline">
+              Crit Range:
+            </label>
+          </td>
+          <td colspan="2">
+            <input type="range" min="1" :max="die.sides" v-model="die.critSuccessMinimum">
+          </td>
+          <td colspan="1">
+            <label v-if="die.critSuccessMinimum === die.sides" class="checkbox-container inline">
+              {{ die.sides }}
+            </label>
+            <label v-else class="checkbox-container inline">
+              {{ die.critSuccessMinimum }}-{{ die.sides }}
             </label>
           </td>
         </tr>
@@ -177,6 +197,33 @@ export default {
             if (!settings.diceRack[i][attr]) {
               allSelected[attr] = false;
             }
+
+            if (i === 'custom') {
+              if (settings.diceRack[i].sides === '') settings.diceRack[i].sides = 1;
+              settings.diceRack[i].sides = Math.abs(parseInt(settings.diceRack[i].sides));
+            }
+            settings.diceRack[i].critSuccessMinimum = parseInt(settings.diceRack[i].critSuccessMinimum);
+
+            if (settings.diceRack[i].critFail && settings.diceRack[i].critSuccessMinimum === 1) {
+              settings.diceRack[i].critSuccessMinimum = 2;
+            }
+
+            if (settings.diceRack[i].critSuccessMinimum > settings.diceRack[i].sides) {
+              settings.diceRack[i].critSuccessMinimum = settings.diceRack[i].sides;
+            }
+
+            if (settings.diceRack[i].critSuccessMinimum < 1) {
+              settings.diceRack[i].critSuccessMinimum = 1;
+            }
+
+            if (settings.diceRack[i].sides === 1) {
+              if (settings.diceRack[i].critSuccess) {
+                settings.diceRack[i].critFail = false;
+              }
+              if (settings.diceRack[i].critFail) {
+                settings.diceRack[i].critSuccess = false;
+              }
+            }
           }
         }
 
@@ -197,6 +244,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "@/styles/checkbox.scss";
+@import "@/styles/slider.scss";
 
 #settings-menu {
   position: absolute;
