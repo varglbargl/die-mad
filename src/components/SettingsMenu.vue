@@ -205,7 +205,7 @@ export default {
             settings.diceRack[i].critSuccessMinimum = parseInt(settings.diceRack[i].critSuccessMinimum);
 
             if (settings.diceRack[i].critFail && settings.diceRack[i].critSuccessMinimum === 1) {
-              settings.diceRack[i].critSuccessMinimum = 2;
+              settings.diceRack[i].critSuccessMinimum = Math.min(2, settings.diceRack[i].sides);
             }
 
             if (settings.diceRack[i].critSuccessMinimum > settings.diceRack[i].sides) {
@@ -214,15 +214,6 @@ export default {
 
             if (settings.diceRack[i].critSuccessMinimum < 1) {
               settings.diceRack[i].critSuccessMinimum = 1;
-            }
-
-            if (settings.diceRack[i].sides === 1) {
-              if (settings.diceRack[i].critSuccess) {
-                settings.diceRack[i].critFail = false;
-              }
-              if (settings.diceRack[i].critFail) {
-                settings.diceRack[i].critSuccess = false;
-              }
             }
           }
         }

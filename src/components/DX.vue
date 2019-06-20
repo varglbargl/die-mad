@@ -191,7 +191,9 @@ export default {
       if (this.dieSettings.critSuccess && this.value >= settings.getDieSettings(this.sides).critSuccessMinimum) {
         this.$emit('crit', ['success', this.x, this.y]);
         addToStreak('critSuccess', this.value);
-      } else if (this.dieSettings.critFail && this.value === 1) {
+      }
+
+      if (this.dieSettings.critFail && this.value <= settings.getDieSettings(this.sides).critFailMaximum) {
         this.$emit('crit', ['fail', this.x, this.y]);
         addToStreak('critFail', this.value);
       }
@@ -204,7 +206,7 @@ export default {
           setTimeout(() => {
             this.$emit('explode', [parseInt(this.sides), this.x, this.y]);
             addToStreak('explosion', this.value);
-          }, Math.ceil(Math.random() * 50 + 50))
+          }, Math.ceil(Math.random() * 50 + 50));
         }
       }
     },
