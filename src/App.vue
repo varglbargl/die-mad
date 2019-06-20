@@ -299,11 +299,7 @@ export default {
       window.addEventListener('devicemotion', this.deviceMotionHandler, true);
     }
 
-    // eslint-disable-next-line
-    console.log('You know I can\'t stop you from cheating. So go ahead :)');
-
-
-    let funGoofs = ['i\'m mad', 'let\'s die', 'send dice pics', 'let\'s roll', 'like a katamari', 'cybergeomancy', 'roll them bones'];
+    let funGoofs = ['i\'m mad', 'let\'s die', 'send dice pics', 'let\'s roll', 'like a katamari', 'cybergeomancy', 'roll \'em bones'];
 
     if (settings.cookiesEnabled) this.playButtonText = utils.getRandom(funGoofs).toUpperCase();
   },
