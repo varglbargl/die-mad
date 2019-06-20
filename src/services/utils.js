@@ -359,14 +359,14 @@ export default {
 
     if (saveData.d) {
       for (let i = 0; i < rollAchievements.length; i++) {
-        if (!saveData.d[i]) saveData.d[i] = 0;
+        if (!saveData.d[i]) continue;
         rollAchievements[i].got = !!parseInt(saveData.d[i]);
       }
     }
 
     if (saveData.e) {
       for (let i = 0; i < settings.tableThemes.length; i++) {
-        if (!saveData.e[0][i]) saveData.e[0][i] = 0;
+        if (!saveData.e[0][i]) continue;
         settings.tableThemes[i].got = !!parseInt(saveData.e[0][i]);
       }
 
@@ -375,19 +375,19 @@ export default {
 
     if (saveData.f) {
       for (let i = 0; i < settings.critAnimations.success.length; i++) {
-        if (!saveData.f.a[0][i]) saveData.f.a[0][i] = 0;
+        if (!saveData.f.a[0][i]) continue;
         settings.critAnimations.success[i].got = !!parseInt(saveData.f.a[0][i]);
       }
       settings.currentCritAnimations.success = saveData.f.a[1];
 
       for (let i = 0; i < settings.critAnimations.fail.length; i++) {
-        if (!saveData.f.b[0][i]) saveData.f.b[0][i] = 0;
+        if (!saveData.f.b[0][i]) continue;
         settings.critAnimations.fail[i].got = !!parseInt(saveData.f.b[0][i]);
       }
       settings.currentCritAnimations.fail = saveData.f.b[1];
 
       for (let i = 0; i < settings.critAnimations.explosion.length; i++) {
-        if (!saveData.f.c[0][i]) saveData.f.c[0][i] = 0;
+        if (!saveData.f.c[0][i]) continue;
         settings.critAnimations.explosion[i].got = !!parseInt(saveData.f.c[0][i]);
       }
       settings.currentCritAnimations.explosion = saveData.f.c[1];

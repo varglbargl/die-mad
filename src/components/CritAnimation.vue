@@ -9,16 +9,16 @@
       :key="i"
       :transform="'rotate(' + spark.rot +')'">
 
-        <g v-if="spark.shape === 'circle'" class="fade-in ease-out short">
+        <g v-if="spark.shape === 'circle'" class="fade-in ease-way-out short">
           <circle
-          class="transform-center ejector ease-out short"
+          class="transform-center ejector ease-way-out short"
           :r="spark.size"
           :fill="colorByIndex(i)" />
         </g>
 
         <g v-if="spark.shape === 'star'">
-          <g class="fade-in short">
-            <g class="transform-center ejector ease-out short">
+          <g class="fade-in ease-way-out short">
+            <g class="transform-center ejector ease-way-out short">
               <g class="transform-center spinner">
                 <path
                 :transform="'scale(' + 2.5 / spark.size + ')'"
@@ -158,6 +158,7 @@ svg {
 
 @keyframes eject {
   0% { transform: translate(0px) }
+  80% { transform: translate(40px) }
   100% { transform: translate(40px) }
 }
 

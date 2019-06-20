@@ -17,12 +17,12 @@
       <div v-if="open">
         <div class="skins-list">
           <div
-          v-for="(skin, i) in settings.skins[selectedDieTab]"
+          v-for="(skin, i) in filterList(settings.skins[selectedDieTab])"
           :key="i"
           class="choice"
           @click="pickDieSkin(skin.class)"
           :class="{selected: settings.currentDiceSkin === skin.class}"
-          :style="{display: skin.got ? '' : 'none', letterSpacing: skin.class === 'pattern genderfluid' ? '-1.6px' : '', fontSize: skin.class === 'pattern genderfluid' ? '15px' : ''}">
+          :style="{letterSpacing: skin.class === 'pattern genderfluid' ? '-1.6px' : '', fontSize: skin.class === 'pattern genderfluid' ? '15px' : ''}">
             <div class="die d20" :class="[skin.class, moonPhase(skin.class)]">
               <div class="skin"></div>
               <span>20</span>
@@ -53,7 +53,7 @@
     <span class="subheader">More coming soon!</span>
     <div class="section table-themes">
       <div
-      v-for="(theme, i) in settings.tableThemes"
+      v-for="(theme, i) in filterList(settings.tableThemes)"
       :key="i"
       class="choice"
       @click="pickTableTheme(theme.class)"
@@ -80,7 +80,7 @@
     </div>
     <div class="section animations" :class="selectedAnimationTab + '-tab'">
       <div
-      v-for="(animation, i) in settings.critAnimations[selectedAnimationTab]"
+      v-for="(animation, i) in filterList(settings.critAnimations[selectedAnimationTab])"
       :key="i"
       class="choice"
       @click="pickAnimation(animation.type)"
@@ -137,6 +137,15 @@ export default {
     }
   },
   methods: {
+    filterList (list) {
+      let result = [];
+
+      for (let i in list) {
+        if (list[i].got) result.push(list[i]);
+      }
+
+      return result;
+    },
     pickDieSkin (color) {
       settings.currentDiceSkin = color;
       utils.saveProgress();
