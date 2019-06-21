@@ -77,6 +77,10 @@ export default {
       recentAchievements.splice(index, 1);
       this.stoppedAnimations.splice(index, 1);
     },
+    dismissAllAchievements () {
+      recentAchievements.splice(0, Infinity); // lol finally a use for Infinity
+      this.stoppedAnimations = [];
+    },
     stopAnimation (index) {
       this.stoppedAnimations[index] = true;
       this.$forceUpdate(); // I cannot believe this is necessarry... WHY??

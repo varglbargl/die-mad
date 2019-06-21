@@ -4,7 +4,7 @@
       <img src="@/assets/logo.svg" />
       <button class="big-button" @click="playIntro($event)">{{ playButtonText }}</button>
     </div>
-    <achievements />
+    <achievements ref="cheevos"/>
     <div id="tabletop" :class="settings.currentTableTheme">
       <DX
       v-for="(die, i) in activeDice"
@@ -258,6 +258,7 @@ export default {
       this.bonusDice = [];
       this.bonusRolls = [];
       this.count = 0;
+      this.$refs.cheevos.dismissAllAchievements();
     },
     deviceMotionHandler (e) {
       if (!settings.shakeToRoll) return;
