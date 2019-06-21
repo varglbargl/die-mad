@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" baseProfile="basic" id="Layer_1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-245 347 120 99"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#D8D8D8;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st5{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st6{display:inline;opacity:0.32;}
+	.st7{display:inline;opacity:0.18;}
+	.st8{display:inline;opacity:0.47;}
+	.st9{fill:#2D0101;}
+	.st10{fill:#B72121;}
+	.st11{fill:#8C1010;}
+	.st12{fill:#720F0F;}
+	.st13{opacity:0.6;}
+	.st14{opacity:0;}
+	.st15{opacity:0.15;}
+	.st16{opacity:0.3;}
+</style>
+<g id="circle_guides" class="st0">
+	<g class="st1">
+		<circle class="st2" cx="-430" cy="744" r="60"/>
+	</g>
+</g>
+<g id="lines" class="st0">
+	<g class="st1">
+		<polygon class="st3" points="-481.1,773.5 -430,685 -378.9,773.5 		"/>
+		<path d="M-430,686l50.2,87h-100.4L-430,686 M-430,684l-52,90h104L-430,684L-430,684z"/>
+	</g>
+	<g class="st1">
+		<line class="st4" x1="-430" y1="744" x2="-482" y2="774"/>
+	</g>
+	<line class="st5" x1="-430" y1="744" x2="-430" y2="684"/>
+	<line class="st5" x1="-430" y1="744" x2="-378" y2="774"/>
+</g>
+<g id="shapes" class="st0">
+	<polygon class="st6" points="-430,744 -430,684 -378,774 	"/>
+	<polygon class="st7" points="-482,774 -430,744 -430,684 	"/>
+	<polygon class="st8" points="-430,744 -378,774 -482,774 	"/>
+</g>
+<g id="backgrounds" class="st0">
+	<g class="st1">
+		<polygon class="st9" points="-430,684 -482,774 -378,774 		"/>
+	</g>
+</g>
+<g id="shapes_copy" class="st0">
+	<g class="st1">
+		<polygon class="st10" points="-482,774 -430,744 -430,684 		"/>
+	</g>
+	<g class="st1">
+		<polygon class="st11" points="-430,744 -430,684 -378,774 		"/>
+	</g>
+	<g class="st1">
+		<polygon class="st12" points="-430,744 -378,774 -482,774 		"/>
+	</g>
+</g>
+<g>
+	<path class="st13" d="M-128.2,438.2l-52.2-87.9c-2.5-4.3-6.7-4.3-9.2,0l-52.2,87.9c-2.5,4.2-0.5,7.7,4.4,7.7h104.8
+		C-127.7,445.9-125.7,442.5-128.2,438.2z M-186.2,351v59.4l-52.8,29.8L-186.2,351z M-237.8,442l52.8-29.6l52.9,29.6H-237.8z
+		 M-184,410.4V351l52.9,89.2L-184,410.4z"/>
+	<polygon class="st14" points="-186.2,351 -239,440.2 -186.2,410.4 	"/>
+	<polygon class="st15" points="-184,410.4 -131,440.2 -184,351 	"/>
+	<polygon class="st16" points="-237.8,442 -132.2,442 -185,412.4 	"/>
+</g>
+</svg>
