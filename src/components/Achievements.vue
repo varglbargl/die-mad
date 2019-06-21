@@ -11,7 +11,8 @@
         <span>{{ cheevo.info.description }}</span>
       </div>
       <div style="display: flex; align-items: center;">
-        <div class="reward-card" :class="cheevo.info.rewarded.rarity">
+
+        <div v-if="cheevo.info.rewarded.type === 'skin'" class="reward-card" :class="cheevo.info.rewarded.rarity">
           <div
           class="die d20"
           :class="[cheevo.info.rewarded.class, moonPhase(cheevo.info.rewarded.class)]">
@@ -27,9 +28,28 @@
           @kill="stopAnimation(i)"
           v-if="stoppedAnimations[i] !== true"
           :type="settings.currentCritAnimations.success"
-          x="2"
+          x="3"
           y="0" />
         </div>
+
+        <div v-if="cheevo.info.rewarded.type === 'theme'" class="reward-card rare">
+          <div class="table-theme" :class="cheevo.info.rewarded.class"></div>
+          <span style="font-weight: 500;">{{ cheevo.info.rewarded.name }}</span>
+          <crit-animation
+          @kill="stopAnimation(i)"
+          v-if="stoppedAnimations[i] !== true"
+          :type="settings.currentCritAnimations.success"
+          x="3"
+          y="0" />
+        </div>
+
+        <div v-if="cheevo.info.rewarded.type === 'animation'" class="reward-card rare">
+          <div class="animation-container">
+            <crit-animation x="3" y="0" :type="cheevo.info.rewarded.class"/>
+          </div>
+          <span style="font-weight: 500;">{{ cheevo.info.rewarded.name }}</span>
+        </div>
+
       </div>
     </div>
   </div>
@@ -126,6 +146,21 @@ export default {
         left: calc(50% - 14px);
         width: auto;
       }
+    }
+
+    .table-theme {
+      width: 61px;
+      height: 66px;
+      margin: 2px;
+
+      &::before, &::after {
+        display: none;
+      }
+    }
+
+    .animation-container {
+      width: 65px;
+      height: 70px;
     }
   }
 }

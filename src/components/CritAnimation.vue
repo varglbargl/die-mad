@@ -1,5 +1,5 @@
 <template>
-  <div class="animation-container" :style="{left: x - 30 + 'px', top: y - 30 + 'px'}">
+  <div class="animation" :style="{left: x - 30 + 'px', top: y - 30 + 'px'}">
 
     <!-- CRITICAL SUCCESS: -->
 
@@ -134,7 +134,7 @@ svg {
   height: 120px;
 }
 
-.animation-container {
+.animation {
   position: absolute;
   width: 120px;
   height: 120px;

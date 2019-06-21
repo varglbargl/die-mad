@@ -83,9 +83,9 @@
       v-for="(animation, i) in filterList(settings.critAnimations[selectedAnimationTab])"
       :key="i"
       class="choice"
-      @click="pickAnimation(animation.type)"
-      :class="{selected: settings.currentCritAnimations[selectedAnimationTab] === animation.type}">
-        <crit-animation :type="animation.type" />
+      @click="pickAnimation(animation.class)"
+      :class="{selected: settings.currentCritAnimations[selectedAnimationTab] === animation.class}">
+        <crit-animation :type="animation.class" />
         <span style="font-weight: 500">{{ animation.name }}</span>
       </div>
     </div>
@@ -413,7 +413,7 @@ export default {
     }
   }
 
-  .animation-container {
+  .animation {
     position: relative;
     display: flex;
   }

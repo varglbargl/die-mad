@@ -31,7 +31,7 @@
       <crit-animation
       v-for="(crit, cI) in critRolls"
       @kill="removeCritAnimation(cI)"
-      :type="crit.type"
+      :type="crit.class"
       :key="crit.id"
       :x="crit.x"
       :y="crit.y" />
@@ -276,14 +276,14 @@ export default {
       }
     },
     animateCrit (evt) {
-      this.critRolls.push({type: settings.currentCritAnimations[evt[0]], x: evt[1], y: evt[2], id: ++this.count});
+      this.critRolls.push({class: settings.currentCritAnimations[evt[0]], x: evt[1], y: evt[2], id: ++this.count});
     },
     removeCritAnimation (i) {
       this.critRolls.splice(i, 1);
     },
     explodeDie(evt) {
       this.bonusDice.push({sides: evt[0], id: ++this.count});
-      this.critRolls.push({type: settings.currentCritAnimations.explosion, x: evt[1], y: evt[2], id: ++this.count});
+      this.critRolls.push({class: settings.currentCritAnimations.explosion, x: evt[1], y: evt[2], id: ++this.count});
 
       Vue.nextTick(() => {
         this.$refs.explodedDice[this.bonusDice.length - 1].x = evt[1];

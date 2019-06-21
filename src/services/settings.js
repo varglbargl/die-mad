@@ -112,8 +112,8 @@ export default {
   // Works basically like the dice skins. They have a name, a class, and whether or not you have it.
   tableThemes: [
     { name: 'Felt',      class: 'strexture felt',    got: true },
-    { name: 'Space 1',   class: 'strexture space1',  got: true },
-    { name: 'Hex Grid',  class: 'strexture hex',     got: true }
+    { name: 'Space 1',   class: 'strexture space1',  got: false },
+    { name: 'Hex Grid',  class: 'strexture hex',     got: false }
   ],
 
   currentTableTheme: 'strexture felt',
@@ -122,19 +122,19 @@ export default {
 
   critAnimations: {
     success: [
-      { name: 'Default',   type: 'success default',     duration: 0.7, got: true },
-      { name: 'Pixel',     type: 'success pixel',       duration: 0.6, got: true },
-      { name: 'Geocities', type: 'success geocities',   duration: 0.8, got: true }
+      { name: 'Default',   class: 'success default',     duration: 0.7, got: true },
+      { name: 'Pixel',     class: 'success pixel',       duration: 0.6, got: false },
+      { name: 'Geocities', class: 'success geocities',   duration: 0.8, got: false }
     ],
     fail: [
-      { name: 'Default',   type: 'fail default',        duration: 1,   got: true },
-      { name: 'Pixel',     type: 'fail pixel',          duration: 0.7, got: true },
-      { name: 'Geocities', type: 'fail geocities',      duration: 0.8, got: true }
+      { name: 'Default',   class: 'fail default',        duration: 1,   got: true },
+      { name: 'Pixel',     class: 'fail pixel',          duration: 0.7, got: false },
+      { name: 'Geocities', class: 'fail geocities',      duration: 0.8, got: false }
     ],
     explosion: [
-      { name: 'Default',   type: 'explosion default',   duration: 1,   got: true },
-      { name: 'Pixel',     type: 'explosion pixel',     duration: 0.7, got: true },
-      { name: 'Geocities', type: 'explosion geocities', duration: 0.8, got: true }
+      { name: 'Default',   class: 'explosion default',   duration: 1,   got: true },
+      { name: 'Pixel',     class: 'explosion pixel',     duration: 0.7, got: false },
+      { name: 'Geocities', class: 'explosion geocities', duration: 0.8, got: false }
     ]
   },
 
@@ -147,7 +147,7 @@ export default {
   getAnimationDuration (type) {
     for (let crit in this.critAnimations) {
       for (var i = 0; i < this.critAnimations[crit].length; i++) {
-        if (this.critAnimations[crit][i].type === type) return this.critAnimations[crit][i].duration;
+        if (this.critAnimations[crit][i].class === type) return this.critAnimations[crit][i].duration;
       }
     }
   },
@@ -294,20 +294,20 @@ export default {
   },
 
   // Awards a random die skin. You can specify a minimum rarity to guarantee at least a rare for example.
-  // minRarity is useful for "card pack" style rewards where they should be guaranteed at least one rare, for example.
-  awardRandomDie (minRarity, duplicates) {
-    let availableDice = [];
+  // type is useful for "card pack" style rewards where they should be guaranteed at least one rare, for example.
+  awardRandomPrize (type, duplicates) {
+    let availablePrizes = [];
     let roll = Math.random() * 100;
     let rarity;
 
     // this way you always have the same chance of getting an Epic or mythicary, even if you set the minimum to Rare etc.
-    if (minRarity === 'rare') {
+    if (type === 'rare') {
       roll = Math.max(roll, 70);
-    } else if (minRarity === 'epic') {
+    } else if (type === 'epic') {
       roll = Math.max(roll, 90);
-    } else if (minRarity === 'mythic') {
+    } else if (type === 'mythic') {
       roll = 100;
-    } // else if minRarity === 'basic' || !minRarity (they're the same thing if you think about it)
+    } // else if type === 'basic' || !type (they're the same thing if you think about it)
 
     if (roll > 99.5) {
       rarity = 'mythic';
@@ -319,31 +319,61 @@ export default {
       rarity = 'basic';
     }
 
-    for (let skin in this.skins[rarity]) {
+    for (let i = 0; i < this.skins[rarity].length; i++) {
       if (duplicates) {
-        availableDice.push(this.skins[rarity][skin]);
+        this.skins[rarity][i].type = 'skin';
+        availablePrizes.push(this.skins[rarity][i]);
       } else {
-        if (!this.skins[rarity][skin].got && !this.skins[rarity][skin].event) {
-          availableDice.push(this.skins[rarity][skin]);
+        if (!this.skins[rarity][i].got && !this.skins[rarity][i].event) {
+          this.skins[rarity][i].type = 'skin';
+          availablePrizes.push(this.skins[rarity][i]);
         }
       }
     }
 
-    if (availableDice.length === 0) {
+    if (rarity === 'basic' || rarity === 'rare') {
+      for (let type in this.critAnimations) {
+        for (let i = 0; i < this.critAnimations[type].length; i++) {
+          if (duplicates) {
+            this.critAnimations[type][i].type = 'animation';
+            availablePrizes.push(this.critAnimations[type][i]);
+          } else {
+            if (!this.critAnimations[type][i].got) {
+              this.critAnimations[type][i].type = 'animation';
+              availablePrizes.push(this.critAnimations[type][i]);
+            }
+          }
+        }
+      }
+
+      for (let i = 0; i < this.tableThemes.length; i++) {
+        if (duplicates) {
+          this.tableThemes[i].type = 'theme';
+          availablePrizes.push(this.tableThemes[i]);
+        } else {
+          if (!this.tableThemes[i].got) {
+            this.tableThemes[i].type = 'theme';
+            availablePrizes.push(this.tableThemes[i]);
+          }
+        }
+      }
+    }
+
+    if (availablePrizes.length === 0) {
       // Gotta handle this somehow. This happens when you have all the dice skins of the rarity you rolled.
       // Award a crafting resource (glitter)? Default to the next rarity up and try again? What if you have ALL skins??
       // Honestly, short term solution (and something I'm gonna have to do anyway) is to add like 100 new basic skins lol
-      return this.awardRandomDie(minRarity, true);
+      return this.awardRandomPrize(type, true);
     }
 
-    let randomAvailableDie = utils.getRandom(availableDice);
+    let randomAvailablePrize = utils.getRandom(availablePrizes);
 
-    randomAvailableDie.got = true;
-    randomAvailableDie.rarity = rarity;
+    randomAvailablePrize.got = true;
+    randomAvailablePrize.rarity = rarity; // this is a little weird but it works so shut up
 
     utils.saveProgress();
 
-    return randomAvailableDie;
+    return randomAvailablePrize;
   },
 
   awardSpecificDie (name) {
@@ -352,6 +382,7 @@ export default {
         if (this.skins[rarity][i].name === name) {
           this.skins[rarity][i].got = true;
           this.skins[rarity][i].rarity = rarity;
+          this.skins[rarity][i].type = 'skin';
 
           utils.saveProgress();
           return this.skins[rarity][i];

@@ -178,7 +178,7 @@ var rollAchievements =  [
         settings.awardSpecificDie(gayDice[i]);
       }
 
-      return {name: 'Dice x10', class: 'pattern gay', rarity: 'rare'};
+      return {name: 'Dice x10', class: 'pattern gay', rarity: 'rare', type: 'skin'};
     },
     rarity: 'rare',
     got: false
@@ -412,7 +412,7 @@ var awardReward = function (reward) {
   }
 
   if (reward === 'basic' || reward === 'rare' || reward === 'epic' || reward === 'mythic') {
-    return settings.awardRandomDie(reward);
+    return settings.awardRandomPrize(reward);
   } // else add and handle other types of rewards (crit animations, board themes, DICE PACKS???)
 };
 

@@ -186,7 +186,7 @@ export default {
       }
     },
     handleCrits() {
-      // CRITS! EXPLODING DICE! Todo: add crit range to the settings
+      // CRITS! EXPLODING DICE!
 
       if (this.dieSettings.critSuccess && this.value >= settings.getDieSettings(this.sides).critSuccessMinimum) {
         this.$emit('crit', ['success', this.x, this.y]);
